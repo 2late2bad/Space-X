@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ModuleBuilderProtocol {
-    func createBaseModule(router: RocketRouterProtocol) -> UIPageViewController
+    func createBaseModule(router: RocketRouterProtocol) -> UIViewController
 }
 
 final class ModuleBuilder {
@@ -22,10 +22,10 @@ final class ModuleBuilder {
 
 extension ModuleBuilder: ModuleBuilderProtocol {
     
-    func createBaseModule(router: RocketRouterProtocol) -> UIPageViewController {
+    func createBaseModule(router: RocketRouterProtocol) -> UIViewController {
         
-        let view = BasePageVC(transitionStyle: .scroll,
-                              navigationOrientation: .horizontal)
+        let view      = BasePageVC(transitionStyle: .scroll,
+                                   navigationOrientation: .horizontal)
         let presenter = BasePresenter(view: view,
                                       storageManager: storageManager,
                                       networkManager: networkManager)
