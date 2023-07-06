@@ -19,6 +19,7 @@
 		24A107152A56F566002B4375 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A107142A56F566002B4375 /* Colors.swift */; };
 		24A1071A2A56FBB2002B4375 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A107192A56FBB2002B4375 /* Constants.swift */; };
 		24A1071C2A571051002B4375 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A1071B2A571051002B4375 /* UIViewController+Ext.swift */; };
+		24A107252A574714002B4375 /* MainContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A107242A574714002B4375 /* MainContentVC.swift */; };
 		24C84BFA2A55564A0034FFC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C84BF92A55564A0034FFC1 /* AppDelegate.swift */; };
 		24C84BFC2A55564A0034FFC1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C84BFB2A55564A0034FFC1 /* SceneDelegate.swift */; };
 		24C84C032A55564A0034FFC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24C84C022A55564A0034FFC1 /* Assets.xcassets */; };
@@ -60,6 +61,7 @@
 		24A107142A56F566002B4375 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		24A107192A56FBB2002B4375 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		24A1071B2A571051002B4375 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		24A107242A574714002B4375 /* MainContentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentVC.swift; sourceTree = "<group>"; };
 		24C84BF62A55564A0034FFC1 /* SpaceX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24C84BF92A55564A0034FFC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24C84BFB2A55564A0034FFC1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -263,6 +265,8 @@
 		24A1071F2A5713CE002B4375 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				24A107112A56ED57002B4375 /* MainVC.swift */,
+				24A107212A574640002B4375 /* Subview */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -272,6 +276,14 @@
 			children = (
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		24A107212A574640002B4375 /* Subview */ = {
+			isa = PBXGroup;
+			children = (
+				24A107242A574714002B4375 /* MainContentVC.swift */,
+			);
+			path = Subview;
 			sourceTree = "<group>";
 		};
 		24C84BED2A5556490034FFC1 = {
@@ -303,7 +315,6 @@
 				24A107162A56F69B002B4375 /* Extensions */,
 				24C84C2D2A5558140034FFC1 /* Support */,
 				24A1070C2A56D06D002B4375 /* Other */,
-				24A107112A56ED57002B4375 /* MainVC.swift */,
 			);
 			path = SpaceX;
 			sourceTree = "<group>";
@@ -482,6 +493,7 @@
 				24A107042A56C28D002B4375 /* RootNavigationController.swift in Sources */,
 				24A107062A56CD0D002B4375 /* NetworkManager.swift in Sources */,
 				24A107122A56ED57002B4375 /* MainVC.swift in Sources */,
+				24A107252A574714002B4375 /* MainContentVC.swift in Sources */,
 				24A106EB2A56BA43002B4375 /* RouterProtocol.swift in Sources */,
 				24C84BFC2A55564A0034FFC1 /* SceneDelegate.swift in Sources */,
 				24A106F12A56BC6A002B4375 /* BasePageVC.swift in Sources */,

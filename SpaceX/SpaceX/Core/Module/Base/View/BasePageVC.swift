@@ -54,9 +54,9 @@ private extension BasePageVC {
         let page2 = MainVC()
         let page3 = MainVC()
         
-        page1.view.backgroundColor = .brown
-        page2.view.backgroundColor = .yellow
-        page3.view.backgroundColor = .blue
+//        page1.view.backgroundColor = .brown
+//        page2.view.backgroundColor = .yellow
+//        page3.view.backgroundColor = .blue
         
         pages.append(page1)
         pages.append(page2)
