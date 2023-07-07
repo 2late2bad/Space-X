@@ -20,4 +20,9 @@ enum Constants {
         static let rockets = "https://api.spacexdata.com/v4/rockets"
         static let launches = "https://api.spacexdata.com/v4/launches"
     }
+    
+    public enum StorageKeys: String {
+        case rockets
+        case launches
+    }
 }
