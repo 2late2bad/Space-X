@@ -44,6 +44,7 @@ extension ModuleBuilder: ModuleBuilderProtocol {
                                       storageManager: storageManager)
         view.router = router
         view.presenter = presenter
+        view.pageNumb = pageNumb
         
         return view
     }

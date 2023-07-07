@@ -44,12 +44,6 @@ private extension BasePageVC {
         additionalSafeAreaInsets.bottom = C.Padding.additionalSafeAreaInsetsBottom
     }
     
-    func setPages() {
-        setViewControllers([pages[initialPage]],
-                           direction: .forward,
-                           animated: true)
-    }
-    
     func stylePageControl() {
         let pageControl = UIPageControl.appearance()
         pageControl.currentPageIndicatorTintColor = Colors.currentPageIndicator.uiColor
@@ -64,6 +58,12 @@ private extension BasePageVC {
             view.frame.origin.y = self.view.frame.size.height - C.Padding.additionalPageControlHeight - bottomSafeAreaHeight
             view.setNeedsLayout()
         }
+    }
+    
+    func setPages() {
+        setViewControllers([pages[initialPage]],
+                           direction: .forward,
+                           animated: true)
     }
 }
 
@@ -104,7 +104,7 @@ extension BasePageVC: UIPageViewControllerDataSource {
         
         guard let viewController = viewController as? MainVC,
               let currentIndex = pages.firstIndex(of: viewController) else { return nil }
-                
+        
         if currentIndex < pages.count - 1 {
             return pages[currentIndex + 1]
         } else {

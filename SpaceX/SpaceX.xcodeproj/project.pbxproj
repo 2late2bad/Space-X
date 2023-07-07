@@ -9,10 +9,19 @@
 /* Begin PBXBuildFile section */
 		240D422B2A581626004B481C /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D422A2A581626004B481C /* NetworkError.swift */; };
 		240D422D2A581650004B481C /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D422C2A581650004B481C /* HttpMethod.swift */; };
-		240D42312A581997004B481C /* Rocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D42302A581997004B481C /* Rocket.swift */; };
+		240D42312A581997004B481C /* RocketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D42302A581997004B481C /* RocketModel.swift */; };
 		240D42332A5820ED004B481C /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D42322A5820ED004B481C /* MainPresenter.swift */; };
 		240D42352A5823FA004B481C /* EmptyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D42342A5823FA004B481C /* EmptyVC.swift */; };
 		240D42372A58348D004B481C /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D42362A58348D004B481C /* UIView+Ext.swift */; };
+		240D423B2A584EF9004B481C /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D423A2A584EF9004B481C /* MainContentView.swift */; };
+		240D423D2A58623E004B481C /* RocketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D423C2A58623E004B481C /* RocketData.swift */; };
+		240D42402A586D10004B481C /* MainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D423F2A586D10004B481C /* MainHeaderView.swift */; };
+		240D42422A587824004B481C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D42412A587824004B481C /* Fonts.swift */; };
+		240D42492A587903004B481C /* LabGrotesque-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 240D42442A587903004B481C /* LabGrotesque-Regular.ttf */; };
+		240D424A2A587903004B481C /* FontNames in Resources */ = {isa = PBXBuildFile; fileRef = 240D42452A587903004B481C /* FontNames */; };
+		240D424B2A587903004B481C /* LabGrotesque-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 240D42462A587903004B481C /* LabGrotesque-Bold.ttf */; };
+		240D424C2A587903004B481C /* LabGrotesque-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 240D42472A587903004B481C /* LabGrotesque-Thin.ttf */; };
+		240D424D2A587903004B481C /* LabGrotesque-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 240D42482A587903004B481C /* LabGrotesque-Medium.ttf */; };
 		24A106E82A56B817002B4375 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A106E72A56B817002B4375 /* ModuleBuilder.swift */; };
 		24A106EB2A56BA43002B4375 /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A106EA2A56BA43002B4375 /* RouterProtocol.swift */; };
 		24A106ED2A56BA91002B4375 /* RocketRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A106EC2A56BA91002B4375 /* RocketRouter.swift */; };
@@ -25,7 +34,6 @@
 		24A107152A56F566002B4375 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A107142A56F566002B4375 /* Colors.swift */; };
 		24A1071A2A56FBB2002B4375 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A107192A56FBB2002B4375 /* Constants.swift */; };
 		24A1071C2A571051002B4375 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A1071B2A571051002B4375 /* UIViewController+Ext.swift */; };
-		24A107252A574714002B4375 /* MainContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A107242A574714002B4375 /* MainContentVC.swift */; };
 		24C84BFA2A55564A0034FFC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C84BF92A55564A0034FFC1 /* AppDelegate.swift */; };
 		24C84BFC2A55564A0034FFC1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C84BFB2A55564A0034FFC1 /* SceneDelegate.swift */; };
 		24C84C032A55564A0034FFC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24C84C022A55564A0034FFC1 /* Assets.xcassets */; };
@@ -55,10 +63,19 @@
 /* Begin PBXFileReference section */
 		240D422A2A581626004B481C /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		240D422C2A581650004B481C /* HttpMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
-		240D42302A581997004B481C /* Rocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rocket.swift; sourceTree = "<group>"; };
+		240D42302A581997004B481C /* RocketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketModel.swift; sourceTree = "<group>"; };
 		240D42322A5820ED004B481C /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		240D42342A5823FA004B481C /* EmptyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyVC.swift; sourceTree = "<group>"; };
 		240D42362A58348D004B481C /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		240D423A2A584EF9004B481C /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
+		240D423C2A58623E004B481C /* RocketData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketData.swift; sourceTree = "<group>"; };
+		240D423F2A586D10004B481C /* MainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderView.swift; sourceTree = "<group>"; };
+		240D42412A587824004B481C /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		240D42442A587903004B481C /* LabGrotesque-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Regular.ttf"; sourceTree = "<group>"; };
+		240D42452A587903004B481C /* FontNames */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FontNames; sourceTree = "<group>"; };
+		240D42462A587903004B481C /* LabGrotesque-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Bold.ttf"; sourceTree = "<group>"; };
+		240D42472A587903004B481C /* LabGrotesque-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Thin.ttf"; sourceTree = "<group>"; };
+		240D42482A587903004B481C /* LabGrotesque-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Medium.ttf"; sourceTree = "<group>"; };
 		24A106E72A56B817002B4375 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		24A106EA2A56BA43002B4375 /* RouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
 		24A106EC2A56BA91002B4375 /* RocketRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketRouter.swift; sourceTree = "<group>"; };
@@ -73,7 +90,6 @@
 		24A107142A56F566002B4375 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		24A107192A56FBB2002B4375 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		24A1071B2A571051002B4375 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
-		24A107242A574714002B4375 /* MainContentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentVC.swift; sourceTree = "<group>"; };
 		24C84BF62A55564A0034FFC1 /* SpaceX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24C84BF92A55564A0034FFC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24C84BFB2A55564A0034FFC1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +138,42 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		240D42382A584E3B004B481C /* Empty */ = {
+			isa = PBXGroup;
+			children = (
+				240D42392A584E46004B481C /* View */,
+			);
+			path = Empty;
+			sourceTree = "<group>";
+		};
+		240D42392A584E46004B481C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				240D42342A5823FA004B481C /* EmptyVC.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		240D423E2A586C86004B481C /* MainHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				240D423F2A586D10004B481C /* MainHeaderView.swift */,
+			);
+			path = MainHeaderView;
+			sourceTree = "<group>";
+		};
+		240D42432A587876004B481C /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				240D42452A587903004B481C /* FontNames */,
+				240D42462A587903004B481C /* LabGrotesque-Bold.ttf */,
+				240D42482A587903004B481C /* LabGrotesque-Medium.ttf */,
+				240D42442A587903004B481C /* LabGrotesque-Regular.ttf */,
+				240D42472A587903004B481C /* LabGrotesque-Thin.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		24A106E52A56B5D4002B4375 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +207,7 @@
 			children = (
 				24A106EF2A56BBF9002B4375 /* Base */,
 				24A1071D2A5713B6002B4375 /* Main */,
+				240D42382A584E3B004B481C /* Empty */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -181,7 +234,7 @@
 		24A106F92A56BFE1002B4375 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				240D42302A581997004B481C /* Rocket.swift */,
+				240D42302A581997004B481C /* RocketModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -256,6 +309,7 @@
 			children = (
 				24A107142A56F566002B4375 /* Colors.swift */,
 				24A107192A56FBB2002B4375 /* Constants.swift */,
+				240D42412A587824004B481C /* Fonts.swift */,
 			);
 			path = Utilies;
 			sourceTree = "<group>";
@@ -282,6 +336,7 @@
 		24A1071E2A5713C8002B4375 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				240D423C2A58623E004B481C /* RocketData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -290,7 +345,6 @@
 			isa = PBXGroup;
 			children = (
 				24A107112A56ED57002B4375 /* MainVC.swift */,
-				240D42342A5823FA004B481C /* EmptyVC.swift */,
 				24A107212A574640002B4375 /* Subview */,
 			);
 			path = View;
@@ -307,7 +361,8 @@
 		24A107212A574640002B4375 /* Subview */ = {
 			isa = PBXGroup;
 			children = (
-				24A107242A574714002B4375 /* MainContentVC.swift */,
+				240D423A2A584EF9004B481C /* MainContentView.swift */,
+				240D423E2A586C86004B481C /* MainHeaderView */,
 			);
 			path = Subview;
 			sourceTree = "<group>";
@@ -375,6 +430,7 @@
 			isa = PBXGroup;
 			children = (
 				24A107132A56F551002B4375 /* Utilies */,
+				240D42432A587876004B481C /* Font */,
 				24A1070E2A56D1C5002B4375 /* JSON */,
 				24A107092A56CF7C002B4375 /* Resources */,
 				24A1070B2A56CFB3002B4375 /* PropertyList */,
@@ -486,8 +542,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				240D424D2A587903004B481C /* LabGrotesque-Medium.ttf in Resources */,
+				240D424A2A587903004B481C /* FontNames in Resources */,
 				24C84C062A55564A0034FFC1 /* LaunchScreen.storyboard in Resources */,
 				24C84C032A55564A0034FFC1 /* Assets.xcassets in Resources */,
+				240D424C2A587903004B481C /* LabGrotesque-Thin.ttf in Resources */,
+				240D424B2A587903004B481C /* LabGrotesque-Bold.ttf in Resources */,
+				240D42492A587903004B481C /* LabGrotesque-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +576,7 @@
 				240D42352A5823FA004B481C /* EmptyVC.swift in Sources */,
 				240D422B2A581626004B481C /* NetworkError.swift in Sources */,
 				24C84BFA2A55564A0034FFC1 /* AppDelegate.swift in Sources */,
+				240D423D2A58623E004B481C /* RocketData.swift in Sources */,
 				24A107152A56F566002B4375 /* Colors.swift in Sources */,
 				24A1071C2A571051002B4375 /* UIViewController+Ext.swift in Sources */,
 				24A106FF2A56C01D002B4375 /* BasePresenter.swift in Sources */,
@@ -524,15 +586,17 @@
 				240D42332A5820ED004B481C /* MainPresenter.swift in Sources */,
 				240D422D2A581650004B481C /* HttpMethod.swift in Sources */,
 				240D42372A58348D004B481C /* UIView+Ext.swift in Sources */,
-				240D42312A581997004B481C /* Rocket.swift in Sources */,
-				24A107252A574714002B4375 /* MainContentVC.swift in Sources */,
+				240D42312A581997004B481C /* RocketModel.swift in Sources */,
 				24A106EB2A56BA43002B4375 /* RouterProtocol.swift in Sources */,
 				24C84BFC2A55564A0034FFC1 /* SceneDelegate.swift in Sources */,
+				240D42422A587824004B481C /* Fonts.swift in Sources */,
 				24A106F12A56BC6A002B4375 /* BasePageVC.swift in Sources */,
+				240D42402A586D10004B481C /* MainHeaderView.swift in Sources */,
 				24A107082A56CD40002B4375 /* StorageManager.swift in Sources */,
 				24A1071A2A56FBB2002B4375 /* Constants.swift in Sources */,
 				24A106E82A56B817002B4375 /* ModuleBuilder.swift in Sources */,
 				24A106ED2A56BA91002B4375 /* RocketRouter.swift in Sources */,
+				240D423B2A584EF9004B481C /* MainContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
