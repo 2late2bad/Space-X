@@ -36,9 +36,10 @@ final class BasePresenter: BasePresenterProtocol {
             self.view.failure(error: NetworkError.invalidURL)
             return
         }
-        network.request(fromURL: url, httpMethod: .get) { (result: Result<[Rocket], NetworkError>) in
+        network.request(fromURL: url, httpMethod: .get) { (result: Result<[RocketModel], NetworkError>) in
             switch result {
             case .success(let rockets):
+                self.storage.set(object: rockets, forKey: .rockets)
                 self.view.success(withNumber: rockets.count)
             case .failure(let error):
                 self.view.failure(error: error)

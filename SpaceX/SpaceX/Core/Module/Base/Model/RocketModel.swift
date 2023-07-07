@@ -7,10 +7,8 @@
 
 import Foundation
 
-typealias Rocket = RocketModel
-
 // MARK: - RocketModel
-struct RocketModel: Decodable {
+struct RocketModel: Codable {
     let height, diameter: Diameter
     let mass: Mass
     let firstStage: FirstStage
@@ -45,12 +43,12 @@ struct RocketModel: Decodable {
 }
 
 // MARK: - Diameter
-struct Diameter: Decodable {
+struct Diameter: Codable {
     let meters, feet: Double?
 }
 
 // MARK: - Engines
-struct Engines: Decodable {
+struct Engines: Codable {
     let isp: ISP
     let thrustSeaLevel, thrustVacuum: Thrust
     let number: Int
@@ -73,7 +71,7 @@ struct Engines: Decodable {
 }
 
 // MARK: - ISP
-struct ISP: Decodable {
+struct ISP: Codable {
     let seaLevel, vacuum: Int
 
     enum CodingKeys: String, CodingKey {
@@ -83,12 +81,12 @@ struct ISP: Decodable {
 }
 
 // MARK: - Thrust
-struct Thrust: Decodable {
+struct Thrust: Codable {
     let kN, lbf: Int
 }
 
 // MARK: - FirstStage
-struct FirstStage: Decodable {
+struct FirstStage: Codable {
     let thrustSeaLevel, thrustVacuum: Thrust
     let reusable: Bool
     let engines: Int
@@ -105,24 +103,24 @@ struct FirstStage: Decodable {
 }
 
 // MARK: - LandingLegs
-struct LandingLegs: Decodable {
+struct LandingLegs: Codable {
     let number: Int
     let material: String?
 }
 
 // MARK: - Mass
-struct Mass: Decodable {
+struct Mass: Codable {
     let kg, lb: Int
 }
 
 // MARK: - PayloadWeight
-struct PayloadWeight: Decodable {
+struct PayloadWeight: Codable {
     let id, name: String
     let kg, lb: Int
 }
 
 // MARK: - SecondStage
-struct SecondStage: Decodable {
+struct SecondStage: Codable {
     let thrust: Thrust
     let payloads: Payloads
     let reusable: Bool
@@ -138,7 +136,7 @@ struct SecondStage: Decodable {
 }
 
 // MARK: - Payloads
-struct Payloads: Decodable {
+struct Payloads: Codable {
     let compositeFairing: CompositeFairing
     let option1: String
 
@@ -149,6 +147,6 @@ struct Payloads: Decodable {
 }
 
 // MARK: - CompositeFairing
-struct CompositeFairing: Decodable {
+struct CompositeFairing: Codable {
     let height, diameter: Diameter
 }
