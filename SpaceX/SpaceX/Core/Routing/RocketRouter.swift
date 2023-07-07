@@ -9,6 +9,7 @@ import UIKit
 
 protocol RocketRouterProtocol: RouterProtocol {
     func routeBaseModule()
+    func routeMainModule(with pageNumber: Int) -> MainVC
 }
 
 final class RocketRouter {
@@ -34,4 +35,9 @@ extension RocketRouter: RocketRouterProtocol {
         let baseView = moduleBuilder.createBaseModule(router: self)
         navigationController.viewControllers = [baseView]
     }
+    
+    func routeMainModule(with pageNumber: Int) -> MainVC {
+        moduleBuilder.createMainModule(with: pageNumber, router: self)
+    }
+
 }

@@ -9,7 +9,7 @@ import UIKit
 
 protocol ModuleBuilderProtocol {
     func createBaseModule(router: RocketRouterProtocol) -> UIViewController
-}
+    func createMainModule(with pageNumb: Int, router: RocketRouterProtocol) -> MainVC
 
 final class ModuleBuilder {
     
@@ -35,4 +35,16 @@ extension ModuleBuilder: ModuleBuilderProtocol {
         
         return view
     }
+    
+    func createMainModule(with pageNumb: Int, router: RocketRouterProtocol) -> MainVC {
+        
+        let view      = MainVC()
+        let presenter = MainPresenter(view: view,
+                                      storageManager: storageManager)
+        view.router = router
+        view.presenter = presenter
+        
+        return view
+    }
+    
 }

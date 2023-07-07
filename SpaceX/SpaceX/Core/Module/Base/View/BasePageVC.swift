@@ -8,7 +8,8 @@
 import UIKit
 
 protocol BasePageProtocol: AnyObject {
-    
+    func success(withNumber number: Int)
+    func failure(error: NetworkError)
 }
 
 final class BasePageVC: UIPageViewController {
@@ -17,27 +18,21 @@ final class BasePageVC: UIPageViewController {
     var router: RocketRouterProtocol!
     var presenter: BasePresenterProtocol!
     
+    private var pages: [UIViewController] = []
+    private let initialPage = 0
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         stylePageControl()
+        presenter.loadPages()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         layoutPageControl()
     }
-    
-    // Test
-    var pages: [MainVC] = []
-    let initialPage = 0
-    
-}
-
-// MARK: - Implementation BasePageProtocol
-extension BasePageVC: BasePageProtocol {
-    
 }
 
 // MARK: - Private methods
@@ -45,28 +40,14 @@ private extension BasePageVC {
     
     func setup() {
         dataSource = self
-//        delegate = self
-
         view.backgroundColor = Colors.backgroundPageView.uiColor
         additionalSafeAreaInsets.bottom = C.Padding.additionalSafeAreaInsetsBottom
-        //
-        let page1 = MainVC()
-        let page2 = MainVC()
-        let page3 = MainVC()
-        
-//        page1.view.backgroundColor = .brown
-//        page2.view.backgroundColor = .yellow
-//        page3.view.backgroundColor = .blue
-        
-        pages.append(page1)
-        pages.append(page2)
-        pages.append(page3)
-        
+    }
+    
+    func setPages() {
         setViewControllers([pages[initialPage]],
                            direction: .forward,
                            animated: true)
-
-        
     }
     
     func stylePageControl() {
@@ -86,11 +67,31 @@ private extension BasePageVC {
     }
 }
 
+// MARK: - Implementation BasePageProtocol
+extension BasePageVC: BasePageProtocol {
+    
+    func success(withNumber number: Int) {
+        for pageNumb in 1...number {
+            let mainVC = router.routeMainModule(with: pageNumb)
+            pages.append(mainVC)
+        }
+        setPages()
+    }
+    
+    func failure(error: NetworkError) {
+        debugPrint(error.message)
+        pages = [router.routeEmpty(errorText: error.message)]
+        setPages()
+    }
+}
+
 // MARK: - UIPageViewControllerDataSource
 extension BasePageVC: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let currentIndex = pages.firstIndex(of: viewController as! MainVC) else { return nil }
+        
+        guard let viewController = viewController as? MainVC,
+              let currentIndex = pages.firstIndex(of: viewController) else { return nil }
         
         if currentIndex == 0 {
             return pages.last
@@ -100,8 +101,10 @@ extension BasePageVC: UIPageViewControllerDataSource {
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let currentIndex = pages.firstIndex(of: viewController as! MainVC) else { return nil }
         
+        guard let viewController = viewController as? MainVC,
+              let currentIndex = pages.firstIndex(of: viewController) else { return nil }
+                
         if currentIndex < pages.count - 1 {
             return pages[currentIndex + 1]
         } else {
@@ -112,7 +115,7 @@ extension BasePageVC: UIPageViewControllerDataSource {
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         pages.count
     }
-
+    
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         initialPage
     }

@@ -7,7 +7,15 @@
 
 import UIKit
 
-class MainVC: UIViewController {
+protocol MainVCProtocol: AnyObject {
+    
+}
+
+final class MainVC: UIViewController {
+    
+    // MARK: - Properties
+    var router: RocketRouterProtocol!
+    var presenter: MainPresenterProtocol!
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -20,7 +28,7 @@ class MainVC: UIViewController {
     
     private lazy var contentView: UIView = {
         let contentView = MainContentVC()
-        contentView.backgroundColor = .brown
+        contentView.backgroundColor = .black
         contentView.layer.cornerRadius = 40
         return contentView
     }()
@@ -52,18 +60,14 @@ class MainVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentOffset.y), animated: true) // ???
+        // scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentOffset.y), animated: true)
     }
     
 }
 
 private extension MainVC {
     
-    
-    
     func layout() {
-        
-        
         testImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             testImage.topAnchor.constraint(equalTo: view.topAnchor),
@@ -84,8 +88,10 @@ private extension MainVC {
             contentView.heightAnchor.constraint(equalToConstant: view.frame.height)
         ])
     }
-    
+}
 
+extension MainVC: MainVCProtocol {
+    
 }
 
 extension MainVC: UIScrollViewDelegate {
