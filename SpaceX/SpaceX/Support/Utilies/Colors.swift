@@ -12,11 +12,16 @@ enum Colors {
     case pageIndicator
     case currentPageIndicator
     case backgroundPageView
+    case titleRocket
+    case settingsButton
     
     var uiColor: UIColor {
         switch self {
         case .currentPageIndicator:
             return hexStringToUIColor(hex: "#FFFFFF")
+            
+        case .titleRocket, .settingsButton:
+            return hexStringToUIColor(hex: "#F6F6F6")
             
         case .pageIndicator:
             return hexStringToUIColor(hex: "#8E8E8F")
