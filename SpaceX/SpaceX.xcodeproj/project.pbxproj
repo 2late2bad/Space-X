@@ -11,6 +11,7 @@
 		240D422D2A581650004B481C /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D422C2A581650004B481C /* HttpMethod.swift */; };
 		240D42312A581997004B481C /* Rocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D42302A581997004B481C /* Rocket.swift */; };
 		240D42332A5820ED004B481C /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D42322A5820ED004B481C /* MainPresenter.swift */; };
+		240D42352A5823FA004B481C /* EmptyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D42342A5823FA004B481C /* EmptyVC.swift */; };
 		240D42372A58348D004B481C /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D42362A58348D004B481C /* UIView+Ext.swift */; };
 		24A106E82A56B817002B4375 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A106E72A56B817002B4375 /* ModuleBuilder.swift */; };
 		24A106EB2A56BA43002B4375 /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A106EA2A56BA43002B4375 /* RouterProtocol.swift */; };
@@ -56,6 +57,7 @@
 		240D422C2A581650004B481C /* HttpMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
 		240D42302A581997004B481C /* Rocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rocket.swift; sourceTree = "<group>"; };
 		240D42322A5820ED004B481C /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
+		240D42342A5823FA004B481C /* EmptyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyVC.swift; sourceTree = "<group>"; };
 		240D42362A58348D004B481C /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		24A106E72A56B817002B4375 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		24A106EA2A56BA43002B4375 /* RouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
