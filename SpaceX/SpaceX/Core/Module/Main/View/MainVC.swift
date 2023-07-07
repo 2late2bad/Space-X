@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainVCProtocol: AnyObject {
-    
+    //func success(rockets: [RocketData])
 }
 
 final class MainVC: UIViewController {
@@ -16,25 +16,27 @@ final class MainVC: UIViewController {
     // MARK: - Properties
     var router: RocketRouterProtocol!
     var presenter: MainPresenterProtocol!
+    var pageNumb: Int!
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        //scrollView.backgroundColor = .brown
-        scrollView.contentSize = contentSize
+        //scrollView.contentSize = contentSize
         scrollView.frame = view.bounds
         scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
     
-    private lazy var contentView: UIView = {
-        let contentView = MainContentVC()
-        contentView.backgroundColor = .black
-        contentView.layer.cornerRadius = 40
-        return contentView
-    }()
+//    private lazy var contentView: UIView = {
+//        let contentView = MainContentVC()
+//        contentView.backgroundColor = .black
+//        contentView.layer.cornerRadius = 40
+//        return contentView
+//    }()
+    
+    private let contentView = MainContentView()
     
     private var contentSize: CGSize {
-        CGSize(width: view.frame.width, height: view.frame.height + 300)
+        CGSize(width: view.frame.width, height: view.frame.height)
     }
     
     lazy var testImage: UIImageView = {
@@ -56,6 +58,7 @@ final class MainVC: UIViewController {
         //scrollView.isHidden = true
         
         layout()
+        presenter.getDataRockets(numbRocket: pageNumb)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,7 +87,7 @@ private extension MainVC {
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 300),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.widthAnchor.constraint(equalTo: view.widthAnchor),
             contentView.heightAnchor.constraint(equalToConstant: view.frame.height)
         ])
     }
@@ -92,6 +95,27 @@ private extension MainVC {
 
 extension MainVC: MainVCProtocol {
     
+    func success(rockets: [RocketData]) {
+        //rockets[pageNumb].flickrImages
+//        if let firstImage = rockets[pageNumb].flickrImages.first {
+//            
+//            DispatchQueue.main.async {
+//                guard let url = URL(string: firstImage),
+//                      let data = try? Data(contentsOf: url) else { return }
+//                self.testImage.image = UIImage(data: data)
+//
+//            }
+//
+//
+//
+//
+//        }
+        
+//        guard let url = URL(string: stringURL),
+//              let data = try? Data(contentsOf: url) else { return Data() }
+//
+//        return data
+    }
 }
 
 extension MainVC: UIScrollViewDelegate {
