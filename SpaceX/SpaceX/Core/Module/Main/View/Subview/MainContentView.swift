@@ -12,6 +12,7 @@ final class MainContentView: UIView {
     private let header = MainHeaderView()
     private let collectionView = MainCollectionView()
     private let tableView = MainTableView()
+    private let footerButton = LaunchButton()
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -29,6 +30,7 @@ final class MainContentView: UIView {
 private extension MainContentView {
     
     func initialize() {
+        addSubviews(header, collectionView, tableView, footerButton)
     }
     
     func style() {
@@ -48,6 +50,7 @@ private extension MainContentView {
         header.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        footerButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             header.topAnchor.constraint(equalTo: topAnchor, constant: 48),
@@ -65,6 +68,10 @@ private extension MainContentView {
             tableView.rightAnchor.constraint(equalTo: rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: footerButton.topAnchor),
             
+            footerButton.bottomAnchor.constraint(equalTo: bottomAnchor),
+            footerButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 32),
+            footerButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -32),
+            footerButton.heightAnchor.constraint(equalToConstant: 56)
         ])
     }
 }
