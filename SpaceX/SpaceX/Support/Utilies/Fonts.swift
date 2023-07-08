@@ -17,15 +17,32 @@ enum Fonts {
     }
     
     case titleRocket
+    case mainCollectionCellTitle
+    case mainCollectionCellSubtitle
+    case mainTextTableView
+    case valueStageTextTableView
+    case unitTextTableView
+    case launchesButton
+    case headerFooterTextView
     
     // MARK: - Properties
     var uiFont: UIFont {
         switch self {
             
         case .titleRocket:
-            return UIFont(name: "LabGrotesque-Medium", size: 24)!
+            return UIFont(name: "LabGrotesque-Medium", size: 24) ?? .systemFont(ofSize: 24, weight: .medium)
             
+        case .mainCollectionCellTitle, .valueStageTextTableView, .unitTextTableView, .headerFooterTextView:
+            return UIFont(name: "LabGrotesque-Bold", size: 16) ?? .systemFont(ofSize: 16, weight: .bold)
+            
+        case .launchesButton:
+            return UIFont(name: "LabGrotesque-Bold", size: 18) ?? .systemFont(ofSize: 18, weight: .bold)
+            
+        case .mainTextTableView:
+            return UIFont(name: "LabGrotesque-Regular", size: 16) ?? .systemFont(ofSize: 16, weight: .regular)
+            
+        case .mainCollectionCellSubtitle:
+            return UIFont(name: "LabGrotesque-Regular", size: 14) ?? .systemFont(ofSize: 14, weight: .regular)
         }
     }
-    
 }

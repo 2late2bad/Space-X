@@ -9,21 +9,49 @@ import UIKit.UIColor
 
 enum Colors {
     
+    // Page view
     case pageIndicator
     case currentPageIndicator
     case backgroundPageView
+    
+    // Main content view
+    case backgroundContentView
     case titleRocket
     case settingsButton
     
+    // Main collection view
+    case backgroundCollectionCell
+    case titleCollectionCell
+    case subtitleCollectionCell
+    
+    // Main table view
+    case mainTextTableView
+    case valueTextTableView
+    case unitTextTableView
+    case headerFooterTextTableView
+    
+    // Footer button
+    case backgroundFooterButton
+    case titleFooterButton
+    
     var uiColor: UIColor {
         switch self {
-        case .currentPageIndicator:
+        case .currentPageIndicator, .titleCollectionCell:
             return hexStringToUIColor(hex: "#FFFFFF")
             
-        case .titleRocket, .settingsButton:
+        case .backgroundContentView:
+            return hexStringToUIColor(hex: "#000000")
+            
+        case .backgroundCollectionCell, .backgroundFooterButton:
+            return hexStringToUIColor(hex: "#212121")
+            
+        case .titleRocket, .settingsButton, .valueTextTableView, .titleFooterButton, .headerFooterTextTableView:
             return hexStringToUIColor(hex: "#F6F6F6")
             
-        case .pageIndicator:
+        case .mainTextTableView:
+            return hexStringToUIColor(hex: "#CACACA")
+            
+        case .pageIndicator, .subtitleCollectionCell, .unitTextTableView:
             return hexStringToUIColor(hex: "#8E8E8F")
             
         case .backgroundPageView:
