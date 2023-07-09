@@ -24,7 +24,6 @@ final class StageCell: UITableViewCell {
         mainLabel.text = label
         valueLabel.text = value
         unitLabel.text = unit
-        checkUnit()
     }
 }
 
@@ -50,16 +49,5 @@ private extension StageCell {
         
         unitLabel.font = Fonts.unitTextTableView.uiFont
         unitLabel.textColor = Colors.unitTextTableView.uiColor
-        unitLabel.textAlignment = .right
-    }
-    
-    func checkUnit() {
-        // TODO: - Заменить stackView на label с фиксированной шириной, чтобы не костылить
-        if let _ = unitLabel.text {
-        
-        } else {
-            unitLabel.text = "zzz"
-            unitLabel.layer.opacity = 0.5
-        }
     }
 }

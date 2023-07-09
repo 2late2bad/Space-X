@@ -14,6 +14,9 @@ enum Colors {
     case currentPageIndicator
     case backgroundPageView
     
+    // MainVC
+    case backgroundMainVC
+    
     // Main content view
     case backgroundContentView
     case titleRocket
@@ -39,7 +42,7 @@ enum Colors {
         case .currentPageIndicator, .titleCollectionCell:
             return hexStringToUIColor(hex: "#FFFFFF")
             
-        case .backgroundContentView:
+        case .backgroundContentView, .backgroundMainVC:
             return hexStringToUIColor(hex: "#000000")
             
         case .backgroundCollectionCell, .backgroundFooterButton:

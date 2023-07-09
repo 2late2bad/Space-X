@@ -9,8 +9,11 @@ import UIKit
 
 final class MainContentView: UIView {
     
+    // MARK: - Properties
+    let collectionView = MainCollectionView()
+    
+    // MARK: - Private properties
     private let header = MainHeaderView()
-    private let collectionView = MainCollectionView()
     private let tableView = MainTableView()
     private let footerButton = LaunchButton()
     
@@ -21,7 +24,7 @@ final class MainContentView: UIView {
         style()
         layout()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -38,12 +41,8 @@ private extension MainContentView {
         layer.cornerRadius = 40
         
         // delete
-//        header.layer.borderWidth = 1
-//        header.layer.borderColor = .init(red: 100, green: 100, blue: 100, alpha: 0.3)
-//        collectionView.layer.borderWidth = 1
-//        collectionView.layer.borderColor = .init(red: 100, green: 100, blue: 100, alpha: 0.3)
-//        tableView.layer.borderWidth = 1
-//        tableView.layer.borderColor = .init(red: 100, green: 100, blue: 100, alpha: 0.3)
+        tableView.layer.borderWidth = 1
+        tableView.layer.borderColor = .init(red: 100, green: 100, blue: 100, alpha: 0.3)
     }
     
     func layout() {
@@ -53,12 +52,12 @@ private extension MainContentView {
         footerButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            header.topAnchor.constraint(equalTo: topAnchor, constant: 48),
+            header.topAnchor.constraint(equalTo: topAnchor, constant: 48), //-
             header.leftAnchor.constraint(equalTo: leftAnchor, constant: 32),
             header.rightAnchor.constraint(equalTo: rightAnchor, constant: -32),
-            header.heightAnchor.constraint(equalToConstant: 32),
+            header.heightAnchor.constraint(equalToConstant: 32), //
             
-            collectionView.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 32),
+            collectionView.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 32), //-
             collectionView.leftAnchor.constraint(equalTo: leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: rightAnchor),
             collectionView.heightAnchor.constraint(equalToConstant: 96),

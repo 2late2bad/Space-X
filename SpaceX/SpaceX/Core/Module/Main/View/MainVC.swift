@@ -18,80 +18,81 @@ final class MainVC: UIViewController {
     var presenter: MainPresenterProtocol!
     var pageNumb: Int!
     
+    // MARK: - Private properties
+    private let contentView = MainContentView()
+
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        //scrollView.contentSize = contentSize
-        scrollView.frame = view.bounds
         scrollView.showsVerticalScrollIndicator = false
+        scrollView.contentInsetAdjustmentBehavior = .never
         return scrollView
     }()
     
-//    private lazy var contentView: UIView = {
-//        let contentView = MainContentVC()
-//        contentView.backgroundColor = .black
-//        contentView.layer.cornerRadius = 40
-//        return contentView
-//    }()
-    
-    private let contentView = MainContentView()
-    
-    private var contentSize: CGSize {
-        CGSize(width: view.frame.width, height: view.frame.height)
-    }
-    
-    lazy var testImage: UIImageView = {
+    private lazy var rocketImage: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleToFill
         view.image = UIImage(named: "testRocket")!
         return view
     }()
-
+    
+    // Scroll limit (adapted for any device)
+    private var minOffsetY: CGFloat { -rocketImage.frame.height * 0.1 }
+    private var maxOffsetY: CGFloat { scrollView.contentSize.height - view.frame.height * 0.95 }
+    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.addSubview(testImage)
-        view.addSubview(scrollView)
-
-        scrollView.delegate = self
-        scrollView.addSubview(contentView)
-        
-        //scrollView.isHidden = true
-        
+        setup()
+        style()
         layout()
         presenter.getDataRockets(numbRocket: pageNumb)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        // scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentOffset.y), animated: true)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        rollbackScrollPosition()
     }
-    
 }
 
 private extension MainVC {
     
+    func setup() {
+        view.addSubviews(rocketImage, scrollView)
+        scrollView.delegate = self
+        scrollView.addSubview(contentView)
+    }
+    
+    func style() {
+        view.backgroundColor = Colors.backgroundMainVC.uiColor
+    }
+    
     func layout() {
-        testImage.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            testImage.topAnchor.constraint(equalTo: view.topAnchor),
-            testImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            testImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            testImage.heightAnchor.constraint(equalToConstant: view.frame.height * 0.60)
-        ])
+        scrollView.pinToEdges(of: view)
         
-        
+        rocketImage.translatesAutoresizingMaskIntoConstraints = false
         contentView.translatesAutoresizingMaskIntoConstraints = false
+
         NSLayoutConstraint.activate([
+            rocketImage.topAnchor.constraint(equalTo: view.topAnchor),
+            rocketImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            rocketImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            rocketImage.heightAnchor.constraint(equalToConstant: view.frame.height * 0.60),
+            
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: view.frame.size.height / 2),
             contentView.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
             contentView.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 300),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            
-            contentView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            contentView.heightAnchor.constraint(equalToConstant: view.frame.height)
+            contentView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
     }
+    
+    func rollbackScrollPosition() {
+        scrollView.scrollToTop(animated: true)
+        contentView.collectionView.scrollToLeft(animated: true)
+    }
 }
+
+
 
 extension MainVC: MainVCProtocol {
     
@@ -120,13 +121,12 @@ extension MainVC: MainVCProtocol {
 
 extension MainVC: UIScrollViewDelegate {
     
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        if scrollView.contentOffset.y < -200 {
-//            scrollView.contentOffset.y = -200
-//        }
-//
-//        if scrollView.contentOffset.y > view.frame.height {
-//            scrollView.contentOffset.y = view.frame.height
-//        }
-//    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        var offset = scrollView.contentOffset
+        
+        if offset.y < minOffsetY { offset.y = minOffsetY }
+        if offset.y > maxOffsetY { offset.y = maxOffsetY }
+        
+        scrollView.contentOffset = offset
+    }
 }

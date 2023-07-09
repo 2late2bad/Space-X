@@ -24,7 +24,7 @@ final class MainPresenter: MainPresenterProtocol {
     
     func getDataRockets(numbRocket: Int) {
         if let data: [RocketModel] = storage.decodableData(forKey: .rockets) {
-            let rocketData = data[numbRocket - 1]
+            let _ = data[numbRocket - 1]
                         
 //            let rocket = Rocket(id: rocketData.id,
 //                                image: UIImage(systemName: "circle"),

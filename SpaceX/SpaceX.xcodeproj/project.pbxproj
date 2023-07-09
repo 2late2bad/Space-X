@@ -32,6 +32,7 @@
 		2416C7532A59BF5C00051E9E /* LaunchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416C7522A59BF5C00051E9E /* LaunchButton.swift */; };
 		2416C7552A59CA0700051E9E /* MainTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416C7542A59CA0700051E9E /* MainTableModel.swift */; };
 		2416C7582A59D94100051E9E /* MainSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416C7572A59D94100051E9E /* MainSectionHeader.swift */; };
+		2488A3852A5AE3A900696D96 /* UIScrollView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2488A3842A5AE3A900696D96 /* UIScrollView+Ext.swift */; };
 		24A106E82A56B817002B4375 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A106E72A56B817002B4375 /* ModuleBuilder.swift */; };
 		24A106EB2A56BA43002B4375 /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A106EA2A56BA43002B4375 /* RouterProtocol.swift */; };
 		24A106ED2A56BA91002B4375 /* RocketRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A106EC2A56BA91002B4375 /* RocketRouter.swift */; };
@@ -96,6 +97,7 @@
 		2416C7522A59BF5C00051E9E /* LaunchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchButton.swift; sourceTree = "<group>"; };
 		2416C7542A59CA0700051E9E /* MainTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableModel.swift; sourceTree = "<group>"; };
 		2416C7572A59D94100051E9E /* MainSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSectionHeader.swift; sourceTree = "<group>"; };
+		2488A3842A5AE3A900696D96 /* UIScrollView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Ext.swift"; sourceTree = "<group>"; };
 		24A106E72A56B817002B4375 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		24A106EA2A56BA43002B4375 /* RouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
 		24A106EC2A56BA91002B4375 /* RocketRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketRouter.swift; sourceTree = "<group>"; };
@@ -418,6 +420,7 @@
 			children = (
 				240D42362A58348D004B481C /* UIView+Ext.swift */,
 				24A1071B2A571051002B4375 /* UIViewController+Ext.swift */,
+				2488A3842A5AE3A900696D96 /* UIScrollView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -682,6 +685,7 @@
 				24C84BFA2A55564A0034FFC1 /* AppDelegate.swift in Sources */,
 				240D423D2A58623E004B481C /* RocketData.swift in Sources */,
 				24A107152A56F566002B4375 /* Colors.swift in Sources */,
+				2488A3852A5AE3A900696D96 /* UIScrollView+Ext.swift in Sources */,
 				24A1071C2A571051002B4375 /* UIViewController+Ext.swift in Sources */,
 				24A106FF2A56C01D002B4375 /* BasePresenter.swift in Sources */,
 				24A107042A56C28D002B4375 /* RootNavigationController.swift in Sources */,

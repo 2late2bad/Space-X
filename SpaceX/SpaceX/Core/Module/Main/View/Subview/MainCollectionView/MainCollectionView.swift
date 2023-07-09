@@ -18,7 +18,7 @@ final class MainCollectionView: UICollectionView {
         super.init(frame: .zero, collectionViewLayout: collecetionViewLayout)
         
         initialize()
-        layoutUI()
+        layoutUI()        
     }
     
     required init?(coder: NSCoder) {
@@ -34,6 +34,8 @@ private extension MainCollectionView {
         delegate = self
         showsHorizontalScrollIndicator = false
         backgroundColor = Colors.backgroundContentView.uiColor
+        
+        contentInsetAdjustmentBehavior = .never
         
         // TODO: - Cells
         (1...4).forEach { _ in cells.append(MainCollectionCell()) }
