@@ -15,7 +15,6 @@ final class MainContentView: UIView {
     // MARK: - Private properties
     private let header = MainHeaderView()
     private let tableView = MainTableView()
-    private let footerButton = LaunchButton()
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -33,7 +32,7 @@ final class MainContentView: UIView {
 private extension MainContentView {
     
     func initialize() {
-        addSubviews(header, collectionView, tableView, footerButton)
+        addSubviews(header, collectionView, tableView)
     }
     
     func style() {
@@ -41,36 +40,30 @@ private extension MainContentView {
         layer.cornerRadius = 40
         
         // delete
-        tableView.layer.borderWidth = 1
-        tableView.layer.borderColor = .init(red: 100, green: 100, blue: 100, alpha: 0.3)
+//        tableView.layer.borderWidth = 1
+//        tableView.layer.borderColor = .init(red: 100, green: 100, blue: 100, alpha: 0.3)
     }
     
     func layout() {
         header.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        footerButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            header.topAnchor.constraint(equalTo: topAnchor, constant: 48), //-
+            header.topAnchor.constraint(equalTo: topAnchor, constant: 48),
             header.leftAnchor.constraint(equalTo: leftAnchor, constant: 32),
             header.rightAnchor.constraint(equalTo: rightAnchor, constant: -32),
             header.heightAnchor.constraint(equalToConstant: 32), //
             
-            collectionView.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 32), //-
+            collectionView.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 32),
             collectionView.leftAnchor.constraint(equalTo: leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: rightAnchor),
             collectionView.heightAnchor.constraint(equalToConstant: 96),
-            
-            tableView.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 40),
+
+            tableView.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 32),
             tableView.leftAnchor.constraint(equalTo: leftAnchor),
             tableView.rightAnchor.constraint(equalTo: rightAnchor),
-            tableView.bottomAnchor.constraint(equalTo: footerButton.topAnchor),
-            
-            footerButton.bottomAnchor.constraint(equalTo: bottomAnchor),
-            footerButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 32),
-            footerButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -32),
-            footerButton.heightAnchor.constraint(equalToConstant: 56)
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

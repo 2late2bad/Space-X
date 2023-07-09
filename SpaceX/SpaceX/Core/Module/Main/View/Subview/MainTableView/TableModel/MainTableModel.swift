@@ -16,11 +16,13 @@ enum SectionMainType: String {
     case info
     case firstStage = "Первая ступень"
     case secondStage = "Вторая ступень"
+    case launchButton
 }
 
 enum CellMainType {
     case info
     case stage(unit: UnitMainTable?)
+    case button
 }
 
 struct SectionMainTable {
@@ -30,16 +32,15 @@ struct SectionMainTable {
 
 struct CellMainTable {
     let type: CellMainType
-    
     let label: String
-    let value: String
+    var value: String?
     
     var unit: String? {
         switch type {
-        case .info:
-            return nil
         case .stage(let unit):
             return unit?.rawValue
+        default:
+            return nil
         }
     }
 }

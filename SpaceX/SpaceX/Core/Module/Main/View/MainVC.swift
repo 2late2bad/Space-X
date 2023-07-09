@@ -87,8 +87,8 @@ private extension MainVC {
     }
     
     func rollbackScrollPosition() {
-        scrollView.scrollToTop(animated: true)
-        contentView.collectionView.scrollToLeft(animated: true)
+        scrollView.scrollToTop(animated: false)
+        contentView.collectionView.scrollToLeft(animated: false)
     }
 }
 

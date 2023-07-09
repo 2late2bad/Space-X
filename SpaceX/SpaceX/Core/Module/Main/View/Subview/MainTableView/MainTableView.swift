@@ -9,6 +9,16 @@ import UIKit
 
 final class MainTableView: UITableView {
     
+    // MARK: - Local constants
+    private enum LocalConstants {
+        static let cellHeight: CGFloat = 40
+        static let cellButtonHeight: CGFloat = 56
+        static let sectionHeaderStageHeight: CGFloat = 32
+        static let sectionHeaderDefaultHeight: CGFloat = 0
+        static let sectionFooterBeginnersStageHeight: CGFloat = 32
+        static let sectionFooterFinalsStageHeight: CGFloat = 24
+    }
+        
     private let testSection: [SectionMainTable] = [
         SectionMainTable(type: .info, cells: [CellMainTable(type: .info,
                                                             label: "Первый запуск",
@@ -36,9 +46,12 @@ final class MainTableView: UITableView {
                                                                    value: "243,2"),
                                                      CellMainTable(type: .stage(unit: .time),
                                                                    label: "Время сгорания",
-                                                                   value: "397")])
+                                                                   value: "397")]),
+        SectionMainTable(type: .launchButton, cells: [CellMainTable(type: .button,
+                                                                    label: "Посмотреть запуски")])
     ]
     
+    // MARK: - Init
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: .zero, style: .grouped)
         initialize()
@@ -51,15 +64,19 @@ final class MainTableView: UITableView {
     }
 }
 
+// MARK: - Private methods
 private extension MainTableView {
     
     func initialize() {
         let nibInfo = UINib(nibName: "InfoCell", bundle: nil)
         let nibStage = UINib(nibName: "StageCell", bundle: nil)
+        let nibButton = UINib(nibName: "ButtonCell", bundle: nil)
         register(nibInfo, forCellReuseIdentifier: InfoCell.identifier)
         register(nibStage, forCellReuseIdentifier: StageCell.identifier)
+        register(nibButton, forCellReuseIdentifier: ButtonCell.identifier)
         register(MainSectionHeader.self, forHeaderFooterViewReuseIdentifier: MainSectionHeader.identifier)
         
+        isScrollEnabled = false
         dataSource = self
         delegate = self
     }
@@ -69,10 +86,43 @@ private extension MainTableView {
     }
     
     func layoutUI() {
-        pinToEdges(of: self)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            heightAnchor.constraint(equalToConstant: calculateHeightTable())
+        ])
+    }
+    
+    // Adaptive table height calculation
+    func calculateHeightTable() -> CGFloat {
+        var height: CGFloat = 0
+        for section in testSection {
+            
+            switch section.type {
+            case .launchButton:
+                section.cells.forEach { _ in height += LocalConstants.cellButtonHeight }
+            default:
+                section.cells.forEach { _ in height += LocalConstants.cellHeight }
+            }
+            
+            switch section.type {
+            case .firstStage, .secondStage:
+                height += LocalConstants.sectionHeaderStageHeight
+            default:
+                height += LocalConstants.sectionHeaderDefaultHeight
+            }
+            
+            switch section.type {
+            case .info, .firstStage:
+                height += LocalConstants.sectionFooterBeginnersStageHeight
+            case .secondStage, .launchButton:
+                height += LocalConstants.sectionFooterFinalsStageHeight
+            }
+        }
+        return height
     }
 }
 
+// MARK: - UITableViewDataSource
 extension MainTableView: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -90,23 +140,30 @@ extension MainTableView: UITableViewDataSource {
         switch section.type {
         case .info:
             let cell = tableView.dequeueReusableCell(withIdentifier: InfoCell.identifier, for: indexPath) as! InfoCell
-            let desired = section.cells[indexPath.row]
-            cell.configure(label: desired.label,
-                           value: desired.value)
+            let searchCell = section.cells[indexPath.row]
+            cell.configure(label: searchCell.label,
+                           value: searchCell.value ?? "")
             return cell
         case .firstStage, .secondStage:
             let cell = tableView.dequeueReusableCell(withIdentifier: StageCell.identifier, for: indexPath) as! StageCell
-            let desired = section.cells[indexPath.row]
-            cell.configure(label: desired.label,
-                           value: desired.value,
-                           unit: desired.unit)
+            let searchCell = section.cells[indexPath.row]
+            cell.configure(label: searchCell.label,
+                           value: searchCell.value ?? "",
+                           unit: searchCell.unit)
+            return cell
+        case .launchButton:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.identifier, for: indexPath) as! ButtonCell
+            let searchCell = section.cells[indexPath.row]
+            cell.configure(label: searchCell.label)
             return cell
         }
     }
 }
 
+// MARK: - UITableViewDelegate
 extension MainTableView: UITableViewDelegate {
     
+    // Table views
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let type = testSection[section].type
 
@@ -116,30 +173,39 @@ extension MainTableView: UITableViewDelegate {
                 header.titleLabel.text = type.rawValue.uppercased()
                 return header
             }
-        default:
-            return nil
+        default: return nil
         }
         return nil
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        UIView()
-    }
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? { UIView() }
     
+    // The height of the table elements.
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        40
+        let section = testSection[indexPath.section]
+        switch section.type {
+        case .launchButton:
+            return LocalConstants.cellButtonHeight
+        default:
+            return LocalConstants.cellHeight
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch testSection[section].type {
         case .firstStage, .secondStage:
-            return 32
+            return LocalConstants.sectionHeaderStageHeight
         default:
-            return 0
+            return LocalConstants.sectionHeaderDefaultHeight
         }
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        40
+        switch testSection[section].type {
+        case .info, .firstStage:
+            return LocalConstants.sectionFooterBeginnersStageHeight
+        case .secondStage, .launchButton:
+            return LocalConstants.sectionFooterFinalsStageHeight
+        }
     }
 }

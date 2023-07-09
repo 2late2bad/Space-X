@@ -33,6 +33,8 @@
 		2416C7552A59CA0700051E9E /* MainTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416C7542A59CA0700051E9E /* MainTableModel.swift */; };
 		2416C7582A59D94100051E9E /* MainSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416C7572A59D94100051E9E /* MainSectionHeader.swift */; };
 		2488A3852A5AE3A900696D96 /* UIScrollView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2488A3842A5AE3A900696D96 /* UIScrollView+Ext.swift */; };
+		2488A38D2A5AF2E900696D96 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2488A38B2A5AF2E900696D96 /* ButtonCell.swift */; };
+		2488A38E2A5AF2E900696D96 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2488A38C2A5AF2E900696D96 /* ButtonCell.xib */; };
 		24A106E82A56B817002B4375 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A106E72A56B817002B4375 /* ModuleBuilder.swift */; };
 		24A106EB2A56BA43002B4375 /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A106EA2A56BA43002B4375 /* RouterProtocol.swift */; };
 		24A106ED2A56BA91002B4375 /* RocketRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A106EC2A56BA91002B4375 /* RocketRouter.swift */; };
@@ -98,6 +100,8 @@
 		2416C7542A59CA0700051E9E /* MainTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableModel.swift; sourceTree = "<group>"; };
 		2416C7572A59D94100051E9E /* MainSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSectionHeader.swift; sourceTree = "<group>"; };
 		2488A3842A5AE3A900696D96 /* UIScrollView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Ext.swift"; sourceTree = "<group>"; };
+		2488A38B2A5AF2E900696D96 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		2488A38C2A5AF2E900696D96 /* ButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
 		24A106E72A56B817002B4375 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		24A106EA2A56BA43002B4375 /* RouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
 		24A106EC2A56BA91002B4375 /* RocketRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketRouter.swift; sourceTree = "<group>"; };
@@ -229,6 +233,7 @@
 			children = (
 				2416C7442A59AE0E00051E9E /* InfoCell */,
 				2416C74A2A59B5C000051E9E /* StageCell */,
+				2488A3862A5AF1B200696D96 /* ButtonCell */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -244,8 +249,8 @@
 		2416C7442A59AE0E00051E9E /* InfoCell */ = {
 			isa = PBXGroup;
 			children = (
-				2416C7462A59AE6300051E9E /* InfoCell.xib */,
 				2416C7482A59B07B00051E9E /* InfoCell.swift */,
+				2416C7462A59AE6300051E9E /* InfoCell.xib */,
 			);
 			path = InfoCell;
 			sourceTree = "<group>";
@@ -253,8 +258,8 @@
 		2416C74A2A59B5C000051E9E /* StageCell */ = {
 			isa = PBXGroup;
 			children = (
-				2416C74C2A59B5F100051E9E /* StageCell.xib */,
 				2416C74B2A59B5F100051E9E /* StageCell.swift */,
+				2416C74C2A59B5F100051E9E /* StageCell.xib */,
 			);
 			path = StageCell;
 			sourceTree = "<group>";
@@ -273,6 +278,15 @@
 				2416C7572A59D94100051E9E /* MainSectionHeader.swift */,
 			);
 			path = HeaderFooter;
+			sourceTree = "<group>";
+		};
+		2488A3862A5AF1B200696D96 /* ButtonCell */ = {
+			isa = PBXGroup;
+			children = (
+				2488A38B2A5AF2E900696D96 /* ButtonCell.swift */,
+				2488A38C2A5AF2E900696D96 /* ButtonCell.xib */,
+			);
+			path = ButtonCell;
 			sourceTree = "<group>";
 		};
 		24A106E52A56B5D4002B4375 /* Core */ = {
@@ -654,6 +668,7 @@
 				24C84C062A55564A0034FFC1 /* LaunchScreen.storyboard in Resources */,
 				24C84C032A55564A0034FFC1 /* Assets.xcassets in Resources */,
 				240D424C2A587903004B481C /* LabGrotesque-Thin.ttf in Resources */,
+				2488A38E2A5AF2E900696D96 /* ButtonCell.xib in Resources */,
 				240D424B2A587903004B481C /* LabGrotesque-Bold.ttf in Resources */,
 				240D42492A587903004B481C /* LabGrotesque-Regular.ttf in Resources */,
 			);
@@ -693,6 +708,7 @@
 				24A107062A56CD0D002B4375 /* NetworkManager.swift in Sources */,
 				24A107122A56ED57002B4375 /* MainVC.swift in Sources */,
 				240D42332A5820ED004B481C /* MainPresenter.swift in Sources */,
+				2488A38D2A5AF2E900696D96 /* ButtonCell.swift in Sources */,
 				2416C7552A59CA0700051E9E /* MainTableModel.swift in Sources */,
 				240D422D2A581650004B481C /* HttpMethod.swift in Sources */,
 				2416C7322A5946B900051E9E /* MainCollectionView.swift in Sources */,
