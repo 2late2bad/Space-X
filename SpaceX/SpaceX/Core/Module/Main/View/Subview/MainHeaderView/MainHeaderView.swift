@@ -48,6 +48,8 @@ private extension MainHeaderView {
         settingButton.imageView?.contentMode = .scaleAspectFit
         settingButton.contentVerticalAlignment = .fill
         settingButton.contentHorizontalAlignment = .fill
+        
+        settingButton.startAnimatingPressActions()
     }
     
     func layout() {

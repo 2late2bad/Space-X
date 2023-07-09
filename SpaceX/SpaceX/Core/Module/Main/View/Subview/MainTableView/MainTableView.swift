@@ -18,7 +18,7 @@ final class MainTableView: UITableView {
         static let sectionFooterBeginnersStageHeight: CGFloat = 32
         static let sectionFooterFinalsStageHeight: CGFloat = 24
     }
-        
+    
     private let testSection: [SectionMainTable] = [
         SectionMainTable(type: .info, cells: [CellMainTable(type: .info,
                                                             label: "Первый запуск",
@@ -86,10 +86,11 @@ private extension MainTableView {
     }
     
     func layoutUI() {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
+        translatesAutoresizingMaskIntoConstraints = false
+        let heightTableConstraint = [
             heightAnchor.constraint(equalToConstant: calculateHeightTable())
-        ])
+        ]
+        NSLayoutConstraint.activate(heightTableConstraint)
     }
     
     // Adaptive table height calculation
@@ -140,21 +141,21 @@ extension MainTableView: UITableViewDataSource {
         switch section.type {
         case .info:
             let cell = tableView.dequeueReusableCell(withIdentifier: InfoCell.identifier, for: indexPath) as! InfoCell
-            let searchCell = section.cells[indexPath.row]
-            cell.configure(label: searchCell.label,
-                           value: searchCell.value ?? "")
+            let searchRow = section.cells[indexPath.row]
+            cell.configure(label: searchRow.label,
+                           value: searchRow.value)
             return cell
         case .firstStage, .secondStage:
             let cell = tableView.dequeueReusableCell(withIdentifier: StageCell.identifier, for: indexPath) as! StageCell
-            let searchCell = section.cells[indexPath.row]
-            cell.configure(label: searchCell.label,
-                           value: searchCell.value ?? "",
-                           unit: searchCell.unit)
+            let searchRow = section.cells[indexPath.row]
+            cell.configure(label: searchRow.label,
+                           value: searchRow.value,
+                           unit: searchRow.unit)
             return cell
         case .launchButton:
             let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.identifier, for: indexPath) as! ButtonCell
-            let searchCell = section.cells[indexPath.row]
-            cell.configure(label: searchCell.label)
+            let searchRow = section.cells[indexPath.row]
+            cell.configure(label: searchRow.label)
             return cell
         }
     }
@@ -180,7 +181,7 @@ extension MainTableView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? { UIView() }
     
-    // The height of the table elements.
+    // The height of the table elements
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = testSection[indexPath.section]
         switch section.type {

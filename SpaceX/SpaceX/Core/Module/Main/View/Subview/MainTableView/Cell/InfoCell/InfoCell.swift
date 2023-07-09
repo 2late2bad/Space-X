@@ -19,7 +19,7 @@ final class InfoCell: UITableViewCell {
         initialize()
     }
         
-    func configure(label: String, value: String) {
+    func configure(label: String?, value: String?) {
         mainLabel.text = label
         valueLabel.text = value
     }

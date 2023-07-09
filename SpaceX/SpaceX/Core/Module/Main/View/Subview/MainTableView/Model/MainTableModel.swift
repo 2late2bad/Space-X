@@ -32,15 +32,14 @@ struct SectionMainTable {
 
 struct CellMainTable {
     let type: CellMainType
-    let label: String
+    let label: String?
     var value: String?
     
     var unit: String? {
         switch type {
         case .stage(let unit):
             return unit?.rawValue
-        default:
-            return nil
+        default: return nil
         }
     }
 }

@@ -14,6 +14,11 @@ protocol BasePageProtocol: AnyObject {
 
 final class BasePageVC: UIPageViewController {
     
+    private enum LocalConstants {
+        static let additionalSafeAreaInsetsBottom: CGFloat = 12
+        static let additionalPageControlHeight: CGFloat = 26
+    }
+    
     // MARK: - Properties
     var router: RocketRouterProtocol!
     var presenter: BasePresenterProtocol!
@@ -41,7 +46,7 @@ private extension BasePageVC {
     func setup() {
         dataSource = self
         view.backgroundColor = Colors.backgroundPageView.uiColor
-        additionalSafeAreaInsets.bottom = C.Padding.additionalSafeAreaInsetsBottom
+        additionalSafeAreaInsets.bottom = LocalConstants.additionalSafeAreaInsetsBottom
     }
     
     func stylePageControl() {
@@ -55,7 +60,7 @@ private extension BasePageVC {
     func layoutPageControl() {
         view.subviews.forEach { view in
             guard view is UIPageControl else { return }
-            view.frame.origin.y = self.view.frame.size.height - C.Padding.additionalPageControlHeight - bottomSafeAreaHeight
+            view.frame.origin.y = self.view.frame.size.height - LocalConstants.additionalPageControlHeight - bottomSafeAreaHeight
             view.setNeedsLayout()
         }
     }

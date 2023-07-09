@@ -20,7 +20,7 @@ final class StageCell: UITableViewCell {
         initialize()
     }
     
-    func configure(label: String, value: String, unit: String?) {
+    func configure(label: String?, value: String?, unit: String?) {
         mainLabel.text = label
         valueLabel.text = value
         unitLabel.text = unit

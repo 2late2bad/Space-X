@@ -29,12 +29,12 @@
 		2416C7492A59B07B00051E9E /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416C7482A59B07B00051E9E /* InfoCell.swift */; };
 		2416C74D2A59B5F100051E9E /* StageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416C74B2A59B5F100051E9E /* StageCell.swift */; };
 		2416C74E2A59B5F100051E9E /* StageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2416C74C2A59B5F100051E9E /* StageCell.xib */; };
-		2416C7532A59BF5C00051E9E /* LaunchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416C7522A59BF5C00051E9E /* LaunchButton.swift */; };
 		2416C7552A59CA0700051E9E /* MainTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416C7542A59CA0700051E9E /* MainTableModel.swift */; };
 		2416C7582A59D94100051E9E /* MainSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416C7572A59D94100051E9E /* MainSectionHeader.swift */; };
 		2488A3852A5AE3A900696D96 /* UIScrollView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2488A3842A5AE3A900696D96 /* UIScrollView+Ext.swift */; };
 		2488A38D2A5AF2E900696D96 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2488A38B2A5AF2E900696D96 /* ButtonCell.swift */; };
 		2488A38E2A5AF2E900696D96 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2488A38C2A5AF2E900696D96 /* ButtonCell.xib */; };
+		2488A3902A5B1EA800696D96 /* UIButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2488A38F2A5B1EA800696D96 /* UIButton+Ext.swift */; };
 		24A106E82A56B817002B4375 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A106E72A56B817002B4375 /* ModuleBuilder.swift */; };
 		24A106EB2A56BA43002B4375 /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A106EA2A56BA43002B4375 /* RouterProtocol.swift */; };
 		24A106ED2A56BA91002B4375 /* RocketRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A106EC2A56BA91002B4375 /* RocketRouter.swift */; };
@@ -96,12 +96,12 @@
 		2416C7482A59B07B00051E9E /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		2416C74B2A59B5F100051E9E /* StageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageCell.swift; sourceTree = "<group>"; };
 		2416C74C2A59B5F100051E9E /* StageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StageCell.xib; sourceTree = "<group>"; };
-		2416C7522A59BF5C00051E9E /* LaunchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchButton.swift; sourceTree = "<group>"; };
 		2416C7542A59CA0700051E9E /* MainTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableModel.swift; sourceTree = "<group>"; };
 		2416C7572A59D94100051E9E /* MainSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSectionHeader.swift; sourceTree = "<group>"; };
 		2488A3842A5AE3A900696D96 /* UIScrollView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Ext.swift"; sourceTree = "<group>"; };
 		2488A38B2A5AF2E900696D96 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		2488A38C2A5AF2E900696D96 /* ButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
+		2488A38F2A5B1EA800696D96 /* UIButton+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Ext.swift"; sourceTree = "<group>"; };
 		24A106E72A56B817002B4375 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		24A106EA2A56BA43002B4375 /* RouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
 		24A106EC2A56BA91002B4375 /* RocketRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketRouter.swift; sourceTree = "<group>"; };
@@ -213,7 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				2416C7362A5963FA00051E9E /* MainTableView.swift */,
-				2416C73B2A596B2C00051E9E /* TableModel */,
+				2416C73B2A596B2C00051E9E /* Model */,
 				2416C7382A5964B500051E9E /* Cell */,
 				2416C7562A59D8EC00051E9E /* HeaderFooter */,
 			);
@@ -238,12 +238,12 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		2416C73B2A596B2C00051E9E /* TableModel */ = {
+		2416C73B2A596B2C00051E9E /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				2416C7542A59CA0700051E9E /* MainTableModel.swift */,
 			);
-			path = TableModel;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		2416C7442A59AE0E00051E9E /* InfoCell */ = {
@@ -262,14 +262,6 @@
 				2416C74C2A59B5F100051E9E /* StageCell.xib */,
 			);
 			path = StageCell;
-			sourceTree = "<group>";
-		};
-		2416C74F2A59BE5E00051E9E /* MainFooterView */ = {
-			isa = PBXGroup;
-			children = (
-				2416C7522A59BF5C00051E9E /* LaunchButton.swift */,
-			);
-			path = MainFooterView;
 			sourceTree = "<group>";
 		};
 		2416C7562A59D8EC00051E9E /* HeaderFooter */ = {
@@ -435,6 +427,7 @@
 				240D42362A58348D004B481C /* UIView+Ext.swift */,
 				24A1071B2A571051002B4375 /* UIViewController+Ext.swift */,
 				2488A3842A5AE3A900696D96 /* UIScrollView+Ext.swift */,
+				2488A38F2A5B1EA800696D96 /* UIButton+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -481,7 +474,6 @@
 				240D423E2A586C86004B481C /* MainHeaderView */,
 				2416C72F2A59463000051E9E /* MainCollectionView */,
 				2416C7302A59464600051E9E /* MainTableView */,
-				2416C74F2A59BE5E00051E9E /* MainFooterView */,
 			);
 			path = Subview;
 			sourceTree = "<group>";
@@ -698,6 +690,7 @@
 				240D42352A5823FA004B481C /* EmptyVC.swift in Sources */,
 				240D422B2A581626004B481C /* NetworkError.swift in Sources */,
 				24C84BFA2A55564A0034FFC1 /* AppDelegate.swift in Sources */,
+				2488A3902A5B1EA800696D96 /* UIButton+Ext.swift in Sources */,
 				240D423D2A58623E004B481C /* RocketData.swift in Sources */,
 				24A107152A56F566002B4375 /* Colors.swift in Sources */,
 				2488A3852A5AE3A900696D96 /* UIScrollView+Ext.swift in Sources */,
@@ -721,7 +714,6 @@
 				2416C7582A59D94100051E9E /* MainSectionHeader.swift in Sources */,
 				240D42422A587824004B481C /* Fonts.swift in Sources */,
 				24A106F12A56BC6A002B4375 /* BasePageVC.swift in Sources */,
-				2416C7532A59BF5C00051E9E /* LaunchButton.swift in Sources */,
 				240D42402A586D10004B481C /* MainHeaderView.swift in Sources */,
 				2416C74D2A59B5F100051E9E /* StageCell.swift in Sources */,
 				24A107082A56CD40002B4375 /* StorageManager.swift in Sources */,
