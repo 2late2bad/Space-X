@@ -9,7 +9,8 @@ import Foundation
 
 // MARK: - RocketModel
 struct RocketModel: Codable {
-    let height, diameter: Diameter
+    let height: Diameter
+    let diameter: Diameter
     let mass: Mass
     let firstStage: FirstStage
     let secondStage: SecondStage

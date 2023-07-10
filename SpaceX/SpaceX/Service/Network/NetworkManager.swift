@@ -38,7 +38,7 @@ extension NetworkManager: NetworkManagerProtocol {
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.method
         
-        let query = session.dataTask(with: request) { data, queryResponse, error in
+        let task = session.dataTask(with: request) { data, queryResponse, error in
             
             if let error = error {
                 completionOnMain(.failure(.invalidSession(error)))
@@ -62,6 +62,6 @@ extension NetworkManager: NetworkManagerProtocol {
             }
         }
         
-        query.resume()
+        task.resume()
     }
 }

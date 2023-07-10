@@ -10,10 +10,8 @@ import UIKit
 final class MainContentView: UIView {
     
     // MARK: - Properties
+    let header = MainHeaderView()
     let collectionView = MainCollectionView()
-    
-    // MARK: - Private properties
-    private let header = MainHeaderView()
     private let tableView = MainTableView()
     
     // MARK: - Init
@@ -23,7 +21,7 @@ final class MainContentView: UIView {
         style()
         layout()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -38,10 +36,6 @@ private extension MainContentView {
     func style() {
         backgroundColor = Colors.backgroundContentView.uiColor
         layer.cornerRadius = 40
-        
-        // delete
-//        tableView.layer.borderWidth = 1
-//        tableView.layer.borderColor = .init(red: 100, green: 100, blue: 100, alpha: 0.3)
     }
     
     func layout() {

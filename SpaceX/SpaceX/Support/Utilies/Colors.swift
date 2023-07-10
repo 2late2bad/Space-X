@@ -37,27 +37,37 @@ enum Colors {
     case backgroundFooterButton
     case titleFooterButton
     
+    // Settings screen
+    case backgroundSettingVC
+    case closeButtonSettingVC
+    case titleSettingVC
+    case labelRowSettingVC
+    case backgroundSegmentControl
+    case selectedSegmentTintColor
+    case segmentedNormalText
+    case segmentedSelectedText
+    
     var uiColor: UIColor {
         switch self {
-        case .currentPageIndicator, .titleCollectionCell:
+        case .currentPageIndicator, .titleCollectionCell, .closeButtonSettingVC, .titleSettingVC, .selectedSegmentTintColor:
             return hexStringToUIColor(hex: "#FFFFFF")
             
         case .backgroundContentView, .backgroundMainVC:
             return hexStringToUIColor(hex: "#000000")
             
-        case .backgroundCollectionCell, .backgroundFooterButton:
+        case .backgroundCollectionCell, .backgroundFooterButton, .backgroundSegmentControl:
             return hexStringToUIColor(hex: "#212121")
             
-        case .titleRocket, .settingsButton, .valueTextTableView, .titleFooterButton, .headerFooterTextTableView:
+        case .titleRocket, .settingsButton, .valueTextTableView, .titleFooterButton, .headerFooterTextTableView, .labelRowSettingVC:
             return hexStringToUIColor(hex: "#F6F6F6")
             
         case .mainTextTableView:
             return hexStringToUIColor(hex: "#CACACA")
             
-        case .pageIndicator, .subtitleCollectionCell, .unitTextTableView:
+        case .pageIndicator, .subtitleCollectionCell, .unitTextTableView, .segmentedNormalText:
             return hexStringToUIColor(hex: "#8E8E8F")
             
-        case .backgroundPageView:
+        case .backgroundPageView, .backgroundSettingVC, .segmentedSelectedText:
             return hexStringToUIColor(hex: "#121212")
         }
     }
