@@ -11,6 +11,7 @@ protocol RocketRouterProtocol: RouterProtocol {
     func routeBaseModule()
     func routeEmpty(errorText: String) -> UIViewController
     func routeMainModule(with pageNumber: Int) -> MainVC
+    func routeSettingModule()
 }
 
 final class RocketRouter {
@@ -37,12 +38,17 @@ extension RocketRouter: RocketRouterProtocol {
         navigationController.viewControllers = [baseView]
     }
     
-    func routeEmpty(errorText: String) -> UIViewController {
-        moduleBuilder.createEmpty(errorText: errorText, router: self)
-    }
-    
     func routeMainModule(with pageNumber: Int) -> MainVC {
         moduleBuilder.createMainModule(with: pageNumber, router: self)
     }
-
+    
+    func routeSettingModule() {
+        let settingVC = moduleBuilder.createSettingModule(router: self)
+        let navCon = UINavigationController(rootViewController: settingVC)
+        navigationController.present(navCon, animated: true)
+    }
+    
+    func routeEmpty(errorText: String) -> UIViewController {
+        moduleBuilder.createEmpty(errorText: errorText, router: self)
+    }
 }

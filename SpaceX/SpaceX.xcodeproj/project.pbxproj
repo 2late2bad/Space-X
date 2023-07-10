@@ -31,6 +31,10 @@
 		2416C74E2A59B5F100051E9E /* StageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2416C74C2A59B5F100051E9E /* StageCell.xib */; };
 		2416C7552A59CA0700051E9E /* MainTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416C7542A59CA0700051E9E /* MainTableModel.swift */; };
 		2416C7582A59D94100051E9E /* MainSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416C7572A59D94100051E9E /* MainSectionHeader.swift */; };
+		243487AE2A5C16B500337447 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243487AD2A5C16B500337447 /* SettingVC.swift */; };
+		243487B02A5C170A00337447 /* SettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243487AF2A5C170A00337447 /* SettingPresenter.swift */; };
+		243487B32A5C2C5400337447 /* SettingStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243487B22A5C2C5400337447 /* SettingStackView.swift */; };
+		243487B52A5C3CBE00337447 /* SettingItemStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243487B42A5C3CBE00337447 /* SettingItemStackView.swift */; };
 		2488A3852A5AE3A900696D96 /* UIScrollView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2488A3842A5AE3A900696D96 /* UIScrollView+Ext.swift */; };
 		2488A38D2A5AF2E900696D96 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2488A38B2A5AF2E900696D96 /* ButtonCell.swift */; };
 		2488A38E2A5AF2E900696D96 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2488A38C2A5AF2E900696D96 /* ButtonCell.xib */; };
@@ -98,6 +102,10 @@
 		2416C74C2A59B5F100051E9E /* StageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StageCell.xib; sourceTree = "<group>"; };
 		2416C7542A59CA0700051E9E /* MainTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableModel.swift; sourceTree = "<group>"; };
 		2416C7572A59D94100051E9E /* MainSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSectionHeader.swift; sourceTree = "<group>"; };
+		243487AD2A5C16B500337447 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
+		243487AF2A5C170A00337447 /* SettingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPresenter.swift; sourceTree = "<group>"; };
+		243487B22A5C2C5400337447 /* SettingStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingStackView.swift; sourceTree = "<group>"; };
+		243487B42A5C3CBE00337447 /* SettingItemStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemStackView.swift; sourceTree = "<group>"; };
 		2488A3842A5AE3A900696D96 /* UIScrollView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Ext.swift"; sourceTree = "<group>"; };
 		2488A38B2A5AF2E900696D96 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		2488A38C2A5AF2E900696D96 /* ButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
@@ -272,6 +280,57 @@
 			path = HeaderFooter;
 			sourceTree = "<group>";
 		};
+		243487A92A5C164F00337447 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				243487AB2A5C167200337447 /* Model */,
+				243487AA2A5C166B00337447 /* View */,
+				243487AC2A5C167800337447 /* Presenter */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		243487AA2A5C166B00337447 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				243487AD2A5C16B500337447 /* SettingVC.swift */,
+				243487B12A5C284E00337447 /* Subview */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		243487AB2A5C167200337447 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		243487AC2A5C167800337447 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				243487AF2A5C170A00337447 /* SettingPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		243487B12A5C284E00337447 /* Subview */ = {
+			isa = PBXGroup;
+			children = (
+				243487B22A5C2C5400337447 /* SettingStackView.swift */,
+				243487B62A5C3CC100337447 /* Item */,
+			);
+			path = Subview;
+			sourceTree = "<group>";
+		};
+		243487B62A5C3CC100337447 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				243487B42A5C3CBE00337447 /* SettingItemStackView.swift */,
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
 		2488A3862A5AF1B200696D96 /* ButtonCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,6 +373,7 @@
 			children = (
 				24A106EF2A56BBF9002B4375 /* Base */,
 				24A1071D2A5713B6002B4375 /* Main */,
+				243487A92A5C164F00337447 /* Setting */,
 				240D42382A584E3B004B481C /* Empty */,
 			);
 			path = Module;
@@ -694,6 +754,7 @@
 				240D423D2A58623E004B481C /* RocketData.swift in Sources */,
 				24A107152A56F566002B4375 /* Colors.swift in Sources */,
 				2488A3852A5AE3A900696D96 /* UIScrollView+Ext.swift in Sources */,
+				243487B02A5C170A00337447 /* SettingPresenter.swift in Sources */,
 				24A1071C2A571051002B4375 /* UIViewController+Ext.swift in Sources */,
 				24A106FF2A56C01D002B4375 /* BasePresenter.swift in Sources */,
 				24A107042A56C28D002B4375 /* RootNavigationController.swift in Sources */,
@@ -709,10 +770,13 @@
 				240D42312A581997004B481C /* RocketModel.swift in Sources */,
 				24A106EB2A56BA43002B4375 /* RouterProtocol.swift in Sources */,
 				24C84BFC2A55564A0034FFC1 /* SceneDelegate.swift in Sources */,
+				243487B52A5C3CBE00337447 /* SettingItemStackView.swift in Sources */,
+				243487AE2A5C16B500337447 /* SettingVC.swift in Sources */,
 				2416C7372A5963FA00051E9E /* MainTableView.swift in Sources */,
 				2416C7492A59B07B00051E9E /* InfoCell.swift in Sources */,
 				2416C7582A59D94100051E9E /* MainSectionHeader.swift in Sources */,
 				240D42422A587824004B481C /* Fonts.swift in Sources */,
+				243487B32A5C2C5400337447 /* SettingStackView.swift in Sources */,
 				24A106F12A56BC6A002B4375 /* BasePageVC.swift in Sources */,
 				240D42402A586D10004B481C /* MainHeaderView.swift in Sources */,
 				2416C74D2A59B5F100051E9E /* StageCell.swift in Sources */,

@@ -16,6 +16,7 @@ final class MainPresenter: MainPresenterProtocol {
     
     weak var view: MainVCProtocol!
     unowned let storage: StorageManagerProtocol!
+    var rocket: Rocket?
     
     init(view: MainVCProtocol, storageManager: StorageManagerProtocol) {
         self.view = view
@@ -23,26 +24,16 @@ final class MainPresenter: MainPresenterProtocol {
     }
     
     func getDataRockets(numbRocket: Int) {
-        if let data: [RocketModel] = storage.decodableData(forKey: .rockets) {
-            let _ = data[numbRocket - 1]
-                        
-//            let rocket = Rocket(id: rocketData.id,
-//                                image: UIImage(systemName: "circle"),
-//                                name: rocketData.name,
-//                                height: RocketData.Parameter(value: "", unit: ""),
-//                                diameter: RocketData.Parameter(value: "", unit: ""),
-//                                mass: RocketData.Parameter(value: "", unit: ""),
-//                                payloadWeight: RocketData.Parameter(value: "", unit: ""),
-//                                firstFlight: "",
-//                                country: "",
-//                                costPerLaunch: 0,
-//                                firstStage: RocketData.Stage(engines: 0,
-//                                                             fuelAmountTons: 0,
-//                                                             burnTimeSec: 0),
-//                                secondStage: RocketData.Stage(engines: 0,
-//                                                              fuelAmountTons: 0,
-//                                                              burnTimeSec: 0))
-            
+        guard let data: [RocketModel] = storage.decodableData(forKey: .rockets) else {
+            view.failure()
+            return
         }
+        
+        let actRocket = data[numbRocket - 1]
+        
+        rocket = Rocket(id: actRocket.id,
+                        name: actRocket.name)
+        
+        view.success(rocket: rocket!)
     }
 }

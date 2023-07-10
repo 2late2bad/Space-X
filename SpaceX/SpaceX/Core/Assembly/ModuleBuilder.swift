@@ -10,6 +10,7 @@ import UIKit
 protocol ModuleBuilderProtocol {
     func createBaseModule(router: RocketRouterProtocol) -> UIViewController
     func createMainModule(with pageNumb: Int, router: RocketRouterProtocol) -> MainVC
+    func createSettingModule(router: RocketRouterProtocol) -> UIViewController
     func createEmpty(errorText: String, router: RocketRouterProtocol) -> UIViewController}
 
 final class ModuleBuilder {
@@ -45,6 +46,17 @@ extension ModuleBuilder: ModuleBuilderProtocol {
         view.router = router
         view.presenter = presenter
         view.pageNumb = pageNumb
+        
+        return view
+    }
+    
+    func createSettingModule(router: RocketRouterProtocol) -> UIViewController {
+        
+        let view      = SettingVC()
+        let presenter = SettingPresenter(view: view,
+                                         storageManager: storageManager)
+        view.router = router
+        view.presenter = presenter
         
         return view
     }
