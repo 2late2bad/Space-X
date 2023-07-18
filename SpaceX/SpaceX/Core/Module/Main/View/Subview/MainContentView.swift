@@ -25,6 +25,12 @@ final class MainContentView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func configure(rocket: Rocket) {
+        header.label.text = rocket.name
+        collectionView.configure(features: rocket.features)
+        tableView.configure(rocket: rocket)
+    }
 }
 
 private extension MainContentView {

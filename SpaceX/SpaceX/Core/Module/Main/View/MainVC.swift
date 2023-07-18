@@ -8,7 +8,8 @@
 import UIKit
 
 protocol MainVCProtocol: AnyObject {
-    //func success(rockets: [RocketData])
+    func success(rocket: Rocket)
+    func failure()
 }
 
 final class MainVC: UIViewController {
@@ -20,6 +21,7 @@ final class MainVC: UIViewController {
     
     // MARK: - Private properties
     private let contentView = MainContentView()
+    private let rocketImage = RocketImageView(frame: .zero)
 
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -28,15 +30,8 @@ final class MainVC: UIViewController {
         return scrollView
     }()
     
-    private lazy var rocketImage: UIImageView = {
-        let view = UIImageView()
-        view.contentMode = .scaleToFill
-        view.image = UIImage(named: "testRocket")!
-        return view
-    }()
-    
     // Scroll limit (adapted for any device)
-    private var minOffsetY: CGFloat { -rocketImage.frame.height * 0.1 }
+    private var minOffsetY: CGFloat { -rocketImage.frame.height * 0.05 }
     private var maxOffsetY: CGFloat { scrollView.contentSize.height - view.frame.height * 0.95 }
     
     // MARK: - Lifecycle
@@ -48,18 +43,27 @@ final class MainVC: UIViewController {
         presenter.getDataRockets(numbRocket: pageNumb)
     }
     
+    // ???
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         rollbackScrollPosition()
     }
+    
 }
 
+// MARK: - Private methods
 private extension MainVC {
     
     func setup() {
         view.addSubviews(rocketImage, scrollView)
         scrollView.delegate = self
         scrollView.addSubview(contentView)
+        contentView.header.delegate = self
     }
     
     func style() {
@@ -71,12 +75,12 @@ private extension MainVC {
         
         rocketImage.translatesAutoresizingMaskIntoConstraints = false
         contentView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             rocketImage.topAnchor.constraint(equalTo: view.topAnchor),
             rocketImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             rocketImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            rocketImage.heightAnchor.constraint(equalToConstant: view.frame.height * 0.60),
+            rocketImage.heightAnchor.constraint(equalToConstant: view.frame.height * 0.57),
             
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: view.frame.size.height / 2),
             contentView.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
@@ -92,33 +96,20 @@ private extension MainVC {
     }
 }
 
-
-
+// MARK: - Implementation MainVCProtocol
 extension MainVC: MainVCProtocol {
     
-    func success(rockets: [RocketData]) {
-        //rockets[pageNumb].flickrImages
-//        if let firstImage = rockets[pageNumb].flickrImages.first {
-//            
-//            DispatchQueue.main.async {
-//                guard let url = URL(string: firstImage),
-//                      let data = try? Data(contentsOf: url) else { return }
-//                self.testImage.image = UIImage(data: data)
-//
-//            }
-//
-//
-//
-//
-//        }
-        
-//        guard let url = URL(string: stringURL),
-//              let data = try? Data(contentsOf: url) else { return Data() }
-//
-//        return data
+    func success(rocket: Rocket) {
+        contentView.configure(rocket: rocket)
+        rocketImage.downloadImage(fromURL: rocket.images.randomElement()!)
+    }
+    
+    func failure() {
+        //
     }
 }
 
+// MARK: - UIScrollViewDelegate
 extension MainVC: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -128,5 +119,13 @@ extension MainVC: UIScrollViewDelegate {
         if offset.y > maxOffsetY { offset.y = maxOffsetY }
         
         scrollView.contentOffset = offset
+    }
+}
+
+// MARK: - MainHeaderViewDelegate
+extension MainVC: MainHeaderViewDelegate {
+    
+    func didTapSettingButton() {
+        router.routeSettingModule()
     }
 }

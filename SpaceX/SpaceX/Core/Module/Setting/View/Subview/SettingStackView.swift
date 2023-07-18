@@ -24,7 +24,7 @@ private extension SettingStackView {
     func configure() {
         axis = .vertical
         spacing = 24
-
+        
         (0...3).forEach { _ in
             addArrangedSubview(SettingItemStackView())
         }

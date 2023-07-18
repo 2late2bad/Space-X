@@ -5,12 +5,13 @@
 //  Created by Alexander Vagin on 06.07.2023.
 //
 
-import Foundation
+import UIKit
 
 protocol NetworkManagerProtocol {
     func request<T: Decodable>(fromURL url: URL,
                                httpMethod: HttpMethod,
                                completion: @escaping (Result<T, NetworkError>) -> Void)
+    func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void)
 }
 
 final class NetworkManager {
@@ -18,6 +19,7 @@ final class NetworkManager {
     // MARK: - Properties
     static let shared = NetworkManager()
     private let session: URLSession = .shared
+    let cache = NSCache<NSString, UIImage>()
     
     // MARK: - Init
     private init() {}
@@ -60,6 +62,37 @@ extension NetworkManager: NetworkManagerProtocol {
                 debugPrint("Не удалось преобразовать данные в запрошенный тип. Причина: \(error.localizedDescription)")
                 completionOnMain(.failure(.invalidDecoding))
             }
+        }
+        
+        task.resume()
+    }
+    
+    func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void) {
+        let cacheKey = NSString(string: urlString)
+        
+        if let image = cache.object(forKey: cacheKey) {
+            completed(image)
+            return
+        }
+        
+        guard let url = URL(string: urlString) else {
+            completed(UIImage(named: "noImageAvailable"))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            guard let self = self,
+                  let response = response as? HTTPURLResponse, response.statusCode == 200,
+                  let data = data,
+                  let image = UIImage(data: data),
+                  error == nil
+            else {
+                completed(UIImage(named: "noImageAvailable"))
+                return
+            }
+            
+            self.cache.setObject(image, forKey: cacheKey)
+            completed(image)
         }
         
         task.resume()

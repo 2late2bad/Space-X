@@ -7,11 +7,7 @@
 
 import Foundation
 
-enum UnitMainTable: String {
-    case fuel = "ton"
-    case time = "sec"
-}
-
+// MARK: - Section type
 enum SectionMainType: String {
     case info
     case firstStage = "Первая ступень"
@@ -19,17 +15,26 @@ enum SectionMainType: String {
     case launchButton
 }
 
+// MARK: - Cell type
 enum CellMainType {
     case info
     case stage(unit: UnitMainTable?)
     case button
 }
 
+// MARK: - Unit model for Cell
+enum UnitMainTable: String {
+    case fuel = "ton"
+    case time = "sec"
+}
+
+// MARK: - Section Model
 struct SectionMainTable {
     let type: SectionMainType
     var cells: [CellMainTable]
 }
 
+// MARK: - Cell Model
 struct CellMainTable {
     let type: CellMainType
     let label: String?

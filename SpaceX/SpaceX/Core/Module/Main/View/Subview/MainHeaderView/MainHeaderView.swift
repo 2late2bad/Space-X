@@ -7,21 +7,32 @@
 
 import UIKit
 
+protocol MainHeaderViewDelegate: AnyObject {
+    func didTapSettingButton()
+}
+
 final class MainHeaderView: UIView {
     
     let label = UILabel()
     let settingButton = UIButton()
     let stackView = UIStackView()
     
+    weak var delegate: MainHeaderViewDelegate!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
-        configure()
+        style()
+        configureButton()
         layout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func settingsButtonTapped() {
+        delegate.didTapSettingButton()
     }
 }
 
@@ -33,22 +44,23 @@ private extension MainHeaderView {
         stackView.addArrangedSubview(settingButton)
     }
     
-    func configure() {
+    func style() {
         stackView.axis = .horizontal
         stackView.distribution = .equalSpacing
         
-        label.text = "Falcon X"
         label.textAlignment = .left
         label.textColor = Colors.titleRocket.uiColor
         label.font = Fonts.titleRocket.uiFont
         
         settingButton.setImage(UIImage(systemName: "gearshape"), for: .normal)
         settingButton.tintColor = Colors.settingsButton.uiColor
-        
         settingButton.imageView?.contentMode = .scaleAspectFit
         settingButton.contentVerticalAlignment = .fill
         settingButton.contentHorizontalAlignment = .fill
-        
+    }
+    
+    func configureButton() {
+        settingButton.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
         settingButton.startAnimatingPressActions()
     }
     

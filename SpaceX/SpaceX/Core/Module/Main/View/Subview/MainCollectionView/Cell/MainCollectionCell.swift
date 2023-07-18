@@ -47,6 +47,11 @@ final class MainCollectionCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func configure(feature: Feature) {
+        mainLabel.text = feature.value
+        detailsLabel.text = "\(feature.name), \(feature.type.description.us)"
+    }
 }
 
 private extension MainCollectionCell {
@@ -59,10 +64,6 @@ private extension MainCollectionCell {
     func style() {
         areaView.backgroundColor = Colors.backgroundCollectionCell.uiColor
         areaView.layer.cornerRadius = 32
-        
-        // TODO: - Cell
-        mainLabel.text = "3,125,735"
-        detailsLabel.text = "Высота, ft"
     }
     
     func layout() {

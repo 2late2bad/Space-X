@@ -16,6 +16,8 @@ enum Colors {
     
     // MainVC
     case backgroundMainVC
+    case backgroundRocketImage
+    case activityIndicator
     
     // Main content view
     case backgroundContentView
@@ -28,6 +30,7 @@ enum Colors {
     case subtitleCollectionCell
     
     // Main table view
+    case backgroundTableView
     case mainTextTableView
     case valueTextTableView
     case unitTextTableView
@@ -49,10 +52,10 @@ enum Colors {
     
     var uiColor: UIColor {
         switch self {
-        case .currentPageIndicator, .titleCollectionCell, .closeButtonSettingVC, .titleSettingVC, .selectedSegmentTintColor:
+        case .currentPageIndicator, .titleCollectionCell, .closeButtonSettingVC, .titleSettingVC, .selectedSegmentTintColor, .activityIndicator:
             return hexStringToUIColor(hex: "#FFFFFF")
             
-        case .backgroundContentView, .backgroundMainVC:
+        case .backgroundContentView, .backgroundMainVC, .backgroundTableView:
             return hexStringToUIColor(hex: "#000000")
             
         case .backgroundCollectionCell, .backgroundFooterButton, .backgroundSegmentControl:
@@ -67,7 +70,7 @@ enum Colors {
         case .pageIndicator, .subtitleCollectionCell, .unitTextTableView, .segmentedNormalText:
             return hexStringToUIColor(hex: "#8E8E8F")
             
-        case .backgroundPageView, .backgroundSettingVC, .segmentedSelectedText:
+        case .backgroundPageView, .backgroundSettingVC, .segmentedSelectedText, .backgroundRocketImage:
             return hexStringToUIColor(hex: "#121212")
         }
     }

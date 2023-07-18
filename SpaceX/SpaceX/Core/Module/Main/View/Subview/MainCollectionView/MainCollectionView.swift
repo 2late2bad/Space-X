@@ -9,7 +9,7 @@ import UIKit
 
 final class MainCollectionView: UICollectionView {
     
-    private var cells: [MainCollectionCell] = []
+    private var features: [Feature] = []
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         let collecetionViewLayout = UICollectionViewFlowLayout()
@@ -24,6 +24,11 @@ final class MainCollectionView: UICollectionView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func configure(features: [Feature]) {
+        self.features = features
+        reloadData()
+    }
 }
 
 private extension MainCollectionView {
@@ -36,9 +41,6 @@ private extension MainCollectionView {
         backgroundColor = Colors.backgroundContentView.uiColor
         
         contentInsetAdjustmentBehavior = .never
-        
-        // TODO: - Cells
-        (1...4).forEach { _ in cells.append(MainCollectionCell()) }
     }
     
     func layoutUI() {
@@ -50,13 +52,13 @@ private extension MainCollectionView {
 extension MainCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        cells.count
+        features.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionCell.identifier,
                                                       for: indexPath) as! MainCollectionCell
-        
+        cell.configure(feature: features[indexPath.item])
         return cell
     }
 }

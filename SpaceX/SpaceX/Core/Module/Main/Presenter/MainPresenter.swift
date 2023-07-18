@@ -32,7 +32,19 @@ final class MainPresenter: MainPresenterProtocol {
         let actRocket = data[numbRocket - 1]
         
         rocket = Rocket(id: actRocket.id,
-                        name: actRocket.name)
+                        images: actRocket.flickrImages,
+                        name: actRocket.name,
+                        features: [Feature(type: .length(meters: actRocket.height.meters!,
+                                                         feet: actRocket.height.feet!), name: "Высота")],
+                        firstFlight: actRocket.firstFlight,
+                        country: actRocket.country,
+                        costPerLaunch: actRocket.costPerLaunch,
+                        firstStage: .init(engines: actRocket.firstStage.engines,
+                                          fuelAmountTons: actRocket.firstStage.fuelAmountTons,
+                                          burnTimeSec: actRocket.firstStage.burnTimeSec),
+                        secondStage: .init(engines: actRocket.secondStage.engines,
+                                           fuelAmountTons: actRocket.secondStage.fuelAmountTons,
+                                           burnTimeSec: actRocket.secondStage.burnTimeSec))
         
         view.success(rocket: rocket!)
     }
