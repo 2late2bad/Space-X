@@ -27,7 +27,9 @@ final class MainCollectionView: UICollectionView {
     
     func configure(features: [Feature]) {
         self.features = features
-        reloadData()
+        DispatchQueue.main.async { [weak self] in
+            self?.reloadData()
+        }
     }
 }
 

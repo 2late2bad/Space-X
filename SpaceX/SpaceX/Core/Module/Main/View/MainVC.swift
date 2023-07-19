@@ -43,7 +43,6 @@ final class MainVC: UIViewController {
         presenter.getDataRockets(numbRocket: pageNumb)
     }
     
-    // ???
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
@@ -53,7 +52,6 @@ final class MainVC: UIViewController {
         super.viewDidDisappear(animated)
         rollbackScrollPosition()
     }
-    
 }
 
 // MARK: - Private methods

@@ -12,4 +12,6 @@ final class RootNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override var prefersStatusBarHidden: Bool { true }
 }
