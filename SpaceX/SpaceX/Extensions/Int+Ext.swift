@@ -8,6 +8,7 @@
 import Foundation
 
 extension Int {
+    
     var roundedDollars: String {
         let number = Double(self)
         let thousand = number / 1000

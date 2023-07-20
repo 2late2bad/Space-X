@@ -31,6 +31,8 @@
 		2416C74E2A59B5F100051E9E /* StageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2416C74C2A59B5F100051E9E /* StageCell.xib */; };
 		2416C7552A59CA0700051E9E /* MainTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416C7542A59CA0700051E9E /* MainTableModel.swift */; };
 		2416C7582A59D94100051E9E /* MainSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416C7572A59D94100051E9E /* MainSectionHeader.swift */; };
+		242267952A6983E500E0E34F /* LaunchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242267942A6983E500E0E34F /* LaunchVC.swift */; };
+		242267972A6983F600E0E34F /* LaunchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242267962A6983F600E0E34F /* LaunchPresenter.swift */; };
 		243487AE2A5C16B500337447 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243487AD2A5C16B500337447 /* SettingVC.swift */; };
 		243487B02A5C170A00337447 /* SettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243487AF2A5C170A00337447 /* SettingPresenter.swift */; };
 		243487B32A5C2C5400337447 /* SettingStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243487B22A5C2C5400337447 /* SettingStackView.swift */; };
@@ -108,6 +110,8 @@
 		2416C74C2A59B5F100051E9E /* StageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StageCell.xib; sourceTree = "<group>"; };
 		2416C7542A59CA0700051E9E /* MainTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableModel.swift; sourceTree = "<group>"; };
 		2416C7572A59D94100051E9E /* MainSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSectionHeader.swift; sourceTree = "<group>"; };
+		242267942A6983E500E0E34F /* LaunchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchVC.swift; sourceTree = "<group>"; };
+		242267962A6983F600E0E34F /* LaunchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPresenter.swift; sourceTree = "<group>"; };
 		243487AD2A5C16B500337447 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		243487AF2A5C170A00337447 /* SettingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPresenter.swift; sourceTree = "<group>"; };
 		243487B22A5C2C5400337447 /* SettingStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingStackView.swift; sourceTree = "<group>"; };
@@ -292,6 +296,39 @@
 			path = HeaderFooter;
 			sourceTree = "<group>";
 		};
+		242267902A6966B000E0E34F /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				24A107072A56CD40002B4375 /* StorageManager.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		242267912A6983B400E0E34F /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				242267922A6983C700E0E34F /* View */,
+				242267932A6983CC00E0E34F /* Presenter */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		242267922A6983C700E0E34F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				242267942A6983E500E0E34F /* LaunchVC.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		242267932A6983CC00E0E34F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				242267962A6983F600E0E34F /* LaunchPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		243487A92A5C164F00337447 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,6 +424,7 @@
 				24A106EF2A56BBF9002B4375 /* Base */,
 				24A1071D2A5713B6002B4375 /* Main */,
 				243487A92A5C164F00337447 /* Setting */,
+				242267912A6983B400E0E34F /* Launch */,
 				240D42382A584E3B004B481C /* Empty */,
 			);
 			path = Module;
@@ -406,7 +444,7 @@
 			isa = PBXGroup;
 			children = (
 				240D42272A5815CE004B481C /* Network */,
-				24A107072A56CD40002B4375 /* StorageManager.swift */,
+				242267902A6966B000E0E34F /* Storage */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -788,6 +826,7 @@
 				2416C7322A5946B900051E9E /* MainCollectionView.swift in Sources */,
 				240D42372A58348D004B481C /* UIView+Ext.swift in Sources */,
 				24B2DF772A66846C000911E9 /* SettingModel.swift in Sources */,
+				242267952A6983E500E0E34F /* LaunchVC.swift in Sources */,
 				240D42312A581997004B481C /* RocketModel.swift in Sources */,
 				24A106EB2A56BA43002B4375 /* RouterProtocol.swift in Sources */,
 				24C84BFC2A55564A0034FFC1 /* SceneDelegate.swift in Sources */,
@@ -801,6 +840,7 @@
 				24A106F12A56BC6A002B4375 /* BasePageVC.swift in Sources */,
 				240D42402A586D10004B481C /* MainHeaderView.swift in Sources */,
 				2416C74D2A59B5F100051E9E /* StageCell.swift in Sources */,
+				242267972A6983F600E0E34F /* LaunchPresenter.swift in Sources */,
 				24B2DF7B2A66F9EE000911E9 /* Int+Ext.swift in Sources */,
 				24B2DF7D2A66FDAD000911E9 /* String+Ext.swift in Sources */,
 				24B2DF812A670C83000911E9 /* RocketImageView.swift in Sources */,

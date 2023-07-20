@@ -10,7 +10,7 @@ import UIKit
 typealias Rocket = RocketData
 
 // MARK: - RocketData
-struct RocketData {
+struct RocketData: Codable {
     let id: String
     let images: [String]
     // Header
@@ -26,7 +26,7 @@ struct RocketData {
 }
 
 extension RocketData {
-    struct Stage {
+    struct Stage: Codable {
         let engines: Int
         let fuelAmountTons: Double
         let burnTimeSec: Int?
@@ -34,7 +34,7 @@ extension RocketData {
 }
 
 // -> ??
-enum UnitSettingType {
+enum UnitSettingType: Codable {
     case length(meters: Double, feet: Double)
     case weight(kg: Double, lb: Double)
     
@@ -48,7 +48,7 @@ enum UnitSettingType {
     }
 }
 
-struct Feature {
+struct Feature: Codable {
     let type: UnitSettingType
     let name: String
     

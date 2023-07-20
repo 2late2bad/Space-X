@@ -11,6 +11,7 @@ protocol StorageManagerProtocol: AnyObject {
     // Запись
     func set(_ object: Any?, forKey key: C.StorageKeys)
     func set<T: Encodable>(object: T?, forKey key: C.StorageKeys)
+    func append<T: Codable>(object: T, forKey key: C.StorageKeys)
     // Чтение
     func int(forKey key: C.StorageKeys) -> Int?
     func string(forKey key: C.StorageKeys) -> String?
@@ -49,6 +50,16 @@ extension StorageManager: StorageManagerProtocol {
     func set<T: Encodable>(object: T?, forKey key: C.StorageKeys) {
         let jsonData = try? JSONEncoder().encode(object)
         store(jsonData, key: key.rawValue)
+    }
+    
+    func append<T: Codable>(object: T, forKey key: C.StorageKeys) {
+        if var array: [T] = decodableData(forKey: key) {
+            array.append(object)
+            set(object: array, forKey: key)
+        } else {
+            let newArray: [T] = [object]
+            set(object: newArray, forKey: key)
+        }
     }
     
     func int(forKey key: C.StorageKeys) -> Int? {

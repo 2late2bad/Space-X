@@ -10,8 +10,9 @@ import UIKit
 protocol RocketRouterProtocol: RouterProtocol {
     func routeBaseModule()
     func routeEmpty(errorText: String) -> UIViewController
-    func routeMainModule(with pageNumber: Int) -> MainVC
+    func routeMainModule(with rocket: RocketModel) -> MainVC
     func routeSettingModule()
+    func routeLaunchModule()
 }
 
 final class RocketRouter {
@@ -38,14 +39,19 @@ extension RocketRouter: RocketRouterProtocol {
         navigationController.viewControllers = [baseView]
     }
     
-    func routeMainModule(with pageNumber: Int) -> MainVC {
-        moduleBuilder.createMainModule(with: pageNumber, router: self)
+    func routeMainModule(with rocket: RocketModel) -> MainVC {
+        moduleBuilder.createMainModule(with: rocket, router: self)
     }
     
     func routeSettingModule() {
         let settingVC = moduleBuilder.createSettingModule(router: self)
         let navCon = UINavigationController(rootViewController: settingVC)
         navigationController.present(navCon, animated: true)
+    }
+    
+    func routeLaunchModule() {
+        let launchVC = moduleBuilder.createLaunchModule(router: self)
+        navigationController.pushViewController(launchVC, animated: true)
     }
     
     func routeEmpty(errorText: String) -> UIViewController {

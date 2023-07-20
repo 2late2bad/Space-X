@@ -56,6 +56,7 @@ private extension EmptyVC {
         errorLabel.font = .systemFont(ofSize: 20, weight: .light)
         errorLabel.textColor = .black
         errorLabel.numberOfLines = 0
+        errorLabel.lineBreakMode = .byTruncatingTail
         
         resetButton.backgroundColor = .black
         resetButton.setTitle("Reset", for: .normal)
@@ -78,15 +79,17 @@ private extension EmptyVC {
             mainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             mainLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             
+            resetButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            resetButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 70),
+            resetButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -70),
+            resetButton.heightAnchor.constraint(equalToConstant: 40),
+            
+            
             errorLabel.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 40),
             errorLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             errorLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
             errorLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
-            
-            resetButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            resetButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 70),
-            resetButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -70),
-            resetButton.heightAnchor.constraint(equalToConstant: 40)
+            errorLabel.bottomAnchor.constraint(equalTo: resetButton.topAnchor, constant: -20)
         ])
     }
     

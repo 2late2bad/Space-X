@@ -8,7 +8,7 @@
 import UIKit
 
 protocol BasePageProtocol: AnyObject {
-    func success(withNumber number: Int)
+    func success(with rockets: [RocketModel])
     func failure(error: NetworkError)
 }
 
@@ -31,7 +31,7 @@ final class BasePageVC: UIPageViewController {
         super.viewDidLoad()
         setup()
         stylePageControl()
-        presenter.loadPages()
+        presenter.getPages()
     }
     
     override func viewDidLayoutSubviews() {
@@ -75,9 +75,9 @@ private extension BasePageVC {
 // MARK: - Implementation BasePageProtocol
 extension BasePageVC: BasePageProtocol {
     
-    func success(withNumber number: Int) {
-        for pageNumb in 1...number {
-            let mainVC = router.routeMainModule(with: pageNumb)
+    func success(with rockets: [RocketModel]) {
+        for rocketModel in rockets {
+            let mainVC = router.routeMainModule(with: rocketModel)
             pages.append(mainVC)
         }
         setPages()

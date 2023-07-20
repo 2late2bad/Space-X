@@ -17,7 +17,7 @@ final class MainVC: UIViewController {
     // MARK: - Properties
     var router: RocketRouterProtocol!
     var presenter: MainPresenterProtocol!
-    var pageNumb: Int!
+    var rocketModel: RocketModel!
     
     // MARK: - Private properties
     private let contentView = MainContentView()
@@ -40,7 +40,7 @@ final class MainVC: UIViewController {
         setup()
         style()
         layout()
-        presenter.getDataRockets(numbRocket: pageNumb)
+        presenter.getRocket(with: rocketModel)
     }
     
     override func viewWillAppear(_ animated: Bool) {

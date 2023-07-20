@@ -28,7 +28,7 @@ final class SettingVC: UIViewController {
         configureView()
         configureNavBar()
         layoutUI()
-    }    
+    }
 }
 
 private extension SettingVC {
