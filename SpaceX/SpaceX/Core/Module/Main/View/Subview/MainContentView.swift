@@ -12,7 +12,7 @@ final class MainContentView: UIView {
     // MARK: - Properties
     let header = MainHeaderView()
     let collectionView = MainCollectionView()
-    private let tableView = MainTableView()
+    let tableView = MainTableView()
     
     // MARK: - Init
     override init(frame: CGRect) {

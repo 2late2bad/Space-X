@@ -522,14 +522,14 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
-		24A107132A56F551002B4375 /* Utilies */ = {
+		24A107132A56F551002B4375 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
 				24A107142A56F566002B4375 /* Colors.swift */,
 				240D42412A587824004B481C /* Fonts.swift */,
 				24A107192A56FBB2002B4375 /* Constants.swift */,
 			);
-			path = Utilies;
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		24A107162A56F69B002B4375 /* Extensions */ = {
@@ -656,7 +656,7 @@
 		24C84C2D2A5558140034FFC1 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				24A107132A56F551002B4375 /* Utilies */,
+				24A107132A56F551002B4375 /* Helper */,
 				240D42432A587876004B481C /* Font */,
 				24A1070E2A56D1C5002B4375 /* JSON */,
 				24A107092A56CF7C002B4375 /* Resources */,

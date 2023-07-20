@@ -19,7 +19,8 @@ final class LaunchVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .brown
+        view.backgroundColor = Colors.backgroundLaunchVC.uiColor
+        title = "Hello"
     }
     
 }

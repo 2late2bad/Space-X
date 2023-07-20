@@ -20,6 +20,7 @@ final class MainTableView: UITableView {
     }
     
     private var dataTable: [SectionMainTable] = []
+    var buttonAction: Callback?
     
     // MARK: - Init
     override init(frame: CGRect, style: UITableView.Style) {
@@ -166,6 +167,7 @@ extension MainTableView: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.identifier, for: indexPath) as! ButtonCell
             let searchRow = section.cells[indexPath.row]
             cell.configure(label: searchRow.label)
+            cell.buttonAction = buttonAction
             return cell
         }
     }

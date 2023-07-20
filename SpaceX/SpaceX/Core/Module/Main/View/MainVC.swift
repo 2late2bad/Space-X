@@ -62,6 +62,12 @@ private extension MainVC {
         scrollView.delegate = self
         scrollView.addSubview(contentView)
         contentView.header.delegate = self
+        contentView.tableView.buttonAction = test
+    }
+    
+    func test() {
+        navigationController?.navigationBar.isHidden = false
+        router.routeLaunchModule()
     }
     
     func style() {

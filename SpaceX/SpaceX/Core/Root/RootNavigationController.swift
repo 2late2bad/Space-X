@@ -11,7 +11,14 @@ final class RootNavigationController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configure()
     }
     
     override var prefersStatusBarHidden: Bool { true }
+    
+    private func configure() {
+        let textAttributes = [NSAttributedString.Key.foregroundColor: Colors.navigationBarTitle.uiColor]
+        navigationBar.titleTextAttributes = textAttributes
+        navigationBar.tintColor = Colors.navigationBarTint.uiColor
+    }
 }

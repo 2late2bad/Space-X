@@ -8,6 +8,7 @@
 import Foundation
 
 typealias C = Constants
+typealias Callback = () -> Void
 
 enum Constants {
     

@@ -9,6 +9,10 @@ import UIKit.UIColor
 
 enum Colors {
     
+    // Root Navigation Controller
+    case navigationBarTitle
+    case navigationBarTint
+    
     // Page view
     case pageIndicator
     case currentPageIndicator
@@ -50,18 +54,21 @@ enum Colors {
     case segmentedNormalText
     case segmentedSelectedText
     
+    // Launch screen
+    case backgroundLaunchVC
+    
     var uiColor: UIColor {
         switch self {
         case .currentPageIndicator, .titleCollectionCell, .closeButtonSettingVC, .titleSettingVC, .selectedSegmentTintColor, .activityIndicator:
             return hexStringToUIColor(hex: "#FFFFFF")
             
-        case .backgroundContentView, .backgroundMainVC, .backgroundTableView:
+        case .backgroundContentView, .backgroundMainVC, .backgroundTableView, .backgroundLaunchVC:
             return hexStringToUIColor(hex: "#000000")
             
         case .backgroundCollectionCell, .backgroundFooterButton, .backgroundSegmentControl:
             return hexStringToUIColor(hex: "#212121")
             
-        case .titleRocket, .settingsButton, .valueTextTableView, .titleFooterButton, .headerFooterTextTableView, .labelRowSettingVC:
+        case .titleRocket, .settingsButton, .valueTextTableView, .titleFooterButton, .headerFooterTextTableView, .labelRowSettingVC, .navigationBarTitle, .navigationBarTint:
             return hexStringToUIColor(hex: "#F6F6F6")
             
         case .mainTextTableView:

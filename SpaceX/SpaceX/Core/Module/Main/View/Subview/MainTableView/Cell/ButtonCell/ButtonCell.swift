@@ -13,6 +13,8 @@ final class ButtonCell: UITableViewCell {
     
     static let identifier = "ButtonCell"
     
+    var buttonAction: Callback?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         initialize()
@@ -23,7 +25,7 @@ final class ButtonCell: UITableViewCell {
     }
     
     @IBAction func launchButtonPressed(_ sender: UIButton) {
-        
+        buttonAction?()
     }
 }
 
