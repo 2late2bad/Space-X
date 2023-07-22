@@ -9,6 +9,7 @@ import Foundation
 
 enum NetworkError: Error {
     case invalidResponse
+    case invalidRequestBody
     case invalidStatusCode(Int)
     case invalidDecoding
     case invalidURL
@@ -18,6 +19,8 @@ enum NetworkError: Error {
         switch self {
         case .invalidResponse:
             return "Нет ответа от сервера"
+        case .invalidRequestBody:
+            return "Некорректное тело запроса"
         case .invalidStatusCode(let code):
             return "Status code от сервера: \(code)"
         case .invalidDecoding:

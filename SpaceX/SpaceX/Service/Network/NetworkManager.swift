@@ -8,8 +8,9 @@
 import UIKit
 
 protocol NetworkManagerProtocol {
-    func request<T: Decodable>(fromURL url: URL,
+    func request<T: Decodable>(from urlString: String,
                                httpMethod: HttpMethod,
+                               requestBody: [String: Any]?,
                                completion: @escaping (Result<T, NetworkError>) -> Void)
     func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void)
 }
@@ -27,8 +28,9 @@ final class NetworkManager {
 
 extension NetworkManager: NetworkManagerProtocol {
     
-    func request<T: Decodable>(fromURL url: URL,
+    func request<T: Decodable>(from urlString: String,
                                httpMethod: HttpMethod = .get,
+                               requestBody: [String: Any]? = nil,
                                completion: @escaping (Result<T, NetworkError>) -> Void) {
         
         let completionOnMain: (Result<T, NetworkError>) -> Void = { result in
@@ -37,11 +39,24 @@ extension NetworkManager: NetworkManagerProtocol {
             }
         }
         
+        guard let url = URL(string: urlString) else {
+            completionOnMain(.failure(.invalidURL))
+            return
+        }
+        
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.method
+        if let requestBody = requestBody {
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: requestBody, options: [])
+            } catch {
+                completionOnMain(.failure(.invalidRequestBody))
+                return
+            }
+        }
         
-        let task = session.dataTask(with: request) { data, queryResponse, error in
-            
+        let task = URLSession.shared.dataTask(with: request) { data, queryResponse, error in
             if let error = error {
                 completionOnMain(.failure(.invalidSession(error)))
                 return
@@ -56,7 +71,9 @@ extension NetworkManager: NetworkManagerProtocol {
             
             guard let data = data else { return }
             do {
-                let parse = try JSONDecoder().decode(T.self, from: data)
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let parse = try decoder.decode(T.self, from: data)
                 completionOnMain(.success(parse))
             } catch {
                 debugPrint("Не удалось преобразовать данные в запрошенный тип. Причина: \(error.localizedDescription)")
@@ -66,6 +83,7 @@ extension NetworkManager: NetworkManagerProtocol {
         
         task.resume()
     }
+
     
     func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void) {
         let cacheKey = NSString(string: urlString)
