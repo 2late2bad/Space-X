@@ -11,7 +11,7 @@ protocol ModuleBuilderProtocol {
     func createBaseModule(router: RocketRouterProtocol) -> UIViewController
     func createMainModule(with rocket: RocketModel, router: RocketRouterProtocol) -> MainVC
     func createSettingModule(router: RocketRouterProtocol) -> UIViewController
-    func createLaunchModule(router: RocketRouterProtocol) -> UIViewController
+    func createLaunchModule(with id: String, router: RocketRouterProtocol) -> UIViewController
     func createEmpty(errorText: String, router: RocketRouterProtocol) -> UIViewController}
 
 final class ModuleBuilder {
@@ -62,13 +62,15 @@ extension ModuleBuilder: ModuleBuilderProtocol {
         return view
     }
     
-    func createLaunchModule(router: RocketRouterProtocol) -> UIViewController {
+    func createLaunchModule(with id: String, router: RocketRouterProtocol) -> UIViewController {
         
         let view      = LaunchVC()
         let presenter = LaunchPresenter(view: view,
-                                        storageManager: storageManager)
+                                        storageManager: storageManager,
+                                        networkManager: networkManager)
         view.router = router
         view.presenter = presenter
+        view.idRocket = id
         
         return view
     }

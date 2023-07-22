@@ -62,12 +62,12 @@ private extension MainVC {
         scrollView.delegate = self
         scrollView.addSubview(contentView)
         contentView.header.delegate = self
-        contentView.tableView.buttonAction = test
+        contentView.tableView.buttonAction = openLaunchScreen
     }
     
-    func test() {
+    func openLaunchScreen() {
         navigationController?.navigationBar.isHidden = false
-        router.routeLaunchModule()
+        router.routeLaunchModule(with: rocketModel.id, title: rocketModel.name)
     }
     
     func style() {

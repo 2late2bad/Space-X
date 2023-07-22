@@ -12,7 +12,7 @@ protocol RocketRouterProtocol: RouterProtocol {
     func routeEmpty(errorText: String) -> UIViewController
     func routeMainModule(with rocket: RocketModel) -> MainVC
     func routeSettingModule()
-    func routeLaunchModule()
+    func routeLaunchModule(with id: String, title rocketTitle: String)
 }
 
 final class RocketRouter {
@@ -49,8 +49,9 @@ extension RocketRouter: RocketRouterProtocol {
         navigationController.present(navCon, animated: true)
     }
     
-    func routeLaunchModule() {
-        let launchVC = moduleBuilder.createLaunchModule(router: self)
+    func routeLaunchModule(with id: String, title rocketTitle: String) {
+        let launchVC = moduleBuilder.createLaunchModule(with: id, router: self)
+        launchVC.title = rocketTitle
         navigationController.pushViewController(launchVC, animated: true)
     }
     

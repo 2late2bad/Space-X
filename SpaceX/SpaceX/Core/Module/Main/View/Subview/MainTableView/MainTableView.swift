@@ -37,7 +37,7 @@ final class MainTableView: UITableView {
         dataTable = [
             SectionMainTable(type: .info, cells: [CellMainTable(type: .info,
                                                                 label: "Первый запуск",
-                                                                value: rocket.firstFlight.convertToDisplayFormat()),
+                                                                value: rocket.firstFlight.convertToDisplayFormat(from: .fullYearMonthDay)),
                                                   CellMainTable(type: .info,
                                                                 label: "Страна",
                                                                 value: rocket.country.convertCountryToRus()),

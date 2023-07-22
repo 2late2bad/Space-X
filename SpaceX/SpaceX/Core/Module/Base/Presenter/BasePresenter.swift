@@ -40,11 +40,8 @@ final class BasePresenter: BasePresenterProtocol {
     }
     
     private func loadPages() {
-        guard let url = URL(string: C.API.rockets) else {
-            self.view.failure(error: NetworkError.invalidURL)
-            return
-        }
-        network.request(fromURL: url, httpMethod: .get) { (result: Result<[RocketModel], NetworkError>) in
+        network.request(from: C.API.rockets,
+                           httpMethod: .get, requestBody: nil) { (result: Result<[RocketModel], NetworkError>) in
             switch result {
             case .success(let rockets):
                 self.storage.set(object: rockets, forKey: .rockets)
