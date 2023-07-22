@@ -41,7 +41,8 @@ final class BasePresenter: BasePresenterProtocol {
     
     private func loadPages() {
         network.request(from: C.API.rockets,
-                           httpMethod: .get, requestBody: nil) { (result: Result<[RocketModel], NetworkError>) in
+                        httpMethod: .get,
+                        requestBody: nil) { (result: Result<[RocketModel], NetworkError>) in
             switch result {
             case .success(let rockets):
                 self.storage.set(object: rockets, forKey: .rockets)

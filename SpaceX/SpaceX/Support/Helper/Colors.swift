@@ -61,10 +61,11 @@ enum Colors {
     case nameLaunchLabel
     case dateLaunchLabel
     case tintStatusImageView
+    case emptyLaunchesLabel
     
     var uiColor: UIColor {
         switch self {
-        case .currentPageIndicator, .titleCollectionCell, .closeButtonSettingVC, .titleSettingVC, .selectedSegmentTintColor, .activityIndicator, .nameLaunchLabel:
+        case .currentPageIndicator, .titleCollectionCell, .closeButtonSettingVC, .titleSettingVC, .selectedSegmentTintColor, .activityIndicator, .nameLaunchLabel, .emptyLaunchesLabel:
             return hexStringToUIColor(hex: "#FFFFFF")
             
         case .backgroundContentView, .backgroundMainVC, .backgroundTableView, .backgroundLaunchVC, .backgroundNavigationBar:

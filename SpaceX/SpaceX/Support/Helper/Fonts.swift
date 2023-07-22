@@ -30,6 +30,7 @@ enum Fonts {
     case labelRowSettingVC
     case labelNameLaunchCell
     case labelDateLaunchCell
+    case emptyLaunchesLabel
     
     // MARK: - Properties
     var uiFont: UIFont {
@@ -47,7 +48,7 @@ enum Fonts {
         case .launchesButton:
             return UIFont(name: "LabGrotesque-Bold", size: 18) ?? .systemFont(ofSize: 18, weight: .bold)
             
-        case .labelNameLaunchCell:
+        case .labelNameLaunchCell, .emptyLaunchesLabel:
             return UIFont(name: "LabGrotesque-Regular", size: 20) ?? .systemFont(ofSize: 20, weight: .regular)
             
         case .mainTextTableView, .titleSettingVC, .labelRowSettingVC, .labelDateLaunchCell:
