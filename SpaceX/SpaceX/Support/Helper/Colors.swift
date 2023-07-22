@@ -12,6 +12,7 @@ enum Colors {
     // Root Navigation Controller
     case navigationBarTitle
     case navigationBarTint
+    case backgroundNavigationBar
     
     // Page view
     case pageIndicator
@@ -56,16 +57,20 @@ enum Colors {
     
     // Launch screen
     case backgroundLaunchVC
+    case backgroundViewLaunchCell
+    case nameLaunchLabel
+    case dateLaunchLabel
+    case tintStatusImageView
     
     var uiColor: UIColor {
         switch self {
-        case .currentPageIndicator, .titleCollectionCell, .closeButtonSettingVC, .titleSettingVC, .selectedSegmentTintColor, .activityIndicator:
+        case .currentPageIndicator, .titleCollectionCell, .closeButtonSettingVC, .titleSettingVC, .selectedSegmentTintColor, .activityIndicator, .nameLaunchLabel:
             return hexStringToUIColor(hex: "#FFFFFF")
             
-        case .backgroundContentView, .backgroundMainVC, .backgroundTableView, .backgroundLaunchVC:
+        case .backgroundContentView, .backgroundMainVC, .backgroundTableView, .backgroundLaunchVC, .backgroundNavigationBar:
             return hexStringToUIColor(hex: "#000000")
             
-        case .backgroundCollectionCell, .backgroundFooterButton, .backgroundSegmentControl:
+        case .backgroundCollectionCell, .backgroundFooterButton, .backgroundSegmentControl, .backgroundViewLaunchCell:
             return hexStringToUIColor(hex: "#212121")
             
         case .titleRocket, .settingsButton, .valueTextTableView, .titleFooterButton, .headerFooterTextTableView, .labelRowSettingVC, .navigationBarTitle, .navigationBarTint:
@@ -74,7 +79,7 @@ enum Colors {
         case .mainTextTableView:
             return hexStringToUIColor(hex: "#CACACA")
             
-        case .pageIndicator, .subtitleCollectionCell, .unitTextTableView, .segmentedNormalText:
+        case .pageIndicator, .subtitleCollectionCell, .unitTextTableView, .segmentedNormalText, .dateLaunchLabel, .tintStatusImageView:
             return hexStringToUIColor(hex: "#8E8E8F")
             
         case .backgroundPageView, .backgroundSettingVC, .segmentedSelectedText, .backgroundRocketImage:

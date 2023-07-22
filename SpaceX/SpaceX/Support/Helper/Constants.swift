@@ -17,6 +17,11 @@ enum Constants {
         static let launches = "https://api.spacexdata.com/v4/launches"
     }
     
+    enum DateFormat: String {
+        case server = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        case fullYearMonthDay = "yyyy-MM-dd"
+    }
+    
     public enum StorageKeys: String {
         case rockets
         case launches
