@@ -16,6 +16,10 @@ final class RootNavigationController: UINavigationController {
     
     override var prefersStatusBarHidden: Bool { true }
     
+    override var modalPresentationCapturesStatusBarAppearance: Bool {
+        get { true } set {}
+    }
+
     private func configure() {
         let navBarAppearance = UINavigationBarAppearance()
         let buttonAppearance = UIBarButtonItemAppearance()

@@ -52,9 +52,7 @@ final class LaunchVC: UIViewController {
         coordinator.animate { context in
             self.updateLayout(with: size)
         }
-    }
-    
-    override var prefersStatusBarHidden: Bool { false }
+    }    
 }
 
 private extension LaunchVC {
