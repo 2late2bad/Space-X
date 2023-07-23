@@ -55,6 +55,10 @@ final class SettingCell: UICollectionViewCell {
     func configure(test: String) {
         label.text = test
     }
+    
+    func configTest(feature: Feature) {
+        
+    }
 }
 
 private extension SettingCell {

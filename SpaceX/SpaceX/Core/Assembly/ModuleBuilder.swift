@@ -10,7 +10,7 @@ import UIKit
 protocol ModuleBuilderProtocol {
     func createBaseModule(router: RocketRouterProtocol) -> UIViewController
     func createMainModule(with rocket: RocketModel, router: RocketRouterProtocol) -> MainVC
-    func createSettingModule(router: RocketRouterProtocol) -> UIViewController
+    func createSettingModule(router: RocketRouterProtocol, delegate: SettingVCDelegate) -> UIViewController
     func createLaunchModule(with id: String, router: RocketRouterProtocol) -> UIViewController
     func createEmpty(errorText: String, router: RocketRouterProtocol) -> UIViewController}
 
@@ -51,13 +51,14 @@ extension ModuleBuilder: ModuleBuilderProtocol {
         return view
     }
     
-    func createSettingModule(router: RocketRouterProtocol) -> UIViewController {
+    func createSettingModule(router: RocketRouterProtocol, delegate: SettingVCDelegate) -> UIViewController {
         
         let view      = SettingVC()
         let presenter = SettingPresenter(view: view,
                                          storageManager: storageManager)
         view.router = router
         view.presenter = presenter
+        view.delegate = delegate
         
         return view
     }

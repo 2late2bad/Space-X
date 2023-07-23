@@ -125,6 +125,14 @@ extension MainVC: UIScrollViewDelegate {
 extension MainVC: MainHeaderViewDelegate {
     
     func didTapSettingButton() {
-        router.routeSettingModule()
+        router.routeSettingModule(delegate: self)
+    }
+}
+
+// MARK: - SettingVCDelegate
+extension MainVC: SettingVCDelegate {
+    
+    func saveSettings() {
+        print("Reload")
     }
 }

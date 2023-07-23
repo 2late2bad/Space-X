@@ -34,7 +34,7 @@ extension RocketData {
 }
 
 // -> ??
-enum UnitSettingType: Codable {
+enum UnitSettingType: Codable, Hashable {
     case length(meters: Double, feet: Double)
     case weight(kg: Double, lb: Double)
     
@@ -48,7 +48,7 @@ enum UnitSettingType: Codable {
     }
 }
 
-struct Feature: Codable {
+struct Feature: Codable, Hashable {
     let type: UnitSettingType
     let name: String
     

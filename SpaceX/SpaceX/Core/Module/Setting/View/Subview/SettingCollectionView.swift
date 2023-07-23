@@ -17,7 +17,6 @@ final class SettingCollectionView: UICollectionView {
         
         setup()
         style()
-        layoutUI()
     }
     
     required init?(coder: NSCoder) {
@@ -34,9 +33,5 @@ private extension SettingCollectionView {
     func style() {
         backgroundColor = .clear
         showsVerticalScrollIndicator = false
-    }
-    
-    func layoutUI() {
-        contentInset = UIEdgeInsets(top: 56, left: 0, bottom: 56, right: 0)
     }
 }

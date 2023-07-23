@@ -11,6 +11,10 @@ protocol SettingVCProtocol: AnyObject {
     
 }
 
+protocol SettingVCDelegate: AnyObject {
+    func saveSettings()
+}
+
 final class SettingVC: UIViewController {
     
     //
@@ -24,7 +28,8 @@ final class SettingVC: UIViewController {
     
     var router: RocketRouterProtocol!
     var presenter: SettingPresenterProtocol!
-    
+    weak var delegate: SettingVCDelegate!
+        
     private let collectionView = SettingCollectionView()
     
     override func viewDidLoad() {
@@ -42,6 +47,7 @@ private extension SettingVC {
         view.addSubview(collectionView)
         collectionView.dataSource = self
         collectionView.delegate = self
+        navigationController?.presentationController?.delegate = self
     }
     
     func configureNavBar() {
@@ -68,7 +74,10 @@ private extension SettingVC {
         collectionView.pinToEdges(of: view, safearea: true)
     }
     
-    @objc func close() { dismiss(animated: true) }
+    @objc func close() {
+        delegate.saveSettings()
+        dismiss(animated: true)
+    }
 }
 
 extension SettingVC: SettingVCProtocol {
@@ -93,5 +102,16 @@ extension SettingVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         .init(width: view.frame.width, height: 40)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        UIEdgeInsets(top: 56, left: 0, bottom: 56, right: 0)
+    }
+}
+
+extension SettingVC: UIAdaptivePresentationControllerDelegate {
+    
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        delegate.saveSettings()
     }
 }
