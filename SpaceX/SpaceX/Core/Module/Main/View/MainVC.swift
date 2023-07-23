@@ -46,10 +46,6 @@ final class MainVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
         rollbackScrollPosition()
     }
 }
@@ -66,7 +62,6 @@ private extension MainVC {
     }
     
     func openLaunchScreen() {
-        navigationController?.navigationBar.isHidden = false
         router.routeLaunchModule(with: rocketModel.id, title: rocketModel.name)
     }
     
@@ -75,7 +70,7 @@ private extension MainVC {
     }
     
     func layout() {
-        scrollView.pinToEdges(of: view)
+        scrollView.pinToEdges(of: view, safearea: false)
         
         rocketImage.translatesAutoresizingMaskIntoConstraints = false
         contentView.translatesAutoresizingMaskIntoConstraints = false
@@ -95,8 +90,8 @@ private extension MainVC {
     }
     
     func rollbackScrollPosition() {
-        scrollView.scrollToTop(animated: false)
-        contentView.collectionView.scrollToLeft(animated: false)
+        scrollView.scrollToTop(animated: true)
+        contentView.collectionView.scrollToLeft(animated: true)
     }
 }
 

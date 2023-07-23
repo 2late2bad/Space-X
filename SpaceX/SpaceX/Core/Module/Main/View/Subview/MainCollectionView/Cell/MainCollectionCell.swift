@@ -67,7 +67,7 @@ private extension MainCollectionCell {
     }
     
     func layout() {
-        areaView.pinToEdges(of: contentView)
+        areaView.pinToEdges(of: contentView, safearea: false)
         
         NSLayoutConstraint.activate([
             mainLabel.topAnchor.constraint(equalTo: areaView.topAnchor, constant: 28),

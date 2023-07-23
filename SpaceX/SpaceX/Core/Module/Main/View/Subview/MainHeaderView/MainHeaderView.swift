@@ -65,7 +65,7 @@ private extension MainHeaderView {
     }
     
     func layout() {
-        stackView.pinToEdges(of: self)
+        stackView.pinToEdges(of: self, safearea: false)
         
         settingButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

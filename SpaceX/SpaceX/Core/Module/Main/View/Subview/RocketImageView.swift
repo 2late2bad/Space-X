@@ -48,6 +48,6 @@ private extension RocketImageView {
     }
     
     func layoutUI() {
-        indicatorView.pinToEdges(of: self)
+        indicatorView.pinToEdges(of: self, safearea: false)
     }
 }

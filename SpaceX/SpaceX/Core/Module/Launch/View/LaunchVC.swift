@@ -58,23 +58,27 @@ final class LaunchVC: UIViewController {
 private extension LaunchVC {
     
     func setup() {
+        navigationController?.navigationBar.isHidden = false
         view.addSubviews(tableView, indicatorView, emptyLaunchesLabel)
         
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(LaunchCell.self, forCellReuseIdentifier: LaunchCell.identifier)
+        
+        indicatorView.hidesWhenStopped = true
     }
     
     func style() {
-        view.backgroundColor = Colors.backgroundLaunchVC.uiColor
-        tableView.backgroundColor = .clear
         navigationController?.navigationBar.topItem?.title = "Назад"
+        view.backgroundColor = Colors.backgroundLaunchVC.uiColor
+        
+        tableView.backgroundColor = .clear
     }
     
     func layoutUI() {
         updateLayout(with: view.frame.size)
-        indicatorView.pinToEdges(of: view)
-        emptyLaunchesLabel.pinToEdges(of: view)
+        indicatorView.pinToEdges(of: view, safearea: false)
+        emptyLaunchesLabel.pinToEdges(of: view, safearea: false)
         tableView.contentInset = UIEdgeInsets(top: 40, left: 0, bottom: 40, right: 0)
     }
     

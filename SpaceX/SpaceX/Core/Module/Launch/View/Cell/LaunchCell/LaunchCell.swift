@@ -10,6 +10,9 @@ import UIKit
 final class LaunchCell: UITableViewCell {
     
     static let identifier = "LaunchCell"
+    
+    private let placeholderImage = UIImage(systemName: "questionmark.circle")?
+        .withTintColor(Colors.tintStatusImageView.uiColor, renderingMode: .alwaysOriginal)
         
     private let backView: UIView = {
         let view = UIView()
@@ -72,7 +75,7 @@ final class LaunchCell: UITableViewCell {
         dateLaunchLabel.text = date.convertToDisplayFormat(from: .server)
         
         guard let result = result else {
-            launchStatusImageView.image = UIImage(systemName: "questionmark.circle")
+            launchStatusImageView.image = placeholderImage
             return
         }
         

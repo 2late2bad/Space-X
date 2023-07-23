@@ -47,7 +47,7 @@ private extension MainCollectionView {
     
     func layoutUI() {
         contentInset = UIEdgeInsets(top: 0, left: 32, bottom: 0, right: 32)
-        pinToEdges(of: self)
+        pinToEdges(of: self, safearea: false)
     }
 }
 

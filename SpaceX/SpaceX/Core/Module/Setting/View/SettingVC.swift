@@ -13,6 +13,10 @@ protocol SettingVCProtocol: AnyObject {
 
 final class SettingVC: UIViewController {
     
+    //
+    private var testArr = ["Высота", "Диаметр", "Масса", "Полезная нагрузка"]
+    //
+    
     private enum LocalConstant {
         static let title: String = "Настройки"
         static let buttonTitle: String = "Закрыть"
@@ -21,11 +25,11 @@ final class SettingVC: UIViewController {
     var router: RocketRouterProtocol!
     var presenter: SettingPresenterProtocol!
     
-    private let settingStack = SettingStackView()
+    private let collectionView = SettingCollectionView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureView()
+        setup()
         configureNavBar()
         layoutUI()
     }
@@ -33,9 +37,11 @@ final class SettingVC: UIViewController {
 
 private extension SettingVC {
     
-    func configureView() {
+    func setup() {
         view.backgroundColor = Colors.backgroundSettingVC.uiColor
-        view.addSubview(settingStack)
+        view.addSubview(collectionView)
+        collectionView.dataSource = self
+        collectionView.delegate = self
     }
     
     func configureNavBar() {
@@ -55,15 +61,11 @@ private extension SettingVC {
         navigationItem.rightBarButtonItem?.setTitleTextAttributes(attributesButton as [NSAttributedString.Key : Any],
                                                                   for: .normal)
         navigationController?.navigationBar.titleTextAttributes = attributesTitle
+        navigationController?.navigationBar.barTintColor = Colors.backgroundSettingVC.uiColor
     }
     
     func layoutUI() {
-        settingStack.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            settingStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 56),
-            settingStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32),
-            settingStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -32)
-        ])
+        collectionView.pinToEdges(of: view, safearea: true)
     }
     
     @objc func close() { dismiss(animated: true) }
@@ -72,4 +74,24 @@ private extension SettingVC {
 extension SettingVC: SettingVCProtocol {
     
     
+}
+
+extension SettingVC: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        testArr.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingCell.identifier, for: indexPath) as? SettingCell else { return UICollectionViewCell() }
+        cell.configure(test: testArr[indexPath.item])
+        return cell
+    }
+}
+
+extension SettingVC: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        .init(width: view.frame.width, height: 40)
+    }
 }
