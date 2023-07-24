@@ -18,7 +18,11 @@ protocol SettingVCDelegate: AnyObject {
 final class SettingVC: UIViewController {
     
     //
-    private var testArr = ["Высота", "Диаметр", "Масса", "Полезная нагрузка"]
+    private var settings: [Setting] = [] {
+        willSet {
+            StorageManager.shared.set(object: newValue, forKey: .settings)
+        }
+    }
     //
     
     private enum LocalConstant {
@@ -37,6 +41,7 @@ final class SettingVC: UIViewController {
         setup()
         configureNavBar()
         layoutUI()
+        testLoad()
     }
 }
 
@@ -78,6 +83,18 @@ private extension SettingVC {
         delegate.saveSettings()
         dismiss(animated: true)
     }
+    
+    //
+    func testLoad() {
+        if let settings: [Setting] = StorageManager.shared.decodableData(forKey: .settings) {
+            self.settings = settings
+        } else {
+            self.settings = [Setting(type: .height, selectedIndex: 0),
+                        Setting(type: .diameter, selectedIndex: 0),
+                        Setting(type: .weight, selectedIndex: 0),
+                          Setting(type: .payload, selectedIndex: 0)]
+        }
+    }
 }
 
 extension SettingVC: SettingVCProtocol {
@@ -88,12 +105,16 @@ extension SettingVC: SettingVCProtocol {
 extension SettingVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        testArr.count
+        settings.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingCell.identifier, for: indexPath) as? SettingCell else { return UICollectionViewCell() }
-        cell.configure(test: testArr[indexPath.item])
+        let indexItem = indexPath.item
+        cell.configure(setting: settings[indexItem], index: indexItem)
+        cell.segmentedValueChanged = { [weak self] item in
+            self?.settings[item.item].selectedIndex = item.segment
+        }
         return cell
     }
 }

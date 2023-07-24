@@ -10,6 +10,8 @@ import UIKit
 final class SettingCell: UICollectionViewCell {
     
     static let identifier = "SettingCell"
+    var segmentedValueChanged: ( ((item: Int, segment: Int)) -> Void )?
+    private var indexCell: Int!
     
     private lazy var label: UILabel = {
         let label = UILabel()
@@ -23,14 +25,14 @@ final class SettingCell: UICollectionViewCell {
     }()
     
     private lazy var unitSegment: UISegmentedControl = {
-        let segment = UISegmentedControl(items: ["m", "ft"])
-        segment.selectedSegmentIndex = 0
+        let segment = UISegmentedControl()
         segment.backgroundColor = Colors.backgroundSegmentControl.uiColor
         segment.selectedSegmentTintColor = Colors.selectedSegmentTintColor.uiColor
         segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Colors.segmentedNormalText.uiColor],
                                        for: .normal)
         segment.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Colors.segmentedSelectedText.uiColor],
                                        for: .selected)
+        segment.addTarget(nil, action: #selector(segmentDidChange(_:)), for: .valueChanged)
         return segment
     }()
     
@@ -44,7 +46,6 @@ final class SettingCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
-        style()
         layoutUI()
     }
     
@@ -52,12 +53,13 @@ final class SettingCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(test: String) {
-        label.text = test
-    }
-    
-    func configTest(feature: Feature) {
-        
+    func configure(setting: Setting, index cell: IndexPath.Index) {
+        label.text = setting.type.name
+        indexCell = cell
+        for (index, unit) in setting.type.units.enumerated() {
+            unitSegment.insertSegment(withTitle: unit.name, at: index, animated: false)
+        }
+        unitSegment.selectedSegmentIndex = setting.selectedIndex
     }
 }
 
@@ -68,17 +70,10 @@ private extension SettingCell {
         contentView.addSubview(stackView)
     }
     
-    func style() {
-//        unitSegment.removeAllSegments()
-//        unitSegment.insertSegment(withTitle: "lohasdd", at: 0, animated: true)
-//        unitSegment.insertSegment(withTitle: "nasdasdasde", at: 1, animated: true)
-//        unitSegment.selectedSegmentIndex = 0
-    }
-    
     func layoutUI() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         unitSegment.translatesAutoresizingMaskIntoConstraints = false
-
+    
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
@@ -87,5 +82,9 @@ private extension SettingCell {
 
             unitSegment.widthAnchor.constraint(greaterThanOrEqualToConstant: 115)
         ])
+    }
+    
+    @objc func segmentDidChange(_ sender: UISegmentedControl) {
+        segmentedValueChanged?((item: indexCell, segment: sender.selectedSegmentIndex))
     }
 }

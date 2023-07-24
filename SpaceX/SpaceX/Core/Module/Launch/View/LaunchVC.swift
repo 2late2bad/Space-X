@@ -120,7 +120,7 @@ extension LaunchVC: UITableViewDataSource {
             fatalError()
         }
         let launch = launches[indexPath.row]
-        cell.configure(name: launch.name, date: launch.dateUtc, result: launch.success)
+        cell.configure(name: launch.name, date: launch.date_utc, result: launch.success)
         return cell
     }
 }

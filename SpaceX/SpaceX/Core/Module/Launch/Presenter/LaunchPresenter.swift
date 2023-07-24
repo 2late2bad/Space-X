@@ -43,7 +43,7 @@ final class LaunchPresenter: LaunchPresenterProtocol {
                         requestBody: requestBody) { (result: Result<LaunchesResponse, NetworkError>) in
             switch result {
             case .success(let launchesResponse):
-                let sortedArray = launchesResponse.docs.sorted { $0.dateUtc > $1.dateUtc }
+                let sortedArray = launchesResponse.docs.sorted { $0.date_utc > $1.date_utc }
                 self.view.success(with: sortedArray)
             case .failure(let error):
                 self.view.failure(error: error)

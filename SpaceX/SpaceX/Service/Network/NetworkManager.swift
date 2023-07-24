@@ -72,7 +72,7 @@ extension NetworkManager: NetworkManagerProtocol {
             guard let data = data else { return }
             do {
                 let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                //decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let parse = try decoder.decode(T.self, from: data)
                 completionOnMain(.success(parse))
             } catch {

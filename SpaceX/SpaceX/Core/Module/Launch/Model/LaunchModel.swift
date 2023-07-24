@@ -9,7 +9,7 @@ import Foundation
 
 struct Launch: Decodable {
     let name: String
-    let dateUtc: String
+    let date_utc: String
     let success: Bool?
 }
 

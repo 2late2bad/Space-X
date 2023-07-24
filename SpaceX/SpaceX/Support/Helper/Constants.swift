@@ -25,5 +25,6 @@ enum Constants {
     public enum StorageKeys: String {
         case rockets
         case launches
+        case settings
     }
 }
