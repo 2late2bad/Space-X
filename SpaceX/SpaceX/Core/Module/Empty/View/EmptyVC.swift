@@ -95,5 +95,6 @@ private extension EmptyVC {
     
     @objc func resetButtonPressed() {
         router.routeBaseModule()
+        dismiss(animated: true)
     }
 }

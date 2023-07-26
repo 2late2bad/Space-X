@@ -49,8 +49,8 @@ final class MainCollectionCell: UICollectionViewCell {
     }
     
     func configure(feature: Feature) {
-        mainLabel.text = feature.value
-        detailsLabel.text = "\(feature.name), \(feature.type.description.us)"
+        mainLabel.text = String(feature.value)
+        detailsLabel.text = "\(feature.setting.type.name), \(feature.setting.type.units[feature.setting.selectedIndex].name)"
     }
 }
 

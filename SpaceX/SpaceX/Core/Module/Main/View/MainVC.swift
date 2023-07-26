@@ -9,6 +9,7 @@ import UIKit
 
 protocol MainVCProtocol: AnyObject {
     func success(rocket: Rocket)
+    func success(feature: [Feature])
     func failure()
 }
 
@@ -40,13 +41,32 @@ final class MainVC: UIViewController {
         setup()
         style()
         layout()
+        addObservers()
         presenter.getRocket(with: rocketModel)
+        presenter.updateFeature()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
         rollbackScrollPosition()
+    }
+}
+
+// MARK: - Implementation MainVCProtocol
+extension MainVC: MainVCProtocol {
+    
+    func success(rocket: Rocket) {
+        contentView.configure(rocket: rocket)
+        rocketImage.downloadImage(fromURL: rocket.images.randomElement()!)
+    }
+    
+    func success(feature: [Feature]) {
+        contentView.collectionView.configure(features: feature)
+    }
+    
+    func failure() {
+        //
     }
 }
 
@@ -93,18 +113,16 @@ private extension MainVC {
         scrollView.scrollToTop(animated: true)
         contentView.collectionView.scrollToLeft(animated: true)
     }
-}
-
-// MARK: - Implementation MainVCProtocol
-extension MainVC: MainVCProtocol {
     
-    func success(rocket: Rocket) {
-        contentView.configure(rocket: rocket)
-        rocketImage.downloadImage(fromURL: rocket.images.randomElement()!)
+    func addObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateSettings),
+                                               name: .updateSettings,
+                                               object: nil)
     }
     
-    func failure() {
-        //
+    @objc func updateSettings() {
+        presenter.updateFeature()
     }
 }
 
@@ -125,14 +143,6 @@ extension MainVC: UIScrollViewDelegate {
 extension MainVC: MainHeaderViewDelegate {
     
     func didTapSettingButton() {
-        router.routeSettingModule(delegate: self)
-    }
-}
-
-// MARK: - SettingVCDelegate
-extension MainVC: SettingVCDelegate {
-    
-    func saveSettings() {
-        print("Reload")
+        router.routeSettingModule()
     }
 }

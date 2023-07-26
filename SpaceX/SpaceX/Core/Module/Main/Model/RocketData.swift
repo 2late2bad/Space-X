@@ -8,15 +8,15 @@
 import UIKit
 
 typealias Rocket = RocketData
+typealias Feature = RocketFeature
 
 // MARK: - RocketData
-struct RocketData: Codable {
+struct RocketData {
     let id: String
+    // Image view
     let images: [String]
     // Header
     let name: String
-    // Collection view
-    let features: [Feature]
     // Table view
     let firstFlight: String
     let country: String
@@ -25,40 +25,21 @@ struct RocketData: Codable {
     let secondStage: Stage
 }
 
+// Collection view
+struct RocketFeature {
+    let values: (eu: Double, us: Double)
+    let setting: Setting
+    
+    var value: Double {
+        setting.selectedIndex == 0 ? values.eu : values.us
+    }
+}
+
 extension RocketData {
-    struct Stage: Codable {
+    
+    struct Stage {
         let engines: Int
         let fuelAmountTons: Double
         let burnTimeSec: Int?
     }
 }
-
-// -> ??
-enum UnitSettingType: Codable, Hashable {
-    case length(meters: Double, feet: Double)
-    case weight(kg: Double, lb: Double)
-    
-    var description: (eu: String, us: String) {
-        switch self {
-        case .length:
-            return ("m", "ft")
-        case .weight:
-            return ("kg", "lb")
-        }
-    }
-}
-
-struct Feature: Codable, Hashable {
-    let type: UnitSettingType
-    let name: String
-    
-    var value: String {
-        switch type {
-        case .length(let meters, _):
-            return String(meters)
-        case .weight(let kg, _):
-            return String(kg)
-        }
-    }
-}
-

@@ -28,7 +28,6 @@ final class MainContentView: UIView {
     
     func configure(rocket: Rocket) {
         header.label.text = rocket.name
-        collectionView.configure(features: rocket.features)
         tableView.configure(rocket: rocket)
     }
 }

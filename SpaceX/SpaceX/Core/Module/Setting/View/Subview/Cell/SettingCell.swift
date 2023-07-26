@@ -10,8 +10,7 @@ import UIKit
 final class SettingCell: UICollectionViewCell {
     
     static let identifier = "SettingCell"
-    var segmentedValueChanged: ( ((item: Int, segment: Int)) -> Void )?
-    private var indexCell: Int!
+    var segmentedValueChanged: ((Int) -> Void)?
     
     private lazy var label: UILabel = {
         let label = UILabel()
@@ -53,9 +52,8 @@ final class SettingCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(setting: Setting, index cell: IndexPath.Index) {
+    func configure(setting: Setting) {
         label.text = setting.type.name
-        indexCell = cell
         for (index, unit) in setting.type.units.enumerated() {
             unitSegment.insertSegment(withTitle: unit.name, at: index, animated: false)
         }
@@ -85,6 +83,6 @@ private extension SettingCell {
     }
     
     @objc func segmentDidChange(_ sender: UISegmentedControl) {
-        segmentedValueChanged?((item: indexCell, segment: sender.selectedSegmentIndex))
+        segmentedValueChanged?(sender.selectedSegmentIndex)
     }
 }

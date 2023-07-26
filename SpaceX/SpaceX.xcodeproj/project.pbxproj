@@ -37,6 +37,7 @@
 		243487B02A5C170A00337447 /* SettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243487AF2A5C170A00337447 /* SettingPresenter.swift */; };
 		2465AC552A6C0CF40056BBAA /* LaunchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465AC542A6C0CF40056BBAA /* LaunchCell.swift */; };
 		2465AC582A6C66B20056BBAA /* LaunchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465AC572A6C66B20056BBAA /* LaunchModel.swift */; };
+		2474FE1C2A712B530046E76D /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2474FE1B2A712B530046E76D /* SettingViewModel.swift */; };
 		248335032A6D45EA00D0CE4C /* SettingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248335022A6D45EA00D0CE4C /* SettingCollectionView.swift */; };
 		248335052A6D4B5D00D0CE4C /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248335042A6D4B5D00D0CE4C /* SettingCell.swift */; };
 		2488A3852A5AE3A900696D96 /* UIScrollView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2488A3842A5AE3A900696D96 /* UIScrollView+Ext.swift */; };
@@ -118,6 +119,7 @@
 		243487AF2A5C170A00337447 /* SettingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPresenter.swift; sourceTree = "<group>"; };
 		2465AC542A6C0CF40056BBAA /* LaunchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCell.swift; sourceTree = "<group>"; };
 		2465AC572A6C66B20056BBAA /* LaunchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchModel.swift; sourceTree = "<group>"; };
+		2474FE1B2A712B530046E76D /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		248335022A6D45EA00D0CE4C /* SettingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCollectionView.swift; sourceTree = "<group>"; };
 		248335042A6D4B5D00D0CE4C /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		2488A3842A5AE3A900696D96 /* UIScrollView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Ext.swift"; sourceTree = "<group>"; };
@@ -132,7 +134,7 @@
 		24A107032A56C28D002B4375 /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
 		24A107052A56CD0D002B4375 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		24A107072A56CD40002B4375 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
-		24A1070F2A56D1DF002B4375 /* Rockets.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = Rockets.geojson; sourceTree = "<group>"; };
+		24A1070F2A56D1DF002B4375 /* Rockets.geojson */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = text; path = Rockets.geojson; sourceTree = "<group>"; };
 		24A107102A56D210002B4375 /* Launches.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = Launches.geojson; sourceTree = "<group>"; };
 		24A107112A56ED57002B4375 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		24A107142A56F566002B4375 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				243487AF2A5C170A00337447 /* SettingPresenter.swift */,
+				2474FE1B2A712B530046E76D /* SettingViewModel.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -876,6 +879,7 @@
 				24B2DF7B2A66F9EE000911E9 /* Int+Ext.swift in Sources */,
 				24B2DF7D2A66FDAD000911E9 /* String+Ext.swift in Sources */,
 				24B2DF812A670C83000911E9 /* RocketImageView.swift in Sources */,
+				2474FE1C2A712B530046E76D /* SettingViewModel.swift in Sources */,
 				24A107082A56CD40002B4375 /* StorageManager.swift in Sources */,
 				24A1071A2A56FBB2002B4375 /* Constants.swift in Sources */,
 				24A106E82A56B817002B4375 /* ModuleBuilder.swift in Sources */,

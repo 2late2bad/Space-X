@@ -8,5 +8,5 @@
 import Foundation
 
 extension Notification.Name {
-    //static let heightRocketChange = Notification.Name("heightRocketChange")
+    static let updateSettings = Notification.Name("UpdateSettings")
 }

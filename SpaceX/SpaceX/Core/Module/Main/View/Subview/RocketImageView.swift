@@ -14,6 +14,7 @@ final class RocketImageView: UIImageView {
         view.color = Colors.activityIndicator.uiColor
         view.layer.opacity = 0.5
         view.startAnimating()
+        view.hidesWhenStopped = true
         return view
     }()
     

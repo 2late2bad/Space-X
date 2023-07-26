@@ -11,19 +11,13 @@ protocol SettingVCProtocol: AnyObject {
     
 }
 
-protocol SettingVCDelegate: AnyObject {
-    func saveSettings()
-}
-
 final class SettingVC: UIViewController {
     
-    //
-    private var settings: [Setting] = [] {
+    var settings: [Setting]! {
         willSet {
             StorageManager.shared.set(object: newValue, forKey: .settings)
         }
     }
-    //
     
     private enum LocalConstant {
         static let title: String = "Настройки"
@@ -32,7 +26,6 @@ final class SettingVC: UIViewController {
     
     var router: RocketRouterProtocol!
     var presenter: SettingPresenterProtocol!
-    weak var delegate: SettingVCDelegate!
         
     private let collectionView = SettingCollectionView()
     
@@ -41,8 +34,12 @@ final class SettingVC: UIViewController {
         setup()
         configureNavBar()
         layoutUI()
-        testLoad()
     }
+}
+
+extension SettingVC: SettingVCProtocol {
+    
+    
 }
 
 private extension SettingVC {
@@ -52,7 +49,6 @@ private extension SettingVC {
         view.addSubview(collectionView)
         collectionView.dataSource = self
         collectionView.delegate = self
-        navigationController?.presentationController?.delegate = self
     }
     
     func configureNavBar() {
@@ -79,27 +75,7 @@ private extension SettingVC {
         collectionView.pinToEdges(of: view, safearea: true)
     }
     
-    @objc func close() {
-        delegate.saveSettings()
-        dismiss(animated: true)
-    }
-    
-    //
-    func testLoad() {
-        if let settings: [Setting] = StorageManager.shared.decodableData(forKey: .settings) {
-            self.settings = settings
-        } else {
-            self.settings = [Setting(type: .height, selectedIndex: 0),
-                        Setting(type: .diameter, selectedIndex: 0),
-                        Setting(type: .weight, selectedIndex: 0),
-                          Setting(type: .payload, selectedIndex: 0)]
-        }
-    }
-}
-
-extension SettingVC: SettingVCProtocol {
-    
-    
+    @objc func close() { dismiss(animated: true) }
 }
 
 extension SettingVC: UICollectionViewDataSource {
@@ -111,9 +87,11 @@ extension SettingVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingCell.identifier, for: indexPath) as? SettingCell else { return UICollectionViewCell() }
         let indexItem = indexPath.item
-        cell.configure(setting: settings[indexItem], index: indexItem)
-        cell.segmentedValueChanged = { [weak self] item in
-            self?.settings[item.item].selectedIndex = item.segment
+        cell.configure(setting: settings[indexItem])
+        cell.segmentedValueChanged = { [weak self] selectedIndex in
+            guard let self else { return }
+            self.settings[indexItem].selectedIndex = selectedIndex
+            NotificationCenter.default.post(name: .updateSettings, object: nil)
         }
         return cell
     }
@@ -127,12 +105,5 @@ extension SettingVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         UIEdgeInsets(top: 56, left: 0, bottom: 56, right: 0)
-    }
-}
-
-extension SettingVC: UIAdaptivePresentationControllerDelegate {
-    
-    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        delegate.saveSettings()
     }
 }

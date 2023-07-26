@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Unit {
+enum Unit: Codable {
     case meter
     case feet
     case kilogram
@@ -27,12 +27,12 @@ enum Unit {
     }
 }
 
-enum SettingType: Codable {
+enum SettingType: Codable, CaseIterable {
     case height
     case diameter
     case weight
     case payload
-
+    
     var name: String {
         switch self {
         case .height:
