@@ -23,8 +23,8 @@ enum Constants {
     }
     
     public enum StorageKeys: String {
+        case firstLaunchApp
         case rockets
-        case launches
         case settings
     }
 }

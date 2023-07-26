@@ -11,7 +11,7 @@ protocol RocketRouterProtocol: RouterProtocol {
     func routeBaseModule()
     func routeEmpty(errorText: String) -> UIViewController
     func routeMainModule(with rocket: RocketModel) -> MainVC
-    func routeSettingModule(delegate: SettingVCDelegate)
+    func routeSettingModule()
     func routeLaunchModule(with id: String, title rocketTitle: String)
 }
 
@@ -43,8 +43,8 @@ extension RocketRouter: RocketRouterProtocol {
         moduleBuilder.createMainModule(with: rocket, router: self)
     }
     
-    func routeSettingModule(delegate: SettingVCDelegate) {
-        let settingVC = moduleBuilder.createSettingModule(router: self, delegate: delegate)
+    func routeSettingModule() {
+        let settingVC = moduleBuilder.createSettingModule(router: self)
         let navCon = UINavigationController(rootViewController: settingVC)
         navigationController.present(navCon, animated: true)
     }
