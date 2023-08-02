@@ -45,7 +45,9 @@ enum SettingType: Codable, CaseIterable {
             return "Нагрузка"
         }
     }
-
+    
+    /// 0 index: европейская система мер
+    /// 1 index: американская система мер
     var units: [Unit] {
         switch self {
         case .height, .diameter:

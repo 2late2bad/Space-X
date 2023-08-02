@@ -8,7 +8,6 @@
 import UIKit
 
 typealias Rocket = RocketData
-typealias Feature = RocketFeature
 
 // MARK: - RocketData
 struct RocketData {
@@ -28,15 +27,16 @@ struct RocketData {
 // Collection view
 struct RocketFeature {
     let values: (eu: Double, us: Double)
-    let setting: Setting
+    let type: SettingType
+    var selectedIndex: Int
     
     var value: Double {
-        setting.selectedIndex == 0 ? values.eu : values.us
+        selectedIndex == 0 ? values.eu : values.us
     }
 }
 
 extension RocketData {
-    
+
     struct Stage {
         let engines: Int
         let fuelAmountTons: Double

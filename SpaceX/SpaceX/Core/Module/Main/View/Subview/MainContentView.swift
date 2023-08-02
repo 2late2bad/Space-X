@@ -14,6 +14,8 @@ final class MainContentView: UIView {
     let collectionView = MainCollectionView()
     let tableView = MainTableView()
     
+    weak var delegate: MainHeaderViewDelegate!
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,9 +28,18 @@ final class MainContentView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setupDelegates(delegate: MainHeaderViewDelegate, launchAction: Callback?) {
+        header.delegate = delegate
+        tableView.buttonAction = launchAction
+    }
+    
     func configure(rocket: Rocket) {
         header.label.text = rocket.name
         tableView.configure(rocket: rocket)
+    }
+    
+    func configure(feature: [RocketFeature]) {
+        collectionView.configure(features: feature)
     }
 }
 

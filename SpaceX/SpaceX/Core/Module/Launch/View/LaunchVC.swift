@@ -19,7 +19,6 @@ final class LaunchVC: UIViewController {
     private let indicatorView: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView()
         view.color = Colors.activityIndicator.uiColor
-        view.startAnimating()
         return view
     }()
     private lazy var emptyLaunchesLabel: UILabel = {
@@ -30,7 +29,7 @@ final class LaunchVC: UIViewController {
         view.textColor = .white
         view.textAlignment = .center
         view.numberOfLines = 0
-        view.text = "Нет информации по запускам данной ракеты :("
+        view.text = "Нет информации по запускам данной ракеты\n :("
         return view
     }()
     
@@ -65,6 +64,7 @@ private extension LaunchVC {
         tableView.delegate = self
         tableView.register(LaunchCell.self, forCellReuseIdentifier: LaunchCell.identifier)
         
+        indicatorView.startAnimating()
         indicatorView.hidesWhenStopped = true
     }
     
@@ -105,7 +105,7 @@ extension LaunchVC: LaunchVCProtocol {
     }
     
     func failure(error: NetworkError) {
-        //
+        print(error.message)
     }
 }
 

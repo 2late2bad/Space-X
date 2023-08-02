@@ -9,7 +9,7 @@ import Foundation
 
 protocol MainPresenterProtocol {
     init(view: MainVCProtocol, storageManager: StorageManagerProtocol)
-    func getRocket(with model: RocketModel)
+    func generateRocket(with model: RocketModel)
     func updateFeature()
 }
 
@@ -18,15 +18,16 @@ final class MainPresenter: MainPresenterProtocol {
     weak var view: MainVCProtocol!
     unowned let storage: StorageManagerProtocol!
     
-    private var rocketModel: RocketModel?
+    private var features: [RocketFeature] = []
     
     init(view: MainVCProtocol, storageManager: StorageManagerProtocol) {
         self.view = view
         storage = storageManager
     }
     
-    func getRocket(with model: RocketModel) {
-        rocketModel = model
+    func generateRocket(with model: RocketModel) {
+        generateFeatures(with: model)
+        
         let rocket = Rocket(id: model.id,
                         images: model.flickrImages,
                         name: model.name,
@@ -39,40 +40,63 @@ final class MainPresenter: MainPresenterProtocol {
                         secondStage: .init(engines: model.secondStage.engines,
                                            fuelAmountTons: model.secondStage.fuelAmountTons,
                                            burnTimeSec: model.secondStage.burnTimeSec))
-        view.success(rocket: rocket)
+        view.configure(rocket: rocket)
     }
     
     func updateFeature() {
-        guard let model = rocketModel,
-              let settings: [Setting] = storage.decodableData(forKey: .settings)
+        guard let settings: [Setting] = storage.decodableData(forKey: .settings),
+                  !features.isEmpty
         else { return }
         
-        var rocketFeatures: [Feature] = []
-        settings.forEach { setting in
-            switch setting.type {
-            case .height:
-                let feature = Feature(values: (eu: model.height.meters!,
-                                                  us: model.height.feet!),
-                                         setting: setting)
-                rocketFeatures.append(feature)
-            case .diameter:
-                let feature = Feature(values: (eu: model.diameter.meters!,
-                                                  us: model.diameter.feet!),
-                                         setting: setting)
-                rocketFeatures.append(feature)
-            case .weight:
-                let feature = Feature(values: (eu: Double(model.mass.kg),
-                                                  us: Double(model.mass.lb)),
-                                         setting: setting)
-                rocketFeatures.append(feature)
-            case .payload:
-                let feature = Feature(values: (eu: Double(model.payloadWeights[0].kg),
-                                                  us: Double(model.payloadWeights[0].lb)),
-                                         setting: setting)
-                rocketFeatures.append(feature)
+        for (index, feature) in features.enumerated() {
+            if let setting = settings.first(where: { $0.type == feature.type }) {
+                features[index].selectedIndex = setting.selectedIndex
             }
         }
         
-        view.success(feature: rocketFeatures)
+        view.update(feature: features)
+    }
+}
+
+private extension MainPresenter {
+    
+    func generateFeatures(with model: RocketModel) {
+        guard let settings: [Setting] = storage.decodableData(forKey: .settings) else { return }
+        
+        settings.forEach { setting in
+            switch setting.type {
+                
+            case .height:
+                guard let meters = model.height.meters,
+                      let feets = model.height.feet else { return }
+                let feature = RocketFeature(values: (eu: meters, us: feets),
+                                            type: .height,
+                                            selectedIndex: setting.selectedIndex)
+                features.append(feature)
+                
+            case .diameter:
+                guard let meters = model.diameter.meters,
+                      let feets = model.diameter.feet else { return }
+                let feature = RocketFeature(values: (eu: meters, us: feets),
+                                            type: .diameter,
+                                            selectedIndex: setting.selectedIndex)
+                features.append(feature)
+                
+            case .weight:
+                let kg = model.mass.kg, lb = model.mass.lb
+                let feature = RocketFeature(values: (eu: Double(kg), us: Double(lb)),
+                                            type: .weight,
+                                            selectedIndex: setting.selectedIndex)
+                features.append(feature)
+                
+            case .payload:
+                guard let kg = model.payloadWeights.first?.kg,
+                      let lb = model.payloadWeights.first?.lb else { return }
+                let feature = RocketFeature(values: (eu: Double(kg), us: Double(lb)),
+                                            type: .payload,
+                                            selectedIndex: setting.selectedIndex)
+                features.append(feature)
+            }
+        }
     }
 }

@@ -8,9 +8,8 @@
 import UIKit
 
 protocol MainVCProtocol: AnyObject {
-    func success(rocket: Rocket)
-    func success(feature: [Feature])
-    func failure()
+    func configure(rocket: Rocket)
+    func update(feature: [RocketFeature])
 }
 
 final class MainVC: UIViewController {
@@ -35,6 +34,12 @@ final class MainVC: UIViewController {
     private var minOffsetY: CGFloat { -rocketImage.frame.height * 0.05 }
     private var maxOffsetY: CGFloat { scrollView.contentSize.height - view.frame.height * 0.95 }
     
+    
+    // MARK: - Deinit
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +47,7 @@ final class MainVC: UIViewController {
         style()
         layout()
         addObservers()
-        presenter.getRocket(with: rocketModel)
+        presenter.generateRocket(with: rocketModel)
         presenter.updateFeature()
     }
     
@@ -56,17 +61,13 @@ final class MainVC: UIViewController {
 // MARK: - Implementation MainVCProtocol
 extension MainVC: MainVCProtocol {
     
-    func success(rocket: Rocket) {
+    func configure(rocket: Rocket) {
         contentView.configure(rocket: rocket)
         rocketImage.downloadImage(fromURL: rocket.images.randomElement()!)
     }
     
-    func success(feature: [Feature]) {
-        contentView.collectionView.configure(features: feature)
-    }
-    
-    func failure() {
-        //
+    func update(feature: [RocketFeature]) {
+        contentView.configure(feature: feature)
     }
 }
 
@@ -77,8 +78,7 @@ private extension MainVC {
         view.addSubviews(rocketImage, scrollView)
         scrollView.delegate = self
         scrollView.addSubview(contentView)
-        contentView.header.delegate = self
-        contentView.tableView.buttonAction = openLaunchScreen
+        contentView.setupDelegates(delegate: self, launchAction: openLaunchScreen)
     }
     
     func openLaunchScreen() {

@@ -9,7 +9,7 @@ import UIKit
 
 final class MainCollectionView: UICollectionView {
     
-    private var features: [Feature] = []
+    private var features: [RocketFeature] = []
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         let collecetionViewLayout = UICollectionViewFlowLayout()
@@ -25,7 +25,7 @@ final class MainCollectionView: UICollectionView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(features: [Feature]) {
+    func configure(features: [RocketFeature]) {
         self.features = features
         DispatchQueue.main.async { [weak self] in
             self?.reloadData()
