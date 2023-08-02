@@ -48,9 +48,15 @@ final class MainCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(feature: Feature) {
-        mainLabel.text = String(feature.value)
-        detailsLabel.text = "\(feature.setting.type.name), \(feature.setting.type.units[feature.setting.selectedIndex].name)"
+    func configure(feature: RocketFeature) {
+        switch feature.type {
+        case .height, .diameter:
+            mainLabel.text = String(feature.value)
+        case .weight, .payload:
+            let intValue = Int(feature.value)
+            mainLabel.text = intValue.stringDecimal
+        }
+        detailsLabel.text = "\(feature.type.name), \(feature.type.units[feature.selectedIndex].name)"
     }
 }
 
