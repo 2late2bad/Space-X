@@ -12,30 +12,14 @@ final class MainCollectionCell: UICollectionViewCell {
     static let identifier = "MainCollectionCell"
     
     private let areaView = UIView()
-    
-    private lazy var mainLabel: UILabel = {
-        $0.font = Fonts.mainCollectionCellTitle.uiFont
-        $0.textColor = Colors.titleCollectionCell.uiColor
-        $0.textAlignment = .center
-        $0.numberOfLines = 1
-        $0.adjustsFontSizeToFitWidth = true
-        $0.minimumScaleFactor = 0.8
-        $0.clipsToBounds = true
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        return $0
-    }(UILabel())
-    
-    private lazy var detailsLabel: UILabel = {
-        $0.font = Fonts.mainCollectionCellSubtitle.uiFont
-        $0.textColor = Colors.subtitleCollectionCell.uiColor
-        $0.textAlignment = .center
-        $0.numberOfLines = 1
-        $0.adjustsFontSizeToFitWidth = true
-        $0.minimumScaleFactor = 0.7
-        $0.clipsToBounds = true
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        return $0
-    }(UILabel())
+    private let mainLabel = CVLabel(font: .mainCollectionCellTitle,
+                                     color: .titleCollectionCell,
+                                     alignment: .center,
+                                     lines: 1)
+    private let detailsLabel = CVLabel(font: .mainCollectionCellSubtitle,
+                                     color: .subtitleCollectionCell,
+                                     alignment: .center,
+                                     lines: 1)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

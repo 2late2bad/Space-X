@@ -10,10 +10,10 @@ import UIKit
 final class EmptyVC: UIViewController {
     
     private let imageView = UIImageView()
-    private let mainLabel = UILabel()
-    private let errorLabel = UILabel()
+    private let mainLabel = CVLabel(font: .errorLabelEmptyScreen, color: .errorLabelEmptyScreen, alignment: .center, lines: 0)
+    private let errorLabel = CVLabel(font: .errorMessageEmptyScreen, color: .errorLabelEmptyScreen, alignment: .center, lines: 0)
     private let resetButton = UIButton()
-
+    
     var errorText: String!
     var router: RocketRouterProtocol!
     
@@ -47,17 +47,9 @@ private extension EmptyVC {
         imageView.contentMode = .scaleAspectFit
         
         mainLabel.text = "Возникла ошибка :("
-        mainLabel.textAlignment = .center
-        mainLabel.font = .systemFont(ofSize: 32, weight: .bold)
-        mainLabel.textColor = .black
-        
         errorLabel.text = errorText
-        errorLabel.textAlignment = .center
-        errorLabel.font = .systemFont(ofSize: 20, weight: .light)
-        errorLabel.textColor = .black
-        errorLabel.numberOfLines = 0
         errorLabel.lineBreakMode = .byTruncatingTail
-        
+                
         resetButton.backgroundColor = .black
         resetButton.setTitle("Reset", for: .normal)
         resetButton.layer.cornerRadius = 10

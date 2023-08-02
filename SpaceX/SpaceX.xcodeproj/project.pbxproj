@@ -35,9 +35,9 @@
 		242267972A6983F600E0E34F /* LaunchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242267962A6983F600E0E34F /* LaunchPresenter.swift */; };
 		243487AE2A5C16B500337447 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243487AD2A5C16B500337447 /* SettingVC.swift */; };
 		243487B02A5C170A00337447 /* SettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243487AF2A5C170A00337447 /* SettingPresenter.swift */; };
+		24610FF32A7B04DF0084EB34 /* CVLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24610FF22A7B04DF0084EB34 /* CVLabel.swift */; };
 		2465AC552A6C0CF40056BBAA /* LaunchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465AC542A6C0CF40056BBAA /* LaunchCell.swift */; };
 		2465AC582A6C66B20056BBAA /* LaunchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465AC572A6C66B20056BBAA /* LaunchModel.swift */; };
-		2474FE1C2A712B530046E76D /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2474FE1B2A712B530046E76D /* SettingViewModel.swift */; };
 		248335032A6D45EA00D0CE4C /* SettingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248335022A6D45EA00D0CE4C /* SettingCollectionView.swift */; };
 		248335052A6D4B5D00D0CE4C /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248335042A6D4B5D00D0CE4C /* SettingCell.swift */; };
 		2488A3852A5AE3A900696D96 /* UIScrollView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2488A3842A5AE3A900696D96 /* UIScrollView+Ext.swift */; };
@@ -117,9 +117,9 @@
 		242267962A6983F600E0E34F /* LaunchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPresenter.swift; sourceTree = "<group>"; };
 		243487AD2A5C16B500337447 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		243487AF2A5C170A00337447 /* SettingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPresenter.swift; sourceTree = "<group>"; };
+		24610FF22A7B04DF0084EB34 /* CVLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVLabel.swift; sourceTree = "<group>"; };
 		2465AC542A6C0CF40056BBAA /* LaunchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCell.swift; sourceTree = "<group>"; };
 		2465AC572A6C66B20056BBAA /* LaunchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchModel.swift; sourceTree = "<group>"; };
-		2474FE1B2A712B530046E76D /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		248335022A6D45EA00D0CE4C /* SettingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCollectionView.swift; sourceTree = "<group>"; };
 		248335042A6D4B5D00D0CE4C /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		2488A3842A5AE3A900696D96 /* UIScrollView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Ext.swift"; sourceTree = "<group>"; };
@@ -368,7 +368,6 @@
 			isa = PBXGroup;
 			children = (
 				243487AF2A5C170A00337447 /* SettingPresenter.swift */,
-				2474FE1B2A712B530046E76D /* SettingViewModel.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -380,6 +379,22 @@
 				248335062A6D642400D0CE4C /* Cell */,
 			);
 			path = Subview;
+			sourceTree = "<group>";
+		};
+		24610FF02A7B032E0084EB34 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				24610FF12A7B035D0084EB34 /* View */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		24610FF12A7B035D0084EB34 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				24610FF22A7B04DF0084EB34 /* CVLabel.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		2465AC4E2A6C0AF30056BBAA /* Cell */ = {
@@ -430,6 +445,7 @@
 				24A106E92A56BA2D002B4375 /* Routing */,
 				24A106E62A56B725002B4375 /* Assembly */,
 				24A106EE2A56BBE8002B4375 /* Module */,
+				24610FF02A7B032E0084EB34 /* Custom */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -867,6 +883,7 @@
 				24A106EB2A56BA43002B4375 /* RouterProtocol.swift in Sources */,
 				24C84BFC2A55564A0034FFC1 /* SceneDelegate.swift in Sources */,
 				243487AE2A5C16B500337447 /* SettingVC.swift in Sources */,
+				24610FF32A7B04DF0084EB34 /* CVLabel.swift in Sources */,
 				2465AC552A6C0CF40056BBAA /* LaunchCell.swift in Sources */,
 				2416C7372A5963FA00051E9E /* MainTableView.swift in Sources */,
 				2416C7492A59B07B00051E9E /* InfoCell.swift in Sources */,
@@ -879,7 +896,6 @@
 				24B2DF7B2A66F9EE000911E9 /* Int+Ext.swift in Sources */,
 				24B2DF7D2A66FDAD000911E9 /* String+Ext.swift in Sources */,
 				24B2DF812A670C83000911E9 /* RocketImageView.swift in Sources */,
-				2474FE1C2A712B530046E76D /* SettingViewModel.swift in Sources */,
 				24A107082A56CD40002B4375 /* StorageManager.swift in Sources */,
 				24A1071A2A56FBB2002B4375 /* Constants.swift in Sources */,
 				24A106E82A56B817002B4375 /* ModuleBuilder.swift in Sources */,

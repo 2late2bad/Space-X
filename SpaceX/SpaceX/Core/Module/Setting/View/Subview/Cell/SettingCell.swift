@@ -12,16 +12,10 @@ final class SettingCell: UICollectionViewCell {
     static let identifier = "SettingCell"
     var segmentedValueChanged: ((Int) -> Void)?
     
-    private lazy var label: UILabel = {
-        let label = UILabel()
-        label.font = Fonts.labelRowSettingVC.uiFont
-        label.textColor = Colors.labelRowSettingVC.uiColor
-        label.textAlignment = .left
-        label.clipsToBounds = true
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.7
-        return label
-    }()
+    private let label = CVLabel(font: .labelRowSettingVC,
+                                 color: .labelRowSettingVC,
+                                 alignment: .left,
+                                 lines: 1)
     
     private lazy var unitSegment: UISegmentedControl = {
         let segment = UISegmentedControl()

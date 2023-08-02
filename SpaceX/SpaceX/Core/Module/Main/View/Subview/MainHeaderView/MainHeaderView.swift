@@ -13,7 +13,7 @@ protocol MainHeaderViewDelegate: AnyObject {
 
 final class MainHeaderView: UIView {
     
-    let label = UILabel()
+    let label = CVLabel(font: .titleRocket, color: .titleRocket, alignment: .left, lines: 1)
     let settingButton = UIButton()
     let stackView = UIStackView()
     
@@ -47,10 +47,6 @@ private extension MainHeaderView {
     func style() {
         stackView.axis = .horizontal
         stackView.distribution = .equalSpacing
-        
-        label.textAlignment = .left
-        label.textColor = Colors.titleRocket.uiColor
-        label.font = Fonts.titleRocket.uiFont
         
         settingButton.setImage(UIImage(systemName: "gearshape"), for: .normal)
         settingButton.tintColor = Colors.settingsButton.uiColor

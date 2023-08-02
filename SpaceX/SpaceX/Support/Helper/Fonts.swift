@@ -31,12 +31,14 @@ enum Fonts {
     case labelNameLaunchCell
     case labelDateLaunchCell
     case emptyLaunchesLabel
+    case errorLabelEmptyScreen
+    case errorMessageEmptyScreen
     
     // MARK: - Properties
     var uiFont: UIFont {
         switch self {
             
-        case .titleRocket:
+        case .titleRocket, .errorLabelEmptyScreen:
             return UIFont(name: "LabGrotesque-Medium", size: 24) ?? .systemFont(ofSize: 24, weight: .medium)
             
         case .textRootNavBar:
@@ -48,7 +50,7 @@ enum Fonts {
         case .launchesButton:
             return UIFont(name: "LabGrotesque-Bold", size: 18) ?? .systemFont(ofSize: 18, weight: .bold)
             
-        case .labelNameLaunchCell, .emptyLaunchesLabel:
+        case .labelNameLaunchCell, .emptyLaunchesLabel, .errorMessageEmptyScreen:
             return UIFont(name: "LabGrotesque-Regular", size: 20) ?? .systemFont(ofSize: 20, weight: .regular)
             
         case .mainTextTableView, .titleSettingVC, .labelRowSettingVC, .labelDateLaunchCell:

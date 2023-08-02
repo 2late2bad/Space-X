@@ -61,7 +61,7 @@ extension ModuleBuilder: ModuleBuilderProtocol {
         
         // TODO: - Пустой экран через failure в презентере при загрузке стореджа
         if let settings: [Setting] = storageManager.decodableData(forKey: .settings) {
-            view.settings = settings
+            presenter.settings = settings
             return view
         } else {
             return createEmpty(errorText: "Отсутствуют настройки, попробуйте перезагрузить приложение",

@@ -8,16 +8,10 @@
 import UIKit
 
 protocol SettingVCProtocol: AnyObject {
-    
+    func postNotification(name: NSNotification.Name, object: Any?)
 }
 
 final class SettingVC: UIViewController {
-    
-    var settings: [Setting]! {
-        willSet {
-            StorageManager.shared.set(object: newValue, forKey: .settings)
-        }
-    }
     
     private enum LocalConstant {
         static let title: String = "Настройки"
@@ -39,7 +33,9 @@ final class SettingVC: UIViewController {
 
 extension SettingVC: SettingVCProtocol {
     
-    
+    func postNotification(name: NSNotification.Name, object: Any?) {
+        NotificationCenter.default.post(name: name, object: object)
+    }
 }
 
 private extension SettingVC {
@@ -81,17 +77,16 @@ private extension SettingVC {
 extension SettingVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        settings.count
+        presenter.settings.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingCell.identifier, for: indexPath) as? SettingCell else { return UICollectionViewCell() }
         let indexItem = indexPath.item
-        cell.configure(setting: settings[indexItem])
+        cell.configure(setting: presenter.settings[indexItem])
         cell.segmentedValueChanged = { [weak self] selectedIndex in
             guard let self else { return }
-            self.settings[indexItem].selectedIndex = selectedIndex
-            NotificationCenter.default.post(name: .updateSettings, object: nil)
+            self.presenter.updateSegment(selected: selectedIndex, indexItem: indexItem)
         }
         return cell
     }

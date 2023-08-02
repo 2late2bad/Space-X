@@ -10,14 +10,11 @@ import UIKit
 final class MainSectionHeader: UITableViewHeaderFooterView {
     
     static let identifier = "SectionHeaderMainTable"
-    
-    let titleLabel: UILabel = {
-        $0.font = Fonts.headerFooterTextView.uiFont
-        $0.textColor = Colors.headerFooterTextTableView.uiColor
-        $0.textAlignment = .left
-        $0.clipsToBounds = true
-        return $0
-    }(UILabel())
+        
+    let titleLabel = CVLabel(font: .headerFooterTextView,
+                                      color: .headerFooterTextTableView,
+                                      alignment: .left,
+                                      lines: 1)
 
     private override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -37,7 +34,6 @@ private extension MainSectionHeader {
     }
     
     func layoutUI() {
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),

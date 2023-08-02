@@ -20,18 +20,11 @@ final class LaunchVC: UIViewController {
         let view = UIActivityIndicatorView()
         view.color = Colors.activityIndicator.uiColor
         return view
-    }()
-    private lazy var emptyLaunchesLabel: UILabel = {
-        let view = UILabel()
-        view.isHidden = true
-        view.font = Fonts.emptyLaunchesLabel.uiFont
-        view.textColor = Colors.emptyLaunchesLabel.uiColor
-        view.textColor = .white
-        view.textAlignment = .center
-        view.numberOfLines = 0
-        view.text = "Нет информации по запускам данной ракеты\n :("
-        return view
-    }()
+    }()    
+    private let emptyLaunchesLabel = CVLabel(font: .emptyLaunchesLabel,
+                                              color: .emptyLaunchesLabel,
+                                              alignment: .center,
+                                              lines: 0)
     
     // MARK: - Properties
     var router: RocketRouterProtocol!
@@ -69,6 +62,9 @@ private extension LaunchVC {
     }
     
     func style() {
+        emptyLaunchesLabel.text = "Нет информации по запускам данной ракеты\n :("
+        emptyLaunchesLabel.isHidden = true
+        
         navigationController?.navigationBar.topItem?.title = "Назад"
         view.backgroundColor = Colors.backgroundLaunchVC.uiColor
         

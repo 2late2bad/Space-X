@@ -26,12 +26,12 @@ struct RocketData {
 
 // Collection view
 struct RocketFeature {
-    let values: (eu: Double, us: Double)
+    let unit: (eu: Double, us: Double)
     let type: SettingType
     var selectedIndex: Int
     
     var value: Double {
-        selectedIndex == 0 ? values.eu : values.us
+        selectedIndex == 0 ? unit.eu : unit.us
     }
 }
 

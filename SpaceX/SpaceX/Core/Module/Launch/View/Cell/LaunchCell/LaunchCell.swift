@@ -21,29 +21,15 @@ final class LaunchCell: UITableViewCell {
         return view
     }()
     
-    private let nameLaunchLabel: UILabel = {
-        let view = UILabel()
-        view.font = Fonts.labelNameLaunchCell.uiFont
-        view.textColor = Colors.nameLaunchLabel.uiColor
-        view.textAlignment = .left
-        view.numberOfLines = 1
-        view.clipsToBounds = true
-        view.adjustsFontSizeToFitWidth = true
-        view.minimumScaleFactor = 0.8
-        return view
-    }()
+    private let nameLaunchLabel = CVLabel(font: .labelNameLaunchCell,
+                                          color: .nameLaunchLabel,
+                                          alignment: .left,
+                                          lines: 1)
     
-    private let dateLaunchLabel: UILabel = {
-        let view = UILabel()
-        view.font = Fonts.labelDateLaunchCell.uiFont
-        view.textColor = Colors.dateLaunchLabel.uiColor
-        view.textAlignment = .left
-        view.numberOfLines = 1
-        view.clipsToBounds = true
-        view.adjustsFontSizeToFitWidth = true
-        view.minimumScaleFactor = 0.8
-        return view
-    }()
+    private let dateLaunchLabel = CVLabel(font: .labelDateLaunchCell,
+                                          color: .dateLaunchLabel,
+                                          alignment: .left,
+                                          lines: 1)
     
     private let launchStatusImageView: UIImageView = {
         let imageView = UIImageView()
