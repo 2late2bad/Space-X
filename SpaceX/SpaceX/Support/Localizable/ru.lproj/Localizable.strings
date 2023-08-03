@@ -1,0 +1,37 @@
+/* 
+  Localizable.strings
+  SpaceX
+
+  Created by Alexander Vagin on 03.08.2023.
+  
+*/
+
+"heigh_rocket" = "Высота";
+"diameter" = "Диаметр";
+"mass_rocket" = "Масса";
+"payload_rocket" = "Нагрузка";
+
+"first_launch_rocket" = "Первый запуск";
+"country_rocket" = "Страна";
+"launch_cost_rocket" = "Стоимость запуска";
+
+"first_stage_rocket" = "Первая ступень";
+"second_stage_rocket" = "Вторая ступень";
+
+"number_engines_rocket" = "Количество двигателей";
+"amount_fuel_rocket" = "Количество топлива";
+"combustion_time_rocket" = "Время сгорания";
+
+"settings_title" = "Настройки";
+"close_button" = "Закрыть";
+"back_button" = "Назад";
+
+"launch_button" = "Посмотреть запуски";
+"no_info_launches" = "Нет информации по запускам данной ракеты\n :(";
+
+"United States" = "США";
+"Republic of the Marshall Islands" = "Маршалловы Острова";
+
+"million_dollars" = "млн";
+
+"id_locale" = "ru_RU";

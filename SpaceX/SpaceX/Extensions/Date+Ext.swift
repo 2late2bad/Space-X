@@ -12,7 +12,7 @@ extension Date {
     func convertToLaunchFormat() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d MMMM, yyyy"
-        dateFormatter.locale     = Locale(identifier: "ru_RU")
+        dateFormatter.locale     = Locale(identifier: "id_locale".localized)
         return dateFormatter.string(from: self)
     }
 }

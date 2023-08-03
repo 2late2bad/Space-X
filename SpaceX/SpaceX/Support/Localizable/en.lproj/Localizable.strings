@@ -1,0 +1,37 @@
+/* 
+  Localizable.strings
+  SpaceX
+
+  Created by Alexander Vagin on 03.08.2023.
+  
+*/
+
+"heigh_rocket" = "Height";
+"diameter" = "Diameter";
+"mass_rocket" = "Mass";
+"payload_rocket" = "Payload";
+
+"first_launch_rocket" = "First flight";
+"country_rocket" = "Country";
+"launch_cost_rocket" = "Launch cost";
+
+"first_stage_rocket" = "First stage";
+"second_stage_rocket" = "Second stage";
+
+"number_engines_rocket" = "Engines";
+"amount_fuel_rocket" = "Amount of fuel";
+"combustion_time_rocket" = "Burn time";
+
+"settings_title" = "Settings";
+"close_button" = "Close";
+"back_button" = "Back";
+
+"launch_button" = "See launches";
+"no_info_launches" = "No information on launches of this rocket\n :(";
+
+"United States" = "United States";
+"Republic of the Marshall Islands" = "Republic of the Marshall Islands";
+
+"million_dollars" = "M";
+
+"id_locale" = "en_US";

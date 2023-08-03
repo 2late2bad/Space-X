@@ -15,9 +15,9 @@ extension Int {
         let million = number / 1000000
         if million >= 1.0 {
             if (number.truncatingRemainder(dividingBy: 1000000) == 0) {
-                return "$\(Int(number) / 1000000) млн"
+                return "$\(Int(number) / 1000000) " + "million_dollars".localized
             } else {
-                return "$\(round(million*10)/10) млн"
+                return "$\(round(million*10)/10) " + "million_dollars".localized
             }
         }
         else if thousand >= 1.0 {

@@ -16,8 +16,8 @@ final class SettingVC: UIViewController {
     
     // MARK: - Local constants
     private enum LocalConstant {
-        static let title: String = "Настройки"
-        static let buttonTitle: String = "Закрыть"
+        static let title: String = "settings_title".localized
+        static let buttonTitle: String = "close_button".localized
     }
     
     // MARK: - Properties

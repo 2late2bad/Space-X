@@ -9,6 +9,10 @@ import Foundation
 
 extension String {
     
+    var localized: String {
+        NSLocalizedString(self, comment: "\(self) could not be found in Localizable.strings")
+    }
+    
     private func convertToDate(format: C.DateFormat) -> Date? {
         let dateFormatter        = DateFormatter()
         dateFormatter.dateFormat = format.rawValue
@@ -21,16 +25,5 @@ extension String {
     func convertToDisplayFormat(from: C.DateFormat) -> String {
         guard let date = self.convertToDate(format: from) else { return "N/A" }
         return date.convertToLaunchFormat()
-    }
-    
-    func convertCountryToRus() -> String {
-        switch self {
-        case "United States":
-            return "США"
-        case "Republic of the Marshall Islands":
-            return "Маршалловы Острова"
-        default:
-            return self
-        }
-    }
+    }    
 }

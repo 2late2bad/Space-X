@@ -20,8 +20,8 @@ enum MainTableConstants {
 // MARK: - Section type
 enum SectionMainType: String {
     case info
-    case firstStage = "Первая ступень"
-    case secondStage = "Вторая ступень"
+    case firstStage = "first_stage_rocket"
+    case secondStage = "second_stage_rocket"
     case launchButton
 }
 

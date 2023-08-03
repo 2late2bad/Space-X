@@ -96,11 +96,11 @@ private extension LaunchVC {
     }
     
     func style() {
-        emptyLaunchesLabel.text = "Нет информации по запускам данной ракеты\n :("
+        emptyLaunchesLabel.text = "no_info_launches".localized
         emptyLaunchesLabel.isHidden = true
         emptyLaunchesLabel.layer.opacity = 0.0
         
-        navigationController?.navigationBar.topItem?.title = "Назад"
+        navigationController?.navigationBar.topItem?.title = "back_button".localized
         view.backgroundColor = Colors.backgroundLaunchVC.uiColor
         
         tableView.backgroundColor = .clear

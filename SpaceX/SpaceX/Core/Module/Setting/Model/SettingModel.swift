@@ -36,13 +36,13 @@ enum SettingType: Codable, CaseIterable {
     var name: String {
         switch self {
         case .height:
-            return "Высота"
+            return "heigh_rocket".localized
         case .diameter:
-            return "Диаметр"
+            return "diameter".localized
         case .weight:
-            return "Масса"
+            return "mass_rocket".localized
         case .payload:
-            return "Нагрузка"
+            return "payload_rocket".localized
         }
     }
     
