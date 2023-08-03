@@ -58,3 +58,57 @@ struct CellMainTable {
         }
     }
 }
+
+struct MainTableModel {
+        
+    func generateData(with rocket: Rocket) -> [SectionMainTable] {
+        var dataTable: [SectionMainTable] = []
+        
+        let infoSectionCells = [CellMainTable(type: .info,
+                                              label: "first_launch_rocket".localized,
+                                              value: rocket.firstFlight.convertToDisplayFormat(from: .fullYearMonthDay)),
+                                CellMainTable(type: .info,
+                                              label: "country_rocket".localized,
+                                              value: rocket.country.localized),
+                                CellMainTable(type: .info,
+                                              label: "launch_cost_rocket".localized,
+                                              value: rocket.costPerLaunch.roundedDollars)]
+        
+        let firstStageSectionCells = [CellMainTable(type: .stage(unit: nil),
+                                                    label: "number_engines_rocket".localized,
+                                                    value: String(rocket.firstStage.engines)),
+                                      CellMainTable(type: .stage(unit: .fuel),
+                                                    label: "amount_fuel_rocket".localized,
+                                                    value: String(rocket.firstStage.fuelAmountTons))]
+        
+        let secondStageSectionCells = [CellMainTable(type: .stage(unit: nil),
+                                                     label: "number_engines_rocket".localized,
+                                                     value: String(rocket.secondStage.engines)),
+                                       CellMainTable(type: .stage(unit: .fuel),
+                                                     label: "amount_fuel_rocket".localized,
+                                                     value: String(rocket.secondStage.fuelAmountTons))]
+        
+        let buttonSectionCell = [CellMainTable(type: .button,
+                                               label: "launch_button".localized)]
+        
+        dataTable = [
+            SectionMainTable(type: .info, cells: infoSectionCells),
+            SectionMainTable(type: .firstStage, cells: firstStageSectionCells),
+            SectionMainTable(type: .secondStage, cells: secondStageSectionCells),
+            SectionMainTable(type: .launchButton, cells: buttonSectionCell)
+        ]
+        
+        if let burnSecFirst = rocket.firstStage.burnTimeSec {
+            dataTable[1].cells.append(CellMainTable(type: .stage(unit: .time),
+                                                    label: "combustion_time_rocket".localized,
+                                                    value: String(burnSecFirst)))
+        }
+        if let burnSecSecond = rocket.secondStage.burnTimeSec {
+            dataTable[2].cells.append(CellMainTable(type: .stage(unit: .time),
+                                                    label: "combustion_time_rocket".localized,
+                                                    value: String(burnSecSecond)))
+        }
+        
+        return dataTable
+    }
+}
