@@ -160,21 +160,22 @@ extension MainVC: UIScrollViewDelegate {
             offset.y = minOffsetY
         }
         if offset.y > maxOffsetY { offset.y = maxOffsetY }
-        
+                
         scrollView.contentOffset = offset
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if refreshStatus {
-            refreshStatus.toggle()
-            urlImage = rocketModel.flickrImages.randomElement()
+            refreshStatus = false
+            urlImage = rocketModel.flickrImages.filter({ $0 != urlImage }).randomElement()
         }
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if refreshStatus {
-            refreshStatus.toggle()
-            urlImage = rocketModel.flickrImages.randomElement()
+        let offsetY = scrollView.contentOffset.y
+        if refreshStatus && offsetY > 0 {
+            refreshStatus = false
+            urlImage = rocketModel.flickrImages.filter({ $0 != urlImage }).randomElement()
         }
     }
 }
