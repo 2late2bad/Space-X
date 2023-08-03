@@ -24,6 +24,7 @@ struct RocketData {
     let secondStage: Stage
 }
 
+// MARK: - RocketFeature
 // Collection view
 struct RocketFeature {
     let unit: (eu: Double, us: Double)
@@ -36,7 +37,7 @@ struct RocketFeature {
 }
 
 extension RocketData {
-
+    
     struct Stage {
         let engines: Int
         let fuelAmountTons: Double

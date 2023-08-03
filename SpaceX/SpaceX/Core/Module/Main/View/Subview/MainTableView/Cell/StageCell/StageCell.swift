@@ -11,15 +11,18 @@ final class StageCell: UITableViewCell {
     
     static let identifier = "StageCell"
     
+    // MARK: - Properties
     @IBOutlet private var mainLabel: UILabel!
     @IBOutlet private var valueLabel: UILabel!
     @IBOutlet private var unitLabel: UILabel!
 
+    // MARK: - Init
     override func awakeFromNib() {
         super.awakeFromNib()
         initialize()
     }
     
+    // MARK: - Methods
     func configure(label: String?, value: String?, unit: String?) {
         mainLabel.text = label
         valueLabel.text = value
@@ -27,6 +30,7 @@ final class StageCell: UITableViewCell {
     }
 }
 
+// MARK: - Private ext
 private extension StageCell {
     
     func initialize() {

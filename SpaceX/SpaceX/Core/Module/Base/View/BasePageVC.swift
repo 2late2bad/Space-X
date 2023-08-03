@@ -40,7 +40,25 @@ final class BasePageVC: UIPageViewController {
     }
 }
 
-// MARK: - Private methods
+// MARK: - BasePageProtocol Impl
+extension BasePageVC: BasePageProtocol {
+    
+    func success(with rockets: [RocketModel]) {
+        for rocketModel in rockets {
+            let mainVC = router.routeMainModule(with: rocketModel)
+            pages.append(mainVC)
+        }
+        setPages()
+    }
+    
+    func failure(error: NetworkError) {
+        debugPrint(error.message)
+        pages = [router.routeEmpty(errorText: error.message)]
+        setPages()
+    }
+}
+
+// MARK: - Private ext
 private extension BasePageVC {
     
     func setup() {
@@ -69,24 +87,6 @@ private extension BasePageVC {
         setViewControllers([pages[initialPage]],
                            direction: .forward,
                            animated: true)
-    }
-}
-
-// MARK: - Implementation BasePageProtocol
-extension BasePageVC: BasePageProtocol {
-    
-    func success(with rockets: [RocketModel]) {
-        for rocketModel in rockets {
-            let mainVC = router.routeMainModule(with: rocketModel)
-            pages.append(mainVC)
-        }
-        setPages()
-    }
-    
-    func failure(error: NetworkError) {
-        debugPrint(error.message)
-        pages = [router.routeEmpty(errorText: error.message)]
-        setPages()
     }
 }
 

@@ -9,20 +9,25 @@ import UIKit
 
 final class RootNavigationController: UINavigationController {
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
         checkFirstRunAppStatus()
     }
     
+    // MARK: - Override properties
     override var prefersStatusBarHidden: Bool { true }
-    
     override var modalPresentationCapturesStatusBarAppearance: Bool {
         get { true }
         set {}
     }
+}
 
-    private func configure() {
+// MARK: - Private ext
+private extension RootNavigationController {
+    
+    func configure() {
         let navBarAppearance = UINavigationBarAppearance()
         let buttonAppearance = UIBarButtonItemAppearance()
         
@@ -40,7 +45,7 @@ final class RootNavigationController: UINavigationController {
         navigationBar.scrollEdgeAppearance = navBarAppearance
     }
     
-    private func checkFirstRunAppStatus() {
+    func checkFirstRunAppStatus() {
         guard let status = StorageManager.shared.bool(forKey: .firstLaunchApp),
                   status == true else { return }
         // Конфигурация приложения при первом запуске
@@ -48,7 +53,7 @@ final class RootNavigationController: UINavigationController {
         StorageManager.shared.set(false, forKey: .firstLaunchApp)
     }
     
-    private func configureSettings() {
+    func configureSettings() {
         var settings: [Setting] = []
         
         SettingType.allCases.forEach { type in

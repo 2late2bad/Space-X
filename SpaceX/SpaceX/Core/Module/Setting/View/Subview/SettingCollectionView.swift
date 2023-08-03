@@ -9,6 +9,7 @@ import UIKit
 
 final class SettingCollectionView: UICollectionView {
     
+    // MARK: - Init
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         let collecetionViewLayout = UICollectionViewFlowLayout()
         collecetionViewLayout.scrollDirection = .vertical
@@ -24,6 +25,7 @@ final class SettingCollectionView: UICollectionView {
     }
 }
 
+// MARK: - Private ext
 private extension SettingCollectionView {
     
     func setup() {

@@ -59,14 +59,7 @@ extension ModuleBuilder: ModuleBuilderProtocol {
         view.router = router
         view.presenter = presenter
         
-        // TODO: - Пустой экран через failure в презентере при загрузке стореджа
-        if let settings: [Setting] = storageManager.decodableData(forKey: .settings) {
-            presenter.settings = settings
-            return view
-        } else {
-            return createEmpty(errorText: "Отсутствуют настройки, попробуйте перезагрузить приложение",
-                               router: router)
-        }
+        return view
     }
     
     func createLaunchModule(with id: String, router: RocketRouterProtocol) -> UIViewController {

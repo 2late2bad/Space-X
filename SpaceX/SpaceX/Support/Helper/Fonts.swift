@@ -8,14 +8,7 @@
 import UIKit.UIFont
 
 enum Fonts {
-    
-    private enum Style: String {
-        case thin       = "Thin"
-        case regular    = "Regular"
-        case medium     = "Medium"
-        case bold       = "Bold"
-    }
-    
+        
     case titleRocket
     case textRootNavBar
     case mainCollectionCellTitle

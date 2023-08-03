@@ -15,19 +15,21 @@ protocol MainPresenterProtocol {
 
 final class MainPresenter: MainPresenterProtocol {
     
+    // MARK: - Properties
     weak var view: MainVCProtocol!
     unowned let storage: StorageManagerProtocol!
-    
     private var features: [RocketFeature] = []
     
+    // MARK: - Init
     init(view: MainVCProtocol, storageManager: StorageManagerProtocol) {
         self.view = view
         storage = storageManager
     }
     
+    // MARK: - MainPresenterProtocol Impl
     func generateRocket(with model: RocketModel) {
         generateFeatures(with: model)
-        
+
         let rocket = Rocket(id: model.id,
                         images: model.flickrImages,
                         name: model.name,
@@ -46,7 +48,10 @@ final class MainPresenter: MainPresenterProtocol {
     func updateFeature() {
         guard let settings: [Setting] = storage.decodableData(forKey: .settings),
                   !features.isEmpty
-        else { return }
+        else {
+            view.failureLoadSettings()
+            return
+        }
         
         for (index, feature) in features.enumerated() {
             if let setting = settings.first(where: { $0.type == feature.type }) {
@@ -58,10 +63,14 @@ final class MainPresenter: MainPresenterProtocol {
     }
 }
 
+// MARK: - Private ext
 private extension MainPresenter {
     
     func generateFeatures(with model: RocketModel) {
-        guard let settings: [Setting] = storage.decodableData(forKey: .settings) else { return }
+        guard let settings: [Setting] = storage.decodableData(forKey: .settings) else {
+            view.failureLoadSettings()
+            return
+        }
         
         settings.forEach { setting in
             switch setting.type {

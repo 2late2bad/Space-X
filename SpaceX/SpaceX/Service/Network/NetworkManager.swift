@@ -26,6 +26,7 @@ final class NetworkManager {
     private init() {}
 }
 
+// MARK: - NetworkManagerProtocol Impl
 extension NetworkManager: NetworkManagerProtocol {
     
     func request<T: Decodable>(from urlString: String,
@@ -72,7 +73,7 @@ extension NetworkManager: NetworkManagerProtocol {
             guard let data = data else { return }
             do {
                 let decoder = JSONDecoder()
-                //decoder.keyDecodingStrategy = .convertFromSnakeCase
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let parse = try decoder.decode(T.self, from: data)
                 completionOnMain(.success(parse))
             } catch {
@@ -84,7 +85,6 @@ extension NetworkManager: NetworkManagerProtocol {
         task.resume()
     }
 
-    
     func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void) {
         let cacheKey = NSString(string: urlString)
         

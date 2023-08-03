@@ -8,7 +8,8 @@
 import UIKit
 
 final class RocketImageView: UIImageView {
-        
+    
+    // MARK: - Properties
     private lazy var indicatorView: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView()
         view.color = Colors.activityIndicator.uiColor
@@ -18,6 +19,7 @@ final class RocketImageView: UIImageView {
         return view
     }()
     
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -28,7 +30,8 @@ final class RocketImageView: UIImageView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func downloadImage(fromURL url: String) {
+    // MARK: - Public methods
+    public func downloadImage(fromURL url: String) {
         indicatorView.startAnimating()
         NetworkManager.shared.downloadImage(from: url) { [weak self] image in
             guard let self = self else { return }
@@ -40,6 +43,7 @@ final class RocketImageView: UIImageView {
     }
 }
 
+// MARK: - Private ext
 private extension RocketImageView {
     
     func configure() {

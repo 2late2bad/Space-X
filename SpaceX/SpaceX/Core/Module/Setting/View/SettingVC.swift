@@ -9,19 +9,27 @@ import UIKit
 
 protocol SettingVCProtocol: AnyObject {
     func postNotification(name: NSNotification.Name, object: Any?)
+    func failureLoadSettings()
 }
 
 final class SettingVC: UIViewController {
     
+    // MARK: - Local constants
     private enum LocalConstant {
         static let title: String = "Настройки"
         static let buttonTitle: String = "Закрыть"
     }
     
+    // MARK: - Properties
     var router: RocketRouterProtocol!
     var presenter: SettingPresenterProtocol!
-        
     private let collectionView = SettingCollectionView()
+    
+    // MARK: - Lifecycle
+    override func loadView() {
+        super.loadView()
+        presenter.loadSettins()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,13 +39,26 @@ final class SettingVC: UIViewController {
     }
 }
 
+// MARK: - SettingVCProtocol Impl
 extension SettingVC: SettingVCProtocol {
     
     func postNotification(name: NSNotification.Name, object: Any?) {
         NotificationCenter.default.post(name: name, object: object)
     }
+    
+    func failureLoadSettings() {
+        let alert = UIAlertController(title: "Ошибка данных",
+                                      message: "Не получены настройки из хранилища",
+                                      preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .destructive) { [weak self] action in
+            self?.dismiss(animated: true)
+        }
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
 }
 
+// MARK: - Private ext
 private extension SettingVC {
     
     func setup() {
@@ -74,6 +95,7 @@ private extension SettingVC {
     @objc func close() { dismiss(animated: true) }
 }
 
+// MARK: - UICollectionViewDataSource
 extension SettingVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -92,6 +114,7 @@ extension SettingVC: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension SettingVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -11,6 +11,7 @@ final class MainCollectionCell: UICollectionViewCell {
     
     static let identifier = "MainCollectionCell"
     
+    // MARK: - Private properties
     private let areaView = UIView()
     private let mainLabel = CVLabel(font: .mainCollectionCellTitle,
                                      color: .titleCollectionCell,
@@ -21,6 +22,7 @@ final class MainCollectionCell: UICollectionViewCell {
                                      alignment: .center,
                                      lines: 1)
     
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         initialize()
@@ -32,6 +34,7 @@ final class MainCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Methods
     func configure(feature: RocketFeature) {
         switch feature.type {
         case .height, .diameter:
@@ -44,6 +47,7 @@ final class MainCollectionCell: UICollectionViewCell {
     }
 }
 
+// MARK: - Private ext
 private extension MainCollectionCell {
     
     func initialize() {

@@ -7,12 +7,14 @@
 
 import Foundation
 
+// MARK: - Launch
 struct Launch: Decodable {
     let name: String
-    let date_utc: String
+    let dateUtc: String
     let success: Bool?
 }
 
+// MARK: - LaunchesResponse
 struct LaunchesResponse: Decodable {
     let docs: [Launch]
 }

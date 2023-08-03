@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - NetworkError
 enum NetworkError: Error {
     case invalidResponse
     case invalidRequestBody

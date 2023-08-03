@@ -9,6 +9,7 @@ import UIKit
 
 final class CVLabel: UILabel {
     
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -27,6 +28,7 @@ final class CVLabel: UILabel {
     }
 }
 
+// MARK: - Private ext
 private extension CVLabel {
     
     func configure() {

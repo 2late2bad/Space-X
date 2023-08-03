@@ -10,6 +10,8 @@ import UIKit
 final class SettingCell: UICollectionViewCell {
     
     static let identifier = "SettingCell"
+    
+    // MARK: - Properties
     var segmentedValueChanged: ((Int) -> Void)?
     
     private let label = CVLabel(font: .labelRowSettingVC,
@@ -36,6 +38,7 @@ final class SettingCell: UICollectionViewCell {
         return stackView
     }()
     
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -46,6 +49,7 @@ final class SettingCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Methods
     func configure(setting: Setting) {
         label.text = setting.type.name
         for (index, unit) in setting.type.units.enumerated() {
@@ -55,6 +59,7 @@ final class SettingCell: UICollectionViewCell {
     }
 }
 
+// MARK: - Private ext
 private extension SettingCell {
     
     func setup() {

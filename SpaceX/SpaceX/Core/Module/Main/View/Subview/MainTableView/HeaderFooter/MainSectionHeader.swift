@@ -11,11 +11,13 @@ final class MainSectionHeader: UITableViewHeaderFooterView {
     
     static let identifier = "SectionHeaderMainTable"
         
+    // MARK: - Properties
     let titleLabel = CVLabel(font: .headerFooterTextView,
                                       color: .headerFooterTextTableView,
                                       alignment: .left,
                                       lines: 1)
-
+    
+    // MARK: - Init
     private override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         configure()
@@ -27,6 +29,7 @@ final class MainSectionHeader: UITableViewHeaderFooterView {
     }
 }
 
+// MARK: - Private ext
 private extension MainSectionHeader {
     
     func configure() {

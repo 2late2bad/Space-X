@@ -8,9 +8,10 @@
 import Foundation
 
 typealias C = Constants
-typealias Callback = () -> Void
 
 enum Constants {
+    
+    typealias Callback = () -> Void
     
     enum API {
         static let rockets = "https://api.spacexdata.com/v4/rockets"
@@ -20,11 +21,5 @@ enum Constants {
     enum DateFormat: String {
         case server = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         case fullYearMonthDay = "yyyy-MM-dd"
-    }
-    
-    public enum StorageKeys: String {
-        case firstLaunchApp
-        case rockets
-        case settings
     }
 }

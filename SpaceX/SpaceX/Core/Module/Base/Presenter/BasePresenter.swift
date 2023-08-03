@@ -30,7 +30,7 @@ final class BasePresenter: BasePresenterProtocol {
         network = networkManager
     }
     
-    // MARK: - Protocol methods
+    // MARK: - BasePresenterProtocol Impl
     func getPages() {
         if let data: [RocketModel] = storage.decodableData(forKey: .rockets) {
             view.success(with: data)
@@ -38,8 +38,12 @@ final class BasePresenter: BasePresenterProtocol {
             loadPages()
         }
     }
+}
+
+// MARK: - Private ext
+private extension BasePresenter {
     
-    private func loadPages() {
+    func loadPages() {
         network.request(from: C.API.rockets,
                         httpMethod: .get,
                         requestBody: nil) { (result: Result<[RocketModel], NetworkError>) in

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - HttpMethod
 enum HttpMethod: String {
     case get
     case post

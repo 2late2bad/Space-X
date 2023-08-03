@@ -19,8 +19,9 @@ final class MainTableView: UITableView {
         static let sectionFooterFinalsStageHeight: CGFloat = 24
     }
     
+    // MARK: - Properties
     private var dataTable: [SectionMainTable] = []
-    var buttonAction: Callback?
+    var buttonAction: C.Callback?
     
     // MARK: - Init
     override init(frame: CGRect, style: UITableView.Style) {
@@ -33,6 +34,8 @@ final class MainTableView: UITableView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Methods
+    // TODO: - ???
     func configure(rocket: Rocket) {
         dataTable = [
             SectionMainTable(type: .info, cells: [CellMainTable(type: .info,
@@ -75,7 +78,7 @@ final class MainTableView: UITableView {
     }
 }
 
-// MARK: - Private methods
+// MARK: - Private ext
 private extension MainTableView {
     
     func initialize() {

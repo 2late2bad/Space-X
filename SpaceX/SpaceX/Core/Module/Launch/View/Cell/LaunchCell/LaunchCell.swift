@@ -11,9 +11,10 @@ final class LaunchCell: UITableViewCell {
     
     static let identifier = "LaunchCell"
     
+    // MARK: - Private properties
     private let placeholderImage = UIImage(systemName: "questionmark.circle")?
         .withTintColor(Colors.tintStatusImageView.uiColor, renderingMode: .alwaysOriginal)
-        
+    
     private let backView: UIView = {
         let view = UIView()
         view.backgroundColor = Colors.backgroundViewLaunchCell.uiColor
@@ -45,6 +46,7 @@ final class LaunchCell: UITableViewCell {
         return stackView
     }()
     
+    // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupCell()
@@ -56,6 +58,7 @@ final class LaunchCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Methods
     func configure(name: String, date: String, result: Bool?) {
         nameLaunchLabel.text = name
         dateLaunchLabel.text = date.convertToDisplayFormat(from: .server)
@@ -65,14 +68,12 @@ final class LaunchCell: UITableViewCell {
             return
         }
         
-        if result {
-            launchStatusImageView.image = UIImage(named: "rocketSuccess")
-        } else {
-            launchStatusImageView.image = UIImage(named: "rocketUnsuccess")
-        }
+        let nameImage = result == true ? "rocketSuccess" : "rocketUnsuccess"
+        launchStatusImageView.image = UIImage(named: nameImage)
     }
 }
 
+// MARK: - Private ext
 private extension LaunchCell {
     
     func setupCell() {

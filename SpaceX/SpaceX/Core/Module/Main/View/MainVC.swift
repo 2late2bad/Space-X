@@ -10,6 +10,7 @@ import UIKit
 protocol MainVCProtocol: AnyObject {
     func configure(rocket: Rocket)
     func update(feature: [RocketFeature])
+    func failureLoadSettings()
 }
 
 final class MainVC: UIViewController {
@@ -22,7 +23,6 @@ final class MainVC: UIViewController {
     // MARK: - Private properties
     private let contentView = MainContentView()
     private let rocketImage = RocketImageView(frame: .zero)
-
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
@@ -33,7 +33,6 @@ final class MainVC: UIViewController {
     // Scroll limit (adapted for any device)
     private var minOffsetY: CGFloat { -rocketImage.frame.height * 0.05 }
     private var maxOffsetY: CGFloat { scrollView.contentSize.height - view.frame.height * 0.95 }
-    
     
     // MARK: - Deinit
     deinit {
@@ -58,7 +57,7 @@ final class MainVC: UIViewController {
     }
 }
 
-// MARK: - Implementation MainVCProtocol
+// MARK: - MainVCProtocol Impl
 extension MainVC: MainVCProtocol {
     
     func configure(rocket: Rocket) {
@@ -69,9 +68,18 @@ extension MainVC: MainVCProtocol {
     func update(feature: [RocketFeature]) {
         contentView.configure(feature: feature)
     }
+    
+    func failureLoadSettings() {
+        let alert = UIAlertController(title: "Ошибка данных",
+                                      message: "Не получены настройки из хранилища",
+                                      preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .destructive)
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
 }
 
-// MARK: - Private methods
+// MARK: - Private ext
 private extension MainVC {
     
     func setup() {

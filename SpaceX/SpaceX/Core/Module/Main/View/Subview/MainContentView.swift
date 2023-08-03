@@ -14,6 +14,7 @@ final class MainContentView: UIView {
     let collectionView = MainCollectionView()
     let tableView = MainTableView()
     
+    // MARK: - Delegates
     weak var delegate: MainHeaderViewDelegate!
     
     // MARK: - Init
@@ -28,7 +29,8 @@ final class MainContentView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupDelegates(delegate: MainHeaderViewDelegate, launchAction: Callback?) {
+    // MARK: - Methods
+    func setupDelegates(delegate: MainHeaderViewDelegate, launchAction: C.Callback?) {
         header.delegate = delegate
         tableView.buttonAction = launchAction
     }
@@ -43,6 +45,7 @@ final class MainContentView: UIView {
     }
 }
 
+// MARK: - Private ext
 private extension MainContentView {
     
     func initialize() {

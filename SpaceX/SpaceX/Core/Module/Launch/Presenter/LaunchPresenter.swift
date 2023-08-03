@@ -16,16 +16,19 @@ protocol LaunchPresenterProtocol {
 
 final class LaunchPresenter: LaunchPresenterProtocol {
     
+    // MARK: - Properties
     weak var view: LaunchVCProtocol!
     unowned let storage: StorageManagerProtocol!
     let network: NetworkManagerProtocol!
     
+    // MARK: - Init
     init(view: LaunchVCProtocol, storageManager: StorageManagerProtocol, networkManager: NetworkManagerProtocol) {
         self.view = view
         storage = storageManager
         network = networkManager
     }
     
+    // MARK: - LaunchPresenterProtocol Impl
     func getAllRocketLaunches(for rocketID: String) {
         let urlString = C.API.launches + "/query"
         
@@ -43,7 +46,7 @@ final class LaunchPresenter: LaunchPresenterProtocol {
                         requestBody: requestBody) { (result: Result<LaunchesResponse, NetworkError>) in
             switch result {
             case .success(let launchesResponse):
-                let sortedArray = launchesResponse.docs.sorted { $0.date_utc > $1.date_utc }
+                let sortedArray = launchesResponse.docs.sorted { $0.dateUtc > $1.dateUtc }
                 self.view.success(with: sortedArray)
             case .failure(let error):
                 self.view.failure(error: error)

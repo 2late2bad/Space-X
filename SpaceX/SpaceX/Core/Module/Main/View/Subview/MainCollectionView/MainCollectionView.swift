@@ -9,8 +9,10 @@ import UIKit
 
 final class MainCollectionView: UICollectionView {
     
+    // MARK: - Private properties
     private var features: [RocketFeature] = []
     
+    // MARK: - Init
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         let collecetionViewLayout = UICollectionViewFlowLayout()
         collecetionViewLayout.scrollDirection = .horizontal
@@ -25,6 +27,7 @@ final class MainCollectionView: UICollectionView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Methods
     func configure(features: [RocketFeature]) {
         self.features = features
         DispatchQueue.main.async { [weak self] in
@@ -33,6 +36,7 @@ final class MainCollectionView: UICollectionView {
     }
 }
 
+// MARK: - Private ext
 private extension MainCollectionView {
     
     func initialize() {
@@ -51,6 +55,7 @@ private extension MainCollectionView {
     }
 }
 
+// MARK: - UICollectionViewDataSource
 extension MainCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -65,6 +70,7 @@ extension MainCollectionView: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension MainCollectionView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

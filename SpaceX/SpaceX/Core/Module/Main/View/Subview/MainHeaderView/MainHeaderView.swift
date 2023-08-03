@@ -13,12 +13,15 @@ protocol MainHeaderViewDelegate: AnyObject {
 
 final class MainHeaderView: UIView {
     
+    // MARK: - Properties
     let label = CVLabel(font: .titleRocket, color: .titleRocket, alignment: .left, lines: 1)
     let settingButton = UIButton()
     let stackView = UIStackView()
     
+    // MARK: - Delegates
     weak var delegate: MainHeaderViewDelegate!
     
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -36,6 +39,7 @@ final class MainHeaderView: UIView {
     }
 }
 
+// MARK: - Private ext
 private extension MainHeaderView {
     
     func setup() {

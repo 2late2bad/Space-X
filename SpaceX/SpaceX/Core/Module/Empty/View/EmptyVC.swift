@@ -9,14 +9,17 @@ import UIKit
 
 final class EmptyVC: UIViewController {
     
+    // MARK: - Properties
+    var errorText: String!
+    var router: RocketRouterProtocol!
+    
+    // MARK: - Private properties
     private let imageView = UIImageView()
     private let mainLabel = CVLabel(font: .errorLabelEmptyScreen, color: .errorLabelEmptyScreen, alignment: .center, lines: 0)
     private let errorLabel = CVLabel(font: .errorMessageEmptyScreen, color: .errorLabelEmptyScreen, alignment: .center, lines: 0)
     private let resetButton = UIButton()
     
-    var errorText: String!
-    var router: RocketRouterProtocol!
-    
+    // MARK: - Init
     init(errorText: String) {
         super.init(nibName: nil, bundle: nil)
         self.errorText = errorText
@@ -26,6 +29,7 @@ final class EmptyVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -34,6 +38,7 @@ final class EmptyVC: UIViewController {
     }
 }
 
+// MARK: - Private ext
 private extension EmptyVC {
     
     func setup() {

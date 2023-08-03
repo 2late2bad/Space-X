@@ -9,17 +9,19 @@ import UIKit
 
 final class ButtonCell: UITableViewCell {
     
-    @IBOutlet weak var launchButton: UIButton!
-    
     static let identifier = "ButtonCell"
     
-    var buttonAction: Callback?
+    // MARK: - Properties
+    @IBOutlet weak var launchButton: UIButton!
+    var buttonAction: C.Callback?
     
+    // MARK: - Init
     override func awakeFromNib() {
         super.awakeFromNib()
         initialize()
     }
     
+    // MARK: - Methods
     func configure(label: String?) {
         launchButton.setTitle(label, for: .normal)
     }
@@ -29,6 +31,7 @@ final class ButtonCell: UITableViewCell {
     }
 }
 
+// MARK: - Private ext
 private extension ButtonCell {
     
     func initialize() {
