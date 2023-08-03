@@ -9,7 +9,7 @@ import Foundation
 
 protocol SettingPresenterProtocol {
     init(view: SettingVCProtocol, storageManager: StorageManagerProtocol)
-    var settings: [Setting]! { get set }
+    var settings: [Setting]! { get }
     func loadSettins()
     func updateSegment(selected index: Int, indexItem: Int)
 }

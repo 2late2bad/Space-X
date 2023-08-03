@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class RocketImageView: UIImageView {
+final class RocketImageView: UIView {
     
     // MARK: - Properties
     private lazy var indicatorView: UIActivityIndicatorView = {
@@ -17,6 +17,13 @@ final class RocketImageView: UIImageView {
         view.startAnimating()
         view.hidesWhenStopped = true
         return view
+    }()
+    
+    private lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleToFill
+        imageView.layer.opacity = 0.0
+        return imageView
     }()
     
     // MARK: - Init
@@ -33,14 +40,16 @@ final class RocketImageView: UIImageView {
     // MARK: - Public methods
     func setImage(_ image: UIImage?) {
         DispatchQueue.main.async {
+            self.imageView.image = image
             self.indicatorView.stopAnimating()
-            self.image = image
+            self.imageView.animateOpacity(duration: 0.7)
         }
     }
     
     func startLoading() {
         DispatchQueue.main.async {
-            self.image = nil
+            self.imageView.image = nil
+            self.imageView.layer.opacity = 0.0
             self.indicatorView.startAnimating()
         }
     }
@@ -50,12 +59,12 @@ final class RocketImageView: UIImageView {
 private extension RocketImageView {
     
     func configure() {
-        addSubview(indicatorView)
-        contentMode = .scaleToFill
+        addSubviews(imageView, indicatorView)
         backgroundColor = Colors.backgroundRocketImage.uiColor
     }
     
     func layoutUI() {
+        imageView.pinToEdges(of: self, safearea: false)
         indicatorView.pinToEdges(of: self, safearea: false)
     }
 }

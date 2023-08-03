@@ -29,4 +29,10 @@ extension UIView {
     }
     
     func addSubviews(_ views: UIView...) { views.forEach { addSubview($0) } }
+    
+    func animateOpacity(duration: TimeInterval) {
+        UIView.animate(withDuration: duration, delay: 0.0) { [weak self] in
+            self?.layer.opacity = 1
+        }
+    }
 }

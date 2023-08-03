@@ -56,6 +56,7 @@ extension LaunchVC: LaunchVCProtocol {
         guard !launches.isEmpty else {
             indicatorView.stopAnimating()
             emptyLaunchesLabel.isHidden = false
+            emptyLaunchesLabel.animateOpacity(duration: 0.5)
             return
         }
         
@@ -63,6 +64,7 @@ extension LaunchVC: LaunchVCProtocol {
         DispatchQueue.main.async { [weak self] in
             self?.indicatorView.stopAnimating()
             self?.tableView.reloadData()
+            self?.tableView.animateOpacity(duration: 0.5)
         }
     }
     
@@ -96,11 +98,13 @@ private extension LaunchVC {
     func style() {
         emptyLaunchesLabel.text = "Нет информации по запускам данной ракеты\n :("
         emptyLaunchesLabel.isHidden = true
+        emptyLaunchesLabel.layer.opacity = 0.0
         
         navigationController?.navigationBar.topItem?.title = "Назад"
         view.backgroundColor = Colors.backgroundLaunchVC.uiColor
         
         tableView.backgroundColor = .clear
+        tableView.layer.opacity = 0.0
     }
     
     func layoutUI() {
