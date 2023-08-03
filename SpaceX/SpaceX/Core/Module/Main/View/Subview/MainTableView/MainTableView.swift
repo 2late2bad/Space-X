@@ -74,7 +74,9 @@ final class MainTableView: UITableView {
         }
         
         layoutUI()
-        reloadData()
+        DispatchQueue.main.async {
+            self.reloadData()
+        }
     }
     
     func setup(buttonAction: C.Callback?, presenter: MainPresenterProtocol) {

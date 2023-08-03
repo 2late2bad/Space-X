@@ -43,7 +43,8 @@ extension ModuleBuilder: ModuleBuilderProtocol {
         
         let view      = MainVC()
         let presenter = MainPresenter(view: view,
-                                      storageManager: storageManager)
+                                      storageManager: storageManager,
+                                      networkManager: networkManager)
         view.router = router
         view.presenter = presenter
         view.rocketModel = rocket

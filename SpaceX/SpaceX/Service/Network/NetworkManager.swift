@@ -57,7 +57,7 @@ extension NetworkManager: NetworkManagerProtocol {
             }
         }
         
-        let task = URLSession.shared.dataTask(with: request) { data, queryResponse, error in
+        let task = session.dataTask(with: request) { data, queryResponse, error in
             if let error = error {
                 completionOnMain(.failure(.invalidSession(error)))
                 return
@@ -86,6 +86,7 @@ extension NetworkManager: NetworkManagerProtocol {
     }
 
     func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void) {
+        
         let cacheKey = NSString(string: urlString)
         
         if let image = cache.object(forKey: cacheKey) {
@@ -98,7 +99,7 @@ extension NetworkManager: NetworkManagerProtocol {
             return
         }
         
-        let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+        let task = session.dataTask(with: url) { [weak self] data, response, error in
             guard let self = self,
                   let response = response as? HTTPURLResponse, response.statusCode == 200,
                   let data = data,

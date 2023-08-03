@@ -10,6 +10,7 @@ import UIKit
 protocol MainVCProtocol: AnyObject {
     func configure(rocket: Rocket)
     func update(feature: [RocketFeature])
+    func setImage(_ image: UIImage)
     func failureLoadSettings()
 }
 
@@ -29,6 +30,13 @@ final class MainVC: UIViewController {
         scrollView.contentInsetAdjustmentBehavior = .never
         return scrollView
     }()
+    private var urlImage: String? {
+        willSet {
+            guard let newValue else { return }
+            presenter.getImage(from: newValue)
+        }
+    }
+    private var refreshStatus = false
     
     // Scroll limit (adapted for any device)
     private var minOffsetY: CGFloat { -rocketImage.frame.height * 0.05 }
@@ -62,11 +70,15 @@ extension MainVC: MainVCProtocol {
     
     func configure(rocket: Rocket) {
         contentView.configure(rocket: rocket)
-        rocketImage.downloadImage(fromURL: rocket.images.randomElement()!)
+        urlImage = rocket.images.randomElement()
     }
     
     func update(feature: [RocketFeature]) {
         contentView.configure(feature: feature)
+    }
+    
+    func setImage(_ image: UIImage) {
+        rocketImage.setImage(image)
     }
     
     func failureLoadSettings() {
@@ -142,10 +154,28 @@ extension MainVC: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         var offset = scrollView.contentOffset
         
-        if offset.y < minOffsetY { offset.y = minOffsetY }
+        if offset.y < minOffsetY {
+            refreshStatus = true
+            rocketImage.startLoading()
+            offset.y = minOffsetY
+        }
         if offset.y > maxOffsetY { offset.y = maxOffsetY }
         
         scrollView.contentOffset = offset
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if refreshStatus {
+            refreshStatus.toggle()
+            urlImage = rocketModel.flickrImages.randomElement()
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if refreshStatus {
+            refreshStatus.toggle()
+            urlImage = rocketModel.flickrImages.randomElement()
+        }
     }
 }
 

@@ -31,14 +31,17 @@ final class RocketImageView: UIImageView {
     }
     
     // MARK: - Public methods
-    public func downloadImage(fromURL url: String) {
-        indicatorView.startAnimating()
-        NetworkManager.shared.downloadImage(from: url) { [weak self] image in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.indicatorView.stopAnimating()
-                self.image = image
-            }
+    func setImage(_ image: UIImage?) {
+        DispatchQueue.main.async {
+            self.indicatorView.stopAnimating()
+            self.image = image
+        }
+    }
+    
+    func startLoading() {
+        DispatchQueue.main.async {
+            self.image = nil
+            self.indicatorView.startAnimating()
         }
     }
 }

@@ -8,9 +8,12 @@
 import Foundation
 
 protocol MainPresenterProtocol {
-    init(view: MainVCProtocol, storageManager: StorageManagerProtocol)
+    init(view: MainVCProtocol,
+         storageManager: StorageManagerProtocol,
+         networkManager: NetworkManagerProtocol)
     func generateRocket(with model: RocketModel)
     func updateFeature()
+    func getImage(from url: String)
     /// Adaptive table height calculation
     func calculateHeightTable(data: [SectionMainTable]) -> CGFloat
 }
@@ -20,12 +23,14 @@ final class MainPresenter: MainPresenterProtocol {
     // MARK: - Properties
     weak var view: MainVCProtocol!
     unowned let storage: StorageManagerProtocol!
+    let network: NetworkManagerProtocol!
     private var features: [RocketFeature] = []
     
     // MARK: - Init
-    init(view: MainVCProtocol, storageManager: StorageManagerProtocol) {
+    init(view: MainVCProtocol, storageManager: StorageManagerProtocol, networkManager: NetworkManagerProtocol) {
         self.view = view
         storage = storageManager
+        network = networkManager
     }
     
     // MARK: - MainPresenterProtocol Impl
@@ -62,6 +67,13 @@ final class MainPresenter: MainPresenterProtocol {
         }
         
         view.update(feature: features)
+    }
+    
+    func getImage(from url: String) {
+        network.downloadImage(from: url) { [weak self] image in
+            guard let self, let image else { return }
+            self.view.setImage(image)
+        }
     }
     
     func calculateHeightTable(data: [SectionMainTable]) -> CGFloat {
