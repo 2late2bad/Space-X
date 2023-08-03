@@ -9,18 +9,9 @@ import UIKit
 
 final class MainTableView: UITableView {
     
-    // MARK: - Local constants
-    private enum LocalConstants {
-        static let cellHeight: CGFloat = 40
-        static let cellButtonHeight: CGFloat = 56
-        static let sectionHeaderStageHeight: CGFloat = 32
-        static let sectionHeaderDefaultHeight: CGFloat = 0
-        static let sectionFooterBeginnersStageHeight: CGFloat = 32
-        static let sectionFooterFinalsStageHeight: CGFloat = 24
-    }
-    
     // MARK: - Properties
     private var dataTable: [SectionMainTable] = []
+    var presenter: MainPresenterProtocol!
     var buttonAction: C.Callback?
     
     // MARK: - Init
@@ -35,33 +26,42 @@ final class MainTableView: UITableView {
     }
     
     // MARK: - Methods
-    // TODO: - ???
     func configure(rocket: Rocket) {
+        
+        let infoSectionCells = [CellMainTable(type: .info,
+                                              label: "Первый запуск",
+                                              value: rocket.firstFlight.convertToDisplayFormat(from: .fullYearMonthDay)),
+                                CellMainTable(type: .info,
+                                              label: "Страна",
+                                              value: rocket.country.convertCountryToRus()),
+                                CellMainTable(type: .info,
+                                              label: "Стоимость запуска",
+                                              value: rocket.costPerLaunch.roundedDollars)]
+        
+        let firstStageSectionCells = [CellMainTable(type: .stage(unit: nil),
+                                                    label: "Количество двигателей",
+                                                    value: String(rocket.firstStage.engines)),
+                                      CellMainTable(type: .stage(unit: .fuel),
+                                                    label: "Количество топлива",
+                                                    value: String(rocket.firstStage.fuelAmountTons))]
+        
+        let secondStageSectionCells = [CellMainTable(type: .stage(unit: nil),
+                                                     label: "Количество двигателей",
+                                                     value: String(rocket.secondStage.engines)),
+                                       CellMainTable(type: .stage(unit: .fuel),
+                                                     label: "Количество топлива",
+                                                     value: String(rocket.secondStage.fuelAmountTons))]
+        
+        let buttonSectionCell = [CellMainTable(type: .button,
+                                               label: "Посмотреть запуски")]
+        
         dataTable = [
-            SectionMainTable(type: .info, cells: [CellMainTable(type: .info,
-                                                                label: "Первый запуск",
-                                                                value: rocket.firstFlight.convertToDisplayFormat(from: .fullYearMonthDay)),
-                                                  CellMainTable(type: .info,
-                                                                label: "Страна",
-                                                                value: rocket.country.convertCountryToRus()),
-                                                  CellMainTable(type: .info,
-                                                                label: "Стоимость запуска",
-                                                                value: rocket.costPerLaunch.roundedDollars)]),
-            SectionMainTable(type: .firstStage, cells: [CellMainTable(type: .stage(unit: nil),
-                                                                      label: "Количество двигателей",
-                                                                      value: String(rocket.firstStage.engines)),
-                                                        CellMainTable(type: .stage(unit: .fuel),
-                                                                      label: "Количество топлива",
-                                                                      value: String(rocket.firstStage.fuelAmountTons))]),
-            SectionMainTable(type: .secondStage, cells: [CellMainTable(type: .stage(unit: nil),
-                                                                       label: "Количество двигателей",
-                                                                       value: String(rocket.secondStage.engines)),
-                                                         CellMainTable(type: .stage(unit: .fuel),
-                                                                       label: "Количество топлива",
-                                                                       value: String(rocket.secondStage.fuelAmountTons))]),
-            SectionMainTable(type: .launchButton, cells: [CellMainTable(type: .button,
-                                                                        label: "Посмотреть запуски")])
+            SectionMainTable(type: .info, cells: infoSectionCells),
+            SectionMainTable(type: .firstStage, cells: firstStageSectionCells),
+            SectionMainTable(type: .secondStage, cells: secondStageSectionCells),
+            SectionMainTable(type: .launchButton, cells: buttonSectionCell)
         ]
+        
         if let burnSecFirst = rocket.firstStage.burnTimeSec {
             dataTable[1].cells.append(CellMainTable(type: .stage(unit: .time),
                                                     label: "Время сгорания",
@@ -75,6 +75,11 @@ final class MainTableView: UITableView {
         
         layoutUI()
         reloadData()
+    }
+    
+    func setup(buttonAction: C.Callback?, presenter: MainPresenterProtocol) {
+        self.buttonAction = buttonAction
+        self.presenter = presenter
     }
 }
 
@@ -102,38 +107,9 @@ private extension MainTableView {
     func layoutUI() {
         translatesAutoresizingMaskIntoConstraints = false
         let heightTableConstraint = [
-            heightAnchor.constraint(equalToConstant: calculateHeightTable())
+            heightAnchor.constraint(equalToConstant: presenter.calculateHeightTable(data: dataTable))
         ]
         NSLayoutConstraint.activate(heightTableConstraint)
-    }
-    
-    // Adaptive table height calculation
-    func calculateHeightTable() -> CGFloat {
-        var height: CGFloat = 0
-        for section in dataTable {
-            
-            switch section.type {
-            case .launchButton:
-                section.cells.forEach { _ in height += LocalConstants.cellButtonHeight }
-            default:
-                section.cells.forEach { _ in height += LocalConstants.cellHeight }
-            }
-            
-            switch section.type {
-            case .firstStage, .secondStage:
-                height += LocalConstants.sectionHeaderStageHeight
-            default:
-                height += LocalConstants.sectionHeaderDefaultHeight
-            }
-            
-            switch section.type {
-            case .info, .firstStage:
-                height += LocalConstants.sectionFooterBeginnersStageHeight
-            case .secondStage, .launchButton:
-                height += LocalConstants.sectionFooterFinalsStageHeight
-            }
-        }
-        return height
     }
 }
 
@@ -201,27 +177,27 @@ extension MainTableView: UITableViewDelegate {
         let section = dataTable[indexPath.section]
         switch section.type {
         case .launchButton:
-            return LocalConstants.cellButtonHeight
+            return MainTableConstants.cellButtonHeight
         default:
-            return LocalConstants.cellHeight
+            return MainTableConstants.cellHeight
         }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch dataTable[section].type {
         case .firstStage, .secondStage:
-            return LocalConstants.sectionHeaderStageHeight
+            return MainTableConstants.sectionHeaderStageHeight
         default:
-            return LocalConstants.sectionHeaderDefaultHeight
+            return MainTableConstants.sectionHeaderDefaultHeight
         }
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         switch dataTable[section].type {
         case .info, .firstStage:
-            return LocalConstants.sectionFooterBeginnersStageHeight
+            return MainTableConstants.sectionFooterBeginnersStageHeight
         case .secondStage, .launchButton:
-            return LocalConstants.sectionFooterFinalsStageHeight
+            return MainTableConstants.sectionFooterFinalsStageHeight
         }
     }
 }

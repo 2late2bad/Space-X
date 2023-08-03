@@ -30,9 +30,9 @@ final class MainContentView: UIView {
     }
     
     // MARK: - Methods
-    func setupDelegates(delegate: MainHeaderViewDelegate, launchAction: C.Callback?) {
+    func setup(delegate: MainHeaderViewDelegate, launchAction: C.Callback?, presenter: MainPresenterProtocol) {
         header.delegate = delegate
-        tableView.buttonAction = launchAction
+        tableView.setup(buttonAction: launchAction, presenter: presenter)
     }
     
     func configure(rocket: Rocket) {

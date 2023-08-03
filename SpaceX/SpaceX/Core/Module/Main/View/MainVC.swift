@@ -86,7 +86,9 @@ private extension MainVC {
         view.addSubviews(rocketImage, scrollView)
         scrollView.delegate = self
         scrollView.addSubview(contentView)
-        contentView.setupDelegates(delegate: self, launchAction: openLaunchScreen)
+        contentView.setup(delegate: self,
+                          launchAction: openLaunchScreen,
+                          presenter: presenter)
     }
     
     func openLaunchScreen() {

@@ -7,6 +7,16 @@
 
 import Foundation
 
+// MARK: - MainTable constants
+enum MainTableConstants {
+    static let cellHeight: CGFloat = 40
+    static let cellButtonHeight: CGFloat = 56
+    static let sectionHeaderStageHeight: CGFloat = 32
+    static let sectionHeaderDefaultHeight: CGFloat = 0
+    static let sectionFooterBeginnersStageHeight: CGFloat = 32
+    static let sectionFooterFinalsStageHeight: CGFloat = 24
+}
+
 // MARK: - Section type
 enum SectionMainType: String {
     case info

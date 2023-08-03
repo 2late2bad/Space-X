@@ -11,6 +11,8 @@ protocol MainPresenterProtocol {
     init(view: MainVCProtocol, storageManager: StorageManagerProtocol)
     func generateRocket(with model: RocketModel)
     func updateFeature()
+    /// Adaptive table height calculation
+    func calculateHeightTable(data: [SectionMainTable]) -> CGFloat
 }
 
 final class MainPresenter: MainPresenterProtocol {
@@ -60,6 +62,34 @@ final class MainPresenter: MainPresenterProtocol {
         }
         
         view.update(feature: features)
+    }
+    
+    func calculateHeightTable(data: [SectionMainTable]) -> CGFloat {
+        var height: CGFloat = 0
+        for section in data {
+            
+            switch section.type {
+            case .launchButton:
+                section.cells.forEach { _ in height += MainTableConstants.cellButtonHeight }
+            default:
+                section.cells.forEach { _ in height += MainTableConstants.cellHeight }
+            }
+            
+            switch section.type {
+            case .firstStage, .secondStage:
+                height += MainTableConstants.sectionHeaderStageHeight
+            default:
+                height += MainTableConstants.sectionHeaderDefaultHeight
+            }
+            
+            switch section.type {
+            case .info, .firstStage:
+                height += MainTableConstants.sectionFooterBeginnersStageHeight
+            case .secondStage, .launchButton:
+                height += MainTableConstants.sectionFooterFinalsStageHeight
+            }
+        }
+        return height
     }
 }
 
