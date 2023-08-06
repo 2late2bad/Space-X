@@ -3,8 +3,8 @@
 Приложение показывает информацию о космических ракетах SpaceX и список их запусков.
 
 ![iOS](https://img.shields.io/badge/iOS-13+%20-white?logo=Apple&logoColor=white)
-![Swift](https://img.shields.io/badge/Swift-5-B71C1C?logo=Swift&logoColor=red)
-![Xcode](https://img.shields.io/badge/Xcode-14%20-00B2FF?logo=Xcode&logoColor=00B2FF)
+![Swift](https://img.shields.io/badge/Swift-5.5-red?logo=Swift&logoColor=red)
+![Xcode](https://img.shields.io/badge/Xcode-14.3%20-00B2FF?logo=Xcode&logoColor=00B2FF)
 
 Реализованы все фичи согласно [техническому заданию](https://drive.google.com/file/d/1IvYa62XtcAzl4JfU78-4roD08ifKGypE/view)
 
@@ -22,7 +22,7 @@
 * MVP + Router + Assembly
 
 ## Highlights
-* Без использования storyboard (верстка кодом)
+* Верстка экранов кодом (без storyboards), верстка ячеек таблицы с помощью xib-файлов
 * Адаптивная высота content view и table view
 * Ограничения скроллинга, адаптированные под любой смартфон
 * Универсальный NetworkService и StorageService на дженериках
@@ -30,6 +30,7 @@
 * Изменение единиц измерения по всем экранам через NotificationCenter
 * Анимация кнопок и появления изображения
 * Локализация на русском и английском языках
+* Без использования сторонних библиотек
 
 ### Resources
 * [SpaceX API](https://github.com/r-spacex/SpaceX-API)
