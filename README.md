@@ -14,7 +14,7 @@
 :---:|:---:|:---:
 ![Rockets](https://github.com/2late2bad/Space-X/assets/121951550/29fb83f5-9184-4b20-94ff-950b56688138) | ![Launches](https://github.com/2late2bad/Space-X/assets/121951550/28a8c1be-0f28-4d8a-813f-8356839d4a0a) | ![Settings](https://github.com/2late2bad/Space-X/assets/121951550/eb3a1952-4cdc-4e55-b0d7-4085887c5d4c)
 
-## Technology stack
+## Tech stack
 * UIKit
 * GCD
 * URLSession
