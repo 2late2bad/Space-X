@@ -56,6 +56,7 @@ private extension MainTableView {
         isScrollEnabled = false
         dataSource = self
         delegate = self
+        separatorStyle = .none
     }
     
     func styleTable() {

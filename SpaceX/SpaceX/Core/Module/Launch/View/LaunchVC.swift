@@ -89,6 +89,7 @@ private extension LaunchVC {
         
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.separatorStyle = .none
         tableView.register(LaunchCell.self, forCellReuseIdentifier: LaunchCell.identifier)
         
         indicatorView.startAnimating()
