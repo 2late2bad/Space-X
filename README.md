@@ -1,10 +1,10 @@
 # Space-X
-Тестовое задание на стажировку от компании "Контур".
-Приложение показывает информацию о космических ракетах SpaceX и список их запусков.
-
 ![iOS](https://img.shields.io/badge/iOS-13+%20-white?logo=Apple&logoColor=white)
 ![Swift](https://img.shields.io/badge/Swift-5.5-red?logo=Swift&logoColor=red)
 ![Xcode](https://img.shields.io/badge/Xcode-14.3%20-00B2FF?logo=Xcode&logoColor=00B2FF)
+
+Тестовое задание на стажировку от компании "Контур".
+Приложение показывает информацию о космических ракетах SpaceX и список их запусков.
 
 Реализованы все фичи согласно [техническому заданию](https://drive.google.com/file/d/1IvYa62XtcAzl4JfU78-4roD08ifKGypE/view)
 
